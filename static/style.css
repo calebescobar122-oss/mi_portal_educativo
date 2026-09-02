@@ -46,7 +46,7 @@ header {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* Empuja el logo a la izquierda y el menú a la derecha */
   gap: 1.5rem;
   flex-wrap: wrap;
 }
@@ -73,11 +73,17 @@ header h1 {
   color: #fff;
 }
 
-nav ul {
+nav ul.nav-menu {
   display: flex;
-  list-style: none;
+  list-style: none; /* Elimina los puntos */
   gap: 1.5rem;
   align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul.nav-menu li {
+  list-style: none;
 }
 
 nav a {
@@ -307,7 +313,7 @@ footer p {
     flex-direction: column;
     text-align: center;
   }
-  nav ul {
+  nav ul.nav-menu {
     justify-content: center;
     gap: 1rem;
   }
