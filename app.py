@@ -1,30 +1,31 @@
-from flask import Flask, render_template, request, redirect, url_for
-from db import obtener_conexion, init_db
-import os
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.secret_key = "clave-secreta-jesus-nazareno"
 
-# Inicializar la base de datos de manera segura al arrancar la app
-try:
-    init_db()
-except Exception as e:
-    print(f"Error al inicializar la BD: {e}")
+# Lista de noticias y avisos recientes para la página de inicio
+noticias_recientes = [
+    {
+        "titulo": "¡Inscripciones Abiertas 2026!",
+        "fecha": "Septiembre, 2026",
+        "contenido": "Ya se encuentran abiertas las matrículas para Pre-Kínder, Kínder, Primaria y Secundaria (Informática, Finanzas y Humanidades). ¡Cupos limitados!"
+    },
+    {
+        "titulo": "Excelencia Académica Bilingüe",
+        "fecha": "Periodo Escolar",
+        "contenido": "Contamos con clases 100% certificadas en inglés y español, preparando a los líderes del mañana con sólidas bases tecnológicas y morales."
+    },
+    {
+        "titulo": "Banda de Guerra y Danza",
+        "fecha": "Actividades Cívicas",
+        "contenido": "Nuestros estudiantes forman con orgullo la banda de guerra y el grupo de danza, representando fielmente los valores patrios y culturales."
+    }
+]
 
 @app.route("/")
+@app.route("/inicio")
 def inicio():
-    noticias = []
-    try:
-        conn = obtener_conexion()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM noticias ORDER BY fecha DESC LIMIT 3")
-        noticias = cursor.fetchall()
-        conn.close()
-    except Exception as e:
-        print(f"Error al consultar la base de datos: {e}")
-    return render_template("inicio.html", noticias=noticias)
+    return render_template("inicio.html", noticias=noticias_recientes)
 
-@app.route("/nosotros")
 @app.route("/quienes")
 def quienes():
     return render_template("quienes.html")
@@ -37,10 +38,13 @@ def servicios():
 def acerca():
     return render_template("acerca.html")
 
+@app.route("/galeria")
+def galeria():
+    return render_template("galeria.html")
+
 @app.route("/contacto")
 def contacto():
     return render_template("contacto.html")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True)

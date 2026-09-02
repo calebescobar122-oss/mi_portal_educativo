@@ -1,12 +1,70 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Acerca del Sistema</h2>
+<h2>Acerca de Nuestra Institución</h2>
 
 <div class="info-card">
-    <h3>Plataforma Educativa v1.0</h3>
-    <p>Este sistema web fue desarrollado para facilitar el acceso a noticias institucionales, información académica y vías de contacto directo con la administración.</p>
-    <br>
-    <p><strong>Tecnologías Utilizadas:</strong> Python, Flask, SQLite3, HTML5 y CSS3.</p>
+    <h3>Niveles Educativos</h3>
+    <p>Ofrecemos educación continua desde <strong>Pre-Kínder, Kínder, Primaria</strong>, hasta completar la secundaria con los bachilleratos en <strong>Informática, Finanzas y Humanidades</strong>.</p>
+</div>
+
+<div class="info-card">
+    <h3>Normas Más Importantes de la Institución</h3>
+    <p>El uso del uniforme correspondiente al día es estrictamente obligatorio.</p>
+    
+    <div class="grid-2-cols" style="margin-top: 1rem;">
+        <div>
+            <h4>Normas para Niñas:</h4>
+            <ul class="styled-list">
+                <li>Desde ciclo se utiliza falda-short.</li>
+                <li>Asistir a clases sin maquillaje.</li>
+                <li>No utilizar uñas acrílicas.</li>
+                <li>No pintarse el cabello.</li>
+                <li>Sentarse adecuadamente.</li>
+                <li>Utilizar joyería moderada (no muy extravagante).</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Normas para Niños:</h4>
+            <ul class="styled-list">
+                <li>Corte de cabello formal.</li>
+                <li>Utilizar su camisa correctamente (por dentro).</li>
+                <li>No dejarse crecer las uñas.</li>
+                <li>Usar sus zapatos correspondientes limpios.</li>
+                <li>No cortarse las cejas.</li>
+                <li>No portar piercings.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h4 style="margin-top: 1.5rem;">Normas Generales:</h4>
+    <ul class="styled-list">
+        <li>No llevar teléfono celular a la institución.</li>
+        <li>Mantener respeto mutuo entre compañeros.</li>
+        <li>Prohibido tener relaciones amorosas dentro del instituto.</li>
+        <li>No ingresar a aulas no correspondientes.</li>
+        <li>Días de ropa de color: utilizar ropa formal (no pantalones rotos, no camisas cortas).</li>
+        <li>Cumplir puntualmente con los pagos.</li>
+    </ul>
+</div>
+
+<div class="grid-2-cols">
+    <div class="info-card">
+        <h3>Información sobre Pagos</h3>
+        <p>Se paga la matrícula y el mes de enero. En junio se cancela ese mes y diciembre. Se deben abonar <strong>200 Lps por concepto de papelería</strong>.</p>
+        <p style="margin-top: 0.8rem; color: var(--secondary-color); font-weight: 600;">⚠️ Los pagos de mensualidades deben efectuarse estrictamente del 1 al 5 de cada mes.</p>
+    </div>
+
+    <div class="info-card">
+        <h3>Información de Matrícula</h3>
+        <p><strong>Nuevos Ingresos:</strong> Presentar certificado de estudios de años anteriores, acta de conducta, partida de nacimiento del estudiante y cédula del padre o encargado.</p>
+        <p style="margin-top: 0.8rem;"><strong>Reingresos:</strong> Presentar copia del certificado del año anterior, copia de cédula del padre o encargado, presentarse a la institución y comprar su bolsa de matrícula.</p>
+    </div>
+</div>
+
+<div class="info-card" style="text-align: center;">
+    <h3>Derechos Reservados y Contacto</h3>
+    <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno. Todos los derechos reservados.</p>
+    <p style="margin-top: 0.5rem;">WhatsApp: <strong>31913765</strong> | <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank">Visita nuestra página de Facebook</a></p>
 </div>
 {% endblock %}
