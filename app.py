@@ -39,7 +39,7 @@ def acerca():
 
 @app.route("/contacto")
 def contacto():
-    return render_template("Contacto.html")
+    return render_template("contacto.html")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
