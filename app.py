@@ -36,7 +36,12 @@ def acerca():
 
     
 
+# Inicializar la base de datos de manera segura
+try:
+    init_db()
+except Exception as e:
+    print(f"Error al inicializar la BD: {e}")
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
-    
+    app.run(host="0.0.0.0", port=port)
