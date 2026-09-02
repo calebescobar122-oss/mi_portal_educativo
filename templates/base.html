@@ -2,28 +2,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block titulo %}Portal Educativo{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Educativo</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+
     <header>
-        <h1>Centro Educativo Jesus Nazareno</h1>
+        <h1>Mi Portal Educativo</h1>
         <nav>
-           <nav>
-    <a href="{{ url_for('inicio') }}">Inicio</a>
-    <a href="{{ url_for('quienes') }}">Quienes Somos</a>
-    <a href="{{ url_for('servicios') }}">Servicios</a>
-    <a href="{{ url_for('acerca') }}">Acerca</a>
-    <a href="{{ url_for('contacto') }}">Contacto</a>
-</nav>
+            <ul>
+                <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                <li><a href="{{ url_for('quienes') }}">Nosotros</a></li>
+                <li><a href="{{ url_for('servicios') }}">Servicios</a></li>
+                <li><a href="{{ url_for('acerca') }}">Acerca</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+            </ul>
         </nav>
     </header>
+
     <main>
-        {% block contenido %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     </main>
+
     <footer>
-        <p>&copy; 2026 Portal Educativo. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Mi Portal Educativo - Todos los derechos reservados</p>
     </footer>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 </html>
