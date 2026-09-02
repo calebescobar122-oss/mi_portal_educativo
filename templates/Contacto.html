@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Contáctanos</h2>
+
+<div class="grid-2-cols">
+    <div class="info-card">
+        <h3>Información de Contacto</h3>
+        <p><strong>Ubicación:</strong> Barrio El Centro, San Pedro Sula, Honduras</p>
+        <p><strong>Teléfono:</strong> +504 2550-0000</p>
+        <p><strong>Correo Electrónico:</strong> info@portal-educativo.edu.hn</p>
+        <p><strong>Horario de Atención:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
+    </div>
+
+    <form class="contact-form">
+        <h3>Envíanos un Mensaje</h3>
+        <div class="form-group">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+        </div>
+        <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí..." required></textarea>
+        </div>
+        <button type="submit">Enviar Consulta</button>
+    </form>
+</div>
+{% endblock %}

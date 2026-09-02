@@ -168,3 +168,98 @@ footer {
   margin-top: auto;
   font-size: 0.9rem;
 }
+
+
+/* Estilos para encabezados de página */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  color: var(--light-text);
+  font-size: 1.1rem;
+}
+
+/* Grillas responsivas */
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Tarjetas Informativas generales */
+.info-card {
+  background-color: var(--card-bg);
+  padding: 1.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--primary-color);
+}
+
+.info-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+}
+
+/* Lista de valores */
+.valores-section {
+  background-color: var(--card-bg);
+  padding: 1.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.valores-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.valores-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+/* Tarjetas de Servicios con íconos */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.service-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* Formularios estilizados */
+.contact-form {
+  background-color: var(--card-bg);
+  padding: 1.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.contact-form h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
