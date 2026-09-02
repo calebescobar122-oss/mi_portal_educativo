@@ -11,7 +11,12 @@
     <header>
         <div class="header-container">
             <div class="header-brand">
-<img src="{{ url_for('static', filename='logo.jpg') }}" alt="Escudo Institucional" class="header-logo">                    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Escudo Institucional" class="header-logo">
+                <h1>Jardín Escuela e Instituto Jesús Nazareno</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
                     <li><a href="{{ url_for('quienes') }}">Nosotros</a></li>
                     <li><a href="{{ url_for('servicios') }}">Servicios</a></li>
                     <li><a href="{{ url_for('acerca') }}">Acerca</a></li>
