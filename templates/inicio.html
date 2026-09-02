@@ -1,17 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Noticias Recientes</h2>
+<div class="hero-banner">
+    <h2>Excelencia Educativa y Moral</h2>
+    <p>Bienvenidos al Jardín Escuela e Instituto Jesús Nazareno. Formación bilingüe y en español con más de 10 años de experiencia, impartida por maestros 100% certificados en los niveles de Pre-Kínder hasta Bachillerato en Informática, Finanzas y Humanidades.</p>
+</div>
 
-<div class="noticias-container">
+<h2>Noticias y Avisos Recientes</h2>
+
+<div class="grid-3-cols">
     {% for noticia in noticias %}
         <div class="noticia-card">
             <h3>{{ noticia['titulo'] }}</h3>
-            <p class="fecha">{{ noticia['fecha'] }}</p>
+            <p style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;">{{ noticia['fecha'] }}</p>
             <p>{{ noticia['contenido'] }}</p>
         </div>
-    {% else %}
-        <p>No hay noticias disponibles en este momento.</p>
     {% endfor %}
+</div>
+
+<div class="info-card" style="margin-top: 2.5rem; text-align: center;">
+    <h3>¡Conéctate con Nuestra Institución!</h3>
+    <p>Síguenos en nuestra página oficial de Facebook para ver eventos en vivo, galerías y avisos importantes, o escríbenos directamente por WhatsApp.</p>
+    <p style="margin-top: 1.2rem;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
+        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">💬 WhatsApp: 31913765</a>
+    </p>
 </div>
 {% endblock %}

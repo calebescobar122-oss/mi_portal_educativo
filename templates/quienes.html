@@ -1,28 +1,136 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-header">
-    <h2>Sobre Nuestra Institución</h2>
-    <p class="subtitle">Formando líderes con excelencia académica y valores morales.</p>
-</section>
+<h2>Sobre Nuestra Institución</h2>
+
+<div class="info-card">
+    <p>En el <strong>Jardín Escuela e Instituto Jesús Nazareno</strong> contamos con más de <strong>10 años de experiencia educando alumnos</strong> bajo estrictos estándares de calidad. Nuestra institución se enorgullece de contar con un plantel de <strong>maestros 100% certificados</strong> tanto en el área de inglés como en español.</p>
+    <p style="margin-top: 1rem;">A lo largo del periodo escolar fomentamos el liderazgo, el civismo y el talento artístico mediante una amplia gama de actividades y disciplinas.</p>
+</div>
 
 <div class="grid-2-cols">
     <div class="info-card">
         <h3>Misión</h3>
-        <p>Brindar una educación integral y de calidad mediante el uso de herramientas tecnológicas avanzadas, promoviendo el pensamiento crítico y la ética en nuestros estudiantes.</p>
+        <p>Proveer una educación integral bilingüe y nacional de excelencia, fomentando valores morales, principios éticos y sólidas destrezas tecnológicas para formar ciudadanos altamente competentes para la sociedad.</p>
     </div>
     <div class="info-card">
         <h3>Visión</h3>
-        <p>Ser un centro educativo líder a nivel regional, reconocido por la excelencia de sus egresados en áreas técnicas y científicas.</p>
+        <p>Ser la institución educativa líder reconocida por su alto nivel académico, compromiso cristiano y moral, formando generaciones preparadas para triunfar en el ámbito universitario y profesional.</p>
     </div>
 </div>
 
-<div class="valores-section">
-    <h3>Nuestros Valores</h3>
-    <ul class="valores-list">
-        <li><strong>Respeto:</strong> Base fundamental de la convivencia escolar.</li>
-        <li><strong>Innovación:</strong> Integración continua de la tecnología en el aprendizaje.</li>
-        <li><strong>Excelencia:</strong> Búsqueda constante de la calidad académica.</li>
+<div class="info-card">
+    <h3>Valores Institucionales</h3>
+    <ul class="styled-list">
+        <li><strong>Respeto:</strong> Pilar fundamental en la convivencia armónica de toda la comunidad educativa.</li>
+        <li><strong>Responsabilidad:</strong> Compromiso diario con las obligaciones escolares y personales.</li>
+        <li><strong>Honestidad:</strong> Transparencia, honradez y rectitud en cada acto de nuestra vida.</li>
+        <li><strong>Excelencia:</strong> Superación continua en el área académica, espiritual y humana.</li>
     </ul>
 </div>
-{% endblock %}
+
+<div class="info-card">
+    <h3>Actividades del Periodo Escolar</h3>
+    <p>Durante el año lectivo, nuestros estudiantes participan activamente en las siguientes festividades y eventos oficiales:</p>
+    <div class="grid-2-cols" style="margin-top: 1.2rem;">
+        <ol class="styled-list">
+            <li>Día de la Madre</li>
+            <li>Día del Padre</li>
+            <li>Elección del Gobierno Estudiantil</li>
+            <li>Día del Estudiante</li>
+            <li>Elección de la Madrina de los Estudiantes</li>
+            <li>Día del Indio</li>
+        </ol>
+        <ol start="7" class="styled-list">
+            <li>Inauguración de Fiestas Patrias</li>
+            <li>Día del Niño</li>
+            <li>Práctica Profesional</li>
+            <li>Clausura y Graduación</li>
+        </ol>
+    </div>
+    <div style="margin-top: 1.5rem; background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--secondary-pink);">
+        <p>🎺 <strong>Agrupaciones Especiales:</strong> Contamos con nuestra propia y prestigiosa <strong>Banda de Guerra</strong> y grupo de <strong>Danza</strong> institucional.</p>
+    </div>
+</div>
+
+<!-- SECCIÓN DE GALERÍA INTEGRADA EN "QUIÉNES SOMOS" -->
+<div style="margin-top: 3.5rem;">
+    <h2>Galería de Momentos Institucionales</h2>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Un recorrido visual por las actividades cívicas, culturales, artísticas y académicas que enorgullecen a nuestro instituto.</p>
+
+    <div class="gallery-grid">
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0020.jpg') }}" alt="Banda de guerra marchando">
+            <p>Banda de Guerra en desfile</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0024.jpg') }}" alt="Tambores de la banda escolar">
+            <p>Sección de tambores</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0028.jpg') }}" alt="Banda de guerra frontal">
+            <p>Banda de guerra en formación</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0015.jpg') }}" alt="Palillonas en desfile">
+            <p>Grupo de palillonas</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0032.jpg') }}" alt="Etnia Garífuna">
+            <p>Representación Etnia Garífuna</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0017.jpg') }}" alt="Presentación cívico-cultural">
+            <p>Representación cultural especial</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0021.jpg') }}" alt="Estudiantes con dibujos">
+            <p>Conciencia ambiental y escolar</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0019.jpg') }}" alt="Estandarte institucional">
+            <p>Estandarte institucional</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0023.jpg') }}" alt="Banderas de Centroamérica">
+            <p>Civismo centroamericano</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0025.jpg') }}" alt="Escolta de banderas">
+            <p>Escolta de banderas y antorcha</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0027.jpg') }}" alt="Flauta dulce">
+            <p>Presentación de flauta dulce</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0031.jpg') }}" alt="Día de la Familia">
+            <p>Celebración del Día de la Familia</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0029.jpg') }}" alt="Baile en escenario">
+            <p>Talento artístico en el escenario</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='IMG-20260902-WA0033.jpg') }}" alt="Medallas doradas">
+            <p>Reconocimiento a la excelencia</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='image_honduras_display.png') }}" alt="Gastronomía de Honduras">
+            <p>Feria cultural: Gastronomía de Honduras</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='image_japan_booth.jpg') }}" alt="Mural informativo de Japón">
+            <p>Exhibición cultural internacional</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='image_parade_formation.png') }}" alt="Desfile de Fiestas Cívicas">
+            <p>Desfile de Fiestas Cívicas</p>
+        </div>
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='image_finanzas_shirt.jpg') }}" alt="Bachillerato en Finanzas">
+            <p>Bachillerato en Finanzas en acción</p>
+        </div>
+    </div>
+</div>
+{% endblock %}  

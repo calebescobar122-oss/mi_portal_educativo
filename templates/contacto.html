@@ -3,30 +3,42 @@
 {% block content %}
 <h2>Contáctanos</h2>
 
+<div class="info-card" style="text-align: center; margin-bottom: 2.5rem;">
+    <h3>¿Necesitas más información detallada?</h3>
+    <p>Te invitamos a visitar nuestra página oficial en Facebook o escribirnos directamente a nuestro número de WhatsApp institucional <strong>31913765</strong>.</p>
+    <p style="margin-top: 1.2rem;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
+        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">💬 WhatsApp: 31913765</a>
+    </p>
+</div>
+
 <div class="grid-2-cols">
     <div class="info-card">
-        <h3>Información de Contacto</h3>
-        <p><strong>Ubicación:</strong> Barrio El Centro, San Pedro Sula, Honduras</p>
-        <p><strong>Teléfono:</strong> +504 2550-0000</p>
-        <p><strong>Correo Electrónico:</strong> info@portal-educativo.edu.hn</p>
-        <p><strong>Horario de Atención:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
+        <h3>Información Institucional</h3>
+        <p><strong>Institución:</strong> Jardín Escuela e Instituto Jesús Nazareno</p>
+        <p><strong>WhatsApp Oficial:</strong> 31913765</p>
+        <p><strong>Ubicación:</strong> San Pedro Sula, Honduras</p>
+        <p><strong>Horario:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno. Todos los derechos reservados.</p>
+        </div>
     </div>
 
     <form class="contact-form">
-        <h3>Envíanos un Mensaje</h3>
+        <h3>Formulario de Consulta Importante</h3>
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>
             <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
         </div>
         <div class="form-group">
-            <label for="correo">Correo Electrónico</label>
-            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+            <label for="correo">Correo Electrónico o Teléfono</label>
+            <input type="text" id="correo" name="correo" placeholder="correo@ejemplo.com / Teléfono" required>
         </div>
         <div class="form-group">
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí..." required></textarea>
+            <label for="mensaje">Información o Consulta</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta sobre matrícula, pagos o carreras..." required></textarea>
         </div>
-        <button type="submit">Enviar Consulta</button>
+        <button type="submit">Enviar Mensaje</button>
     </form>
 </div>
 {% endblock %}

@@ -1,31 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Oferta Académica y Servicios</h2>
+<h2>Servicios y Oferta Académica</h2>
 
-<div class="services-grid">
+<div class="info-card" style="margin-bottom: 2rem;">
+    <h3>Formación Bilingüe y Nacional Certificada</h3>
+    <p>Ofrecemos clases <strong>100% certificadas tanto en el área de inglés como en el área de español</strong>. Diseñamos planes de estudio modernos orientados al dominio fluido de un segundo idioma, pensamiento crítico y competencias tecnológicas de vanguardia.</p>
+</div>
+
+<div class="grid-3-cols">
     <div class="service-card">
-        <div class="service-icon">💻</div>
-        <h3>Bachillerato en Informática (BTPI)</h3>
-        <p>Capacitación técnica en desarrollo web, soporte de sistemas, redes y bases de datos.</p>
+        <h3>Bachillerato en Informática</h3>
+        <p>Especialización en mantenimiento de equipos, desarrollo de sistemas, manejo de redes y herramientas de software indispensables para el mundo digital moderno.</p>
     </div>
 
     <div class="service-card">
-        <div class="service-icon">🔬</div>
-        <h3>Bachillerato en Ciencias y Humanidades</h3>
-        <p>Preparación rigurosa enfocada en el ingreso a carreras universitarias de ingeniería y medicina.</p>
+        <h3>Bachillerato en Finanzas</h3>
+        <p>Capacitación avanzada en contabilidad, administración de recursos financieros, gestión empresarial y cultura del emprendimiento económico.</p>
     </div>
 
     <div class="service-card">
-        <div class="service-icon">📚</div>
-        <h3>Biblioteca Digital</h3>
-        <p>Acceso a miles de recursos educativos, libros de texto y publicaciones científicas en línea.</p>
+        <h3>Bachillerato en Humanidades</h3>
+        <p>Sólida preparación analítica, social y literaria diseñada para facilitar el ingreso y éxito en cualquier carrera universitaria del área humanista y jurídica.</p>
     </div>
+</div>
 
-    <div class="service-card">
-        <div class="service-icon">🏀</div>
-        <h3>Actividades Extracurriculares</h3>
-        <p>Equipos deportivos, clubes de robótica, banda marcial y talleres de arte.</p>
-    </div>
+<div class="info-card" style="margin-top: 2.5rem; text-align: center;">
+    <h3>¿Deseas matricularte o conocer más?</h3>
+    <p>Comunícate con nuestro personal administrativo a través de WhatsApp al <strong>31913765</strong> o visita nuestro portal en Facebook.</p>
+    <p style="margin-top: 1.2rem;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
+        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">💬 WhatsApp: 31913765</a>
+    </p>
 </div>
 {% endblock %}

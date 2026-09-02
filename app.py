@@ -1,30 +1,30 @@
-from flask import Flask, render_template, request, redirect, url_for
-from db import obtener_conexion, init_db
-import os
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.secret_key = "clave-secreta-jesus-nazareno"
 
-# Inicializar la base de datos de manera segura al arrancar la app
-try:
-    init_db()
-except Exception as e:
-    print(f"Error al inicializar la BD: {e}")
+noticias_recientes = [
+    {
+        "titulo": "¡Inscripciones Abiertas 2026!",
+        "fecha": "Periodo Escolar 2026",
+        "contenido": "Matrículas disponibles para Pre-Kínder, Kínder, Primaria y Secundaria (Informática, Finanzas y Humanidades). ¡Forma parte de nuestra gran familia!"
+    },
+    {
+        "titulo": "Excelencia Académica Bilingüe y Nacional",
+        "fecha": "Formación Integral",
+        "contenido": "Clases 100% certificadas en inglés y español con maestros altamente calificados y más de 10 años de trayectoria educativa."
+    },
+    {
+        "titulo": "Orgullo Cívico y Cultural",
+        "fecha": "Actividades Escolares",
+        "contenido": "Destacada participación de nuestra Banda de Guerra y Grupo de Danza en los desfiles patrios y eventos culturales de la comunidad."
+    }
+]
 
 @app.route("/")
+@app.route("/inicio")
 def inicio():
-    noticias = []
-    try:
-        conn = obtener_conexion()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM noticias ORDER BY fecha DESC LIMIT 3")
-        noticias = cursor.fetchall()
-        conn.close()
-    except Exception as e:
-        print(f"Error al consultar la base de datos: {e}")
-    return render_template("inicio.html", noticias=noticias)
+    return render_template("inicio.html", noticias=noticias_recientes)
 
-@app.route("/nosotros")
 @app.route("/quienes")
 def quienes():
     return render_template("quienes.html")
@@ -42,5 +42,4 @@ def contacto():
     return render_template("contacto.html")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True)

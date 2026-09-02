@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Educativo</title>
-    <!-- Vinculo directo a style.css en la carpeta static -->
+    <title>Jardín Escuela e Instituto Jesús Nazareno</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <header>
         <div class="header-container">
-            <h1>Mi Portal Educativo</h1>
+            <div class="header-brand">
+                <img src="{{ url_for('static', filename='IMG-20260902-WA0036.jpg') }}" alt="Escudo Institucional" class="header-logo">
+                <h1>Jardín Escuela e Instituto Jesús Nazareno</h1>
+            </div>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
@@ -30,7 +32,12 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Mi Portal Educativo - Todos los derechos reservados</p>
+        <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno - Todos los derechos reservados.</p>
+        <p class="footer-social">
+            Contáctanos: 
+            <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank">Facebook Oficial</a> | 
+            <a href="https://wa.me/50431913765" target="_blank">WhatsApp: 31913765</a>
+        </p>
     </footer>
 
 </body>
