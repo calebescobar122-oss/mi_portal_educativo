@@ -1,36 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Servicios y Oferta Académica</h2>
+<h2>Oferta Académica y Servicios</h2>
 
-<div class="info-card" style="margin-bottom: 2rem;">
-    <h3>Educación Bilingüe y Nacional Certificada</h3>
-    <p>Contamos con clases <strong>100% certificadas tanto en el área de inglés como en el área de español</strong>. Brindamos una enseñanza profunda que combina el desarrollo bilingüe con competencias prácticas y tecnológicas avanzadas.</p>
-</div>
-
-<div class="grid-3-cols">
+<div class="services-grid">
     <div class="service-card">
-        <h3>Bachillerato en Informática</h3>
-        <p>Capacitación técnica especializada en soporte, desarrollo de sistemas, manejo de redes y herramientas tecnológicas modernas.</p>
+        <div class="service-icon">💻</div>
+        <h3>Bachillerato en Informática (BTPI)</h3>
+        <p>Capacitación técnica en desarrollo web, soporte de sistemas, redes y bases de datos.</p>
     </div>
 
     <div class="service-card">
-        <h3>Bachillerato en Finanzas</h3>
-        <p>Formación orientada a la gestión contable, administración de recursos financieros, emprendimiento y análisis económico.</p>
+        <div class="service-icon">🔬</div>
+        <h3>Bachillerato en Ciencias y Humanidades</h3>
+        <p>Preparación rigurosa enfocada en el ingreso a carreras universitarias de ingeniería y medicina.</p>
     </div>
 
     <div class="service-card">
-        <h3>Bachillerato en Humanidades</h3>
-        <p>Sólida preparación analítica, social y cultural ideal para cursar estudios universitarios en ciencias sociales, derecho y letras.</p>
+        <div class="service-icon">📚</div>
+        <h3>Biblioteca Digital</h3>
+        <p>Acceso a miles de recursos educativos, libros de texto y publicaciones científicas en línea.</p>
     </div>
-</div>
 
-<div class="info-card" style="margin-top: 2rem; text-align: center;">
-    <h3>¿Necesitas más información?</h3>
-    <p>Comunícate con nosotros por medio de WhatsApp al <strong>31913765</strong> o visita nuestra página de Facebook.</p>
-    <p style="margin-top: 1rem;">
-        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-color); font-weight: bold; margin-right: 1.5rem; text-decoration: none;">📘 Facebook Oficial</a>
-        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: bold; text-decoration: none;">💬 WhatsApp (31913765)</a>
-    </p>
+    <div class="service-card">
+        <div class="service-icon">🏀</div>
+        <h3>Actividades Extracurriculares</h3>
+        <p>Equipos deportivos, clubes de robótica, banda marcial y talleres de arte.</p>
+    </div>
 </div>
 {% endblock %}
