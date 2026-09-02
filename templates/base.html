@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardín Escuela e Instituto Jesús Nazareno</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
 
     <header>
         <div class="header-container">
             <div class="header-brand">
-                <img src="{{ url_for('static', filename='Imagenes/logo.jpg') }}" alt="Escudo Institucional" class="header-logo">
+                <img src="static/img/logo.jpg.jpeg" alt="Escudo Institucional" class="header-logo">
                 <h1>Jardín Escuela e Instituto Jesús Nazareno</h1>
             </div>
 
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-                    <li><a href="{{ url_for('quienes') }}">Nosotros</a></li>
-                    <li><a href="{{ url_for('servicios') }}">Servicios</a></li>
-                    <li><a href="{{ url_for('acerca') }}">Acerca</a></li>
-                    <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="quienes.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="acerca.html">Acerca</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -41,5 +41,6 @@
         </p>
     </footer>
 
+    <script src="static/script.js"></script>
 </body>
 </html>
