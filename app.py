@@ -5,8 +5,11 @@ import os
 app = Flask(__name__)
 app.secret_key = "clave-secreta-jesus-nazareno"
 
-# Inicializar la base de datos
-init_db()
+# Inicializar la base de datos de manera segura al arrancar la app
+try:
+    init_db()
+except Exception as e:
+    print(f"Error al inicializar la BD: {e}")
 
 @app.route("/")
 def inicio():
@@ -34,13 +37,9 @@ def servicios():
 def acerca():
     return render_template("acerca.html")
 
-    
-
-# Inicializar la base de datos de manera segura
-try:
-    init_db()
-except Exception as e:
-    print(f"Error al inicializar la BD: {e}")
+@app.route("/contacto")
+def contacto():
+    return render_template("contacto.html")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
