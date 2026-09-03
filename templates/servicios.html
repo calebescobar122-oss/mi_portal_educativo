@@ -1,39 +1,46 @@
 {% extends "base.html" %}
 
+{% block title %}Oferta Académica | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+
 {% block content %}
-<h2>Servicios y Oferta Académica</h2>
+<section class="page-header text-center">
+    <h2><i class="fa-solid fa-graduation-cap"></i> Oferta Académica</h2>
+    <p class="subtitle">Educación bilingüe e integral con más de 10 años de excelencia académica.</p>
+</section>
 
-<!-- INTRODUCCIÓN A LA OFERTA ACADÉMICA -->
-<div class="info-card fade-in" style="margin-bottom: 2rem;">
-    <h3>Formación Bilingüe y Nacional Certificada</h3>
-    <p>Ofrecemos clases <strong>100% certificadas tanto en el área de inglés como en el área de español</strong>. Diseñamos planes de estudio modernos orientados al dominio fluido de un segundo idioma, pensamiento crítico y competencias tecnológicas de vanguardia.</p>
+<!-- NIVELES EDUCATIVOS -->
+<div class="grid-3-cols fade-in">
+    <div class="info-card text-center" style="border-top: 4px solid #004488;">
+        <h3 style="color: #004488;"><i class="fa-solid fa-child"></i> Pre-Básica</h3>
+        <p style="color: #e91e63; font-weight: bold; margin-bottom: 0.8rem;">Pre-Kínder y Kínder</p>
+        <p>Desarrollo temprano bilingüe, estimulación cognitiva y valores morales en un ambiente seguro y cálido.</p>
+    </div>
+
+    <div class="info-card text-center" style="border-top: 4px solid #004488;">
+        <h3 style="color: #004488;"><i class="fa-solid fa-book-open"></i> Educación Básica</h3>
+        <p style="color: #e91e63; font-weight: bold; margin-bottom: 0.8rem;">1er a 9no Grado</p>
+        <p>Sólida formación académica bilingüe con énfasis en matemáticas, ciencias, cívica y artes.</p>
+    </div>
+
+    <div class="info-card text-center" style="border-top: 4px solid #004488;">
+        <h3 style="color: #004488;"><i class="fa-solid fa-user-graduate"></i> Bachilleratos</h3>
+        <p style="color: #e91e63; font-weight: bold; margin-bottom: 0.8rem;">Secundaria Técnica</p>
+        <p>Especialidades en Informática, Finanzas y Humanidades preparadas para el éxito universitario.</p>
+    </div>
 </div>
 
-<!-- TARJETAS DE BACHILLERATOS CON ANIMACIÓN FADE-IN -->
-<div class="grid-3-cols">
-    <div class="service-card fade-in">
-        <h3>Bachillerato en Informática</h3>
-        <p>Especialización en mantenimiento de equipos, desarrollo de sistemas, manejo de redes y herramientas de software indispensables para el mundo digital moderno.</p>
+<!-- TARJETAS DE CONTACTO DIRECTO LIMPIAS (SIN NÚMERO VISIBLE) -->
+<div class="info-card fade-in text-center" style="margin-top: 2.5rem;">
+    <h3>¿Deseas matricularte o recibir más información?</h3>
+    <p>Comunícate directamente con nuestro personal administrativo por WhatsApp o visita nuestra página oficial de Facebook.</p>
+    
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" class="social-btn facebook-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-facebook"></i> Facebook Oficial
+        </a>
+        <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20informaci%C3%B3n%20sobre%20la%20oferta%20acad%C3%A9mica" target="_blank" class="social-btn whatsapp-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
     </div>
-
-    <div class="service-card fade-in">
-        <h3>Bachillerato en Finanzas</h3>
-        <p>Capacitación avanzada en contabilidad, administración de recursos financieros, gestión empresarial y cultura del emprendimiento económico.</p>
-    </div>
-
-    <div class="service-card fade-in">
-        <h3>Bachillerato en Humanidades</h3>
-        <p>Sólida preparación analítica, social y literaria diseñada para facilitar el ingreso y éxito en cualquier carrera universitaria del área humanista y jurídica.</p>
-    </div>
-</div>
-
-<!-- LLAMADO A LA ACCIÓN -->
-<div class="info-card fade-in" style="margin-top: 2.5rem; text-align: center;">
-    <h3>¿Deseas matricularte o conocer más?</h3>
-    <p>Comunícate con nuestro personal administrativo a través de WhatsApp al <strong>31913765</strong> o visita nuestro portal en Facebook.</p>
-    <p style="margin-top: 1.2rem;">
-        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
-        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">💬 WhatsApp: 31913765</a>
-    </p>
 </div>
 {% endblock %}
