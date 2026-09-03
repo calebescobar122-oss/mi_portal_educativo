@@ -1,33 +1,42 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h2>Contáctanos</h2>
+{% block title %}Contacto | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
-<!-- TARJETA PRINCIPAL CON ANIMACIÓN FADE-IN -->
-<div class="info-card fade-in" style="text-align: center; margin-bottom: 2.5rem;">
+{% block content %}
+<section class="page-header text-center">
+    <h2><i class="fa-solid fa-address-book"></i> Contáctanos</h2>
+    <p class="subtitle">Estamos a tu disposición para atender cualquier duda sobre matrículas, traslados o información escolar.</p>
+</section>
+
+<!-- TARJETA DE CONTACTO RÁPIDO -->
+<div class="info-card fade-in text-center" style="margin-bottom: 2.5rem;">
     <h3>¿Necesitas información inmediata?</h3>
-    <p>Te invitamos a visitar nuestra página oficial en Facebook o escribirnos directamente a nuestro número de WhatsApp institucional <strong>31913765</strong>.</p>
-    <p style="margin-top: 1.2rem;">
-        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
-        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">💬 WhatsApp: 31913765</a>
-    </p>
+    <p>Escríbenos directamente a nuestras redes oficiales o por nuestro canal directo de atención:</p>
+    
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" class="social-btn facebook-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-facebook"></i> Facebook Oficial
+        </a>
+        <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber" target="_blank" class="social-btn whatsapp-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
+        </a>
+    </div>
 </div>
 
 <div class="grid-2-cols">
-    <!-- INFORMACIÓN DE CONTACTO Y UBICACIÓN CON MAPA -->
+    <!-- INFORMACIÓN INSTITUCIONAL Y UBICACIÓN -->
     <div class="info-card fade-in">
-        <h3>Información Institucional</h3>
+        <h3><i class="fa-solid fa-building-columns"></i> Información Institucional</h3>
         <p><strong>Institución:</strong> Jardín Escuela e Instituto Jesús Nazareno</p>
-        <p><strong>WhatsApp Oficial:</strong> 31913765</p>
-        <p><strong>Ubicación:</strong> San Pedro Sula, Honduras</p>
-        <p><strong>Horario de Atención:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
+        <p><strong>Ubicación:</strong> San Pedro Sula, Cortés, Honduras</p>
+        <p><strong>Atención Presencial:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
         
         <!-- MAPA INTERACTIVO -->
-        <div style="margin-top: 1.5rem; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div style="margin-top: 1.5rem; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61538.16327318721!2d-88.0583125!3d15.5041725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f665b4c16a241b1%3A0x8e83348123284f23!2sSan%20Pedro%20Sula%2C%20Honduras!5e0!3m2!1ses!2s!4v1710000000000!5m2!1ses!2s" 
                 width="100%" 
-                height="220" 
+                height="230" 
                 style="border:0;" 
                 allowfullscreen="" 
                 loading="lazy">
@@ -35,28 +44,30 @@
         </div>
     </div>
 
-    <!-- FORMULARIO DE CONTACTO -->
+    <!-- FORMULARIO DE CONSULTAS -->
     <form class="contact-form fade-in">
-        <h3>Formulario de Consulta Importante</h3>
+        <h3><i class="fa-solid fa-paper-plane"></i> Formulario de Consultas</h3>
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
         </div>
         <div class="form-group">
             <label for="correo">Correo Electrónico o Teléfono</label>
-            <input type="text" id="correo" name="correo" placeholder="correo@ejemplo.com / Teléfono" required>
+            <input type="text" id="correo" name="correo" placeholder="ejemplo@correo.com / Teléfono" required>
         </div>
         <div class="form-group">
-            <label for="mensaje">Información o Consulta</label>
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta sobre matrícula, pagos o carreras..." required></textarea>
+            <label for="mensaje">Consulta o Información requerida</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta sobre admisiones, pagos u oferta académica..." required></textarea>
         </div>
-        <button type="submit">Enviar Mensaje</button>
+        <button type="submit" style="width: 100%; padding: 0.8rem; background-color: #004488; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+            Enviar Consulta
+        </button>
     </form>
 </div>
 
-<!-- NUEVA SECCIÓN: LISTA DESPLEGABLE DE PREGUNTAS FRECUENTES (FAQ) -->
+<!-- PREGUNTAS FRECUENTES (FAQ) -->
 <div class="info-card fade-in" style="margin-top: 3rem;">
-    <h3 style="margin-bottom: 1.5rem;">Preguntas Frecuentes e Información Escolar</h3>
+    <h3 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes e Información Escolar</h3>
     
     <div class="faq-container">
         <div class="faq-item">

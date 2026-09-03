@@ -2,6 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+# NOTICIAS Y DESTACADOS DE LA PORTADA
 noticias_recientes = [
     {
         "titulo": "¡Inscripciones Abiertas 2026!",
@@ -20,10 +21,30 @@ noticias_recientes = [
     }
 ]
 
+# AVISOS Y COMUNICADOS URGENTES (SECCIÓN MENSAJES)
+avisos_institucionales = [
+    {
+        "titulo": "Aviso Importante: Suspensión de Clases",
+        "fecha": "10 de Septiembre, 2026",
+        "categoria": "Urgente",
+        "contenido": "Estimada comunidad educativa, se les informa que el día jueves 10 de septiembre no habrá clases por motivo de asueto institucional. Reanudamos actividades normales el viernes 11."
+    },
+    {
+        "titulo": "Reunión de Padres de Familia",
+        "fecha": "15 de Septiembre, 2026",
+        "categoria": "General",
+        "contenido": "Convocatoria a todos los padres de familia para la entrega del reporte de avance académico correspondiente al parcial."
+    }
+]
+
 @app.route("/")
 @app.route("/inicio")
 def inicio():
     return render_template("inicio.html", noticias=noticias_recientes)
+
+@app.route("/mensajes")
+def mensajes():
+    return render_template("mensajes.html", avisos=avisos_institucionales)
 
 @app.route("/quienes")
 def quienes():

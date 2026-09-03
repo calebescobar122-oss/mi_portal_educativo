@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Inicio | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+
 {% block content %}
 <!-- BANNER PRINCIPAL CON ANIMACIÓN FADE-IN -->
 <div class="hero-banner fade-in">
@@ -7,44 +9,58 @@
     <p>Bienvenidos al Jardín Escuela e Instituto Jesús Nazareno. Formación bilingüe y en español con más de 10 años de experiencia, impartida por maestros 100% certificados en los niveles de Pre-Kínder hasta Bachillerato en Informática, Finanzas y Humanidades.</p>
 </div>
 
-<!-- TARJETAS DE ESTADÍSTICAS / LOGROS INSTITUCIONALES -->
-<div class="grid-3-cols fade-in" style="margin-bottom: 2.5rem;">
-    <div class="info-card" style="text-align: center; border-top: 4px solid var(--accent-gold);">
-        <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 0.2rem;">+10</h3>
-        <p style="font-weight: 700; color: var(--secondary-pink);">Años de Trayectoria</p>
-        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Formando líderes con valores morales y religiosos.</p>
-    </div>
-    <div class="info-card" style="text-align: center; border-top: 4px solid var(--accent-gold);">
-        <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 0.2rem;">100%</h3>
-        <p style="font-weight: 700; color: var(--secondary-pink);">Docentes Certificados</p>
-        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Personal altamente capacitado en inglés y español.</p>
-    </div>
-    <div class="info-card" style="text-align: center; border-top: 4px solid var(--accent-gold);">
-        <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 0.2rem;">3</h3>
-        <p style="font-weight: 700; color: var(--secondary-pink);">Niveles Educativos</p>
-        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Pre-básica, Básica y Bachilleratos Técnicos.</p>
+<!-- CARRUSEL DE IMÁGENES DIPLOMÁTICAS Y ACTIVIDADES -->
+<div class="carousel-container fade-in" style="margin-bottom: 2.5rem; position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+    <div class="carousel-slide" style="display: flex; transition: transform 0.5s ease-in-out;">
+        <img src="{{ url_for('static', filename='img/aa.jpeg') }}" alt="Banda de Guerra Institucional" style="width: 100%; height: 380px; object-fit: cover;">
     </div>
 </div>
 
-<h2>Noticias y Avisos Recientes</h2>
+<!-- TARJETAS DE ESTADÍSTICAS / LOGROS INSTITUCIONALES -->
+<div class="grid-3-cols fade-in" style="margin-bottom: 2.5rem;">
+    <div class="info-card text-center" style="border-top: 4px solid #d4af37;">
+        <h3 style="font-size: 2.2rem; color: #004488; margin-bottom: 0.2rem;"><i class="fa-solid fa-award"></i> +10</h3>
+        <p style="font-weight: 700; color: #e91e63;">Años de Trayectoria</p>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Formando líderes con sólidos valores morales y cívicos.</p>
+    </div>
+    <div class="info-card text-center" style="border-top: 4px solid #d4af37;">
+        <h3 style="font-size: 2.2rem; color: #004488; margin-bottom: 0.2rem;"><i class="fa-solid fa-user-check"></i> 100%</h3>
+        <p style="font-weight: 700; color: #e91e63;">Docentes Certificados</p>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Personal altamente capacitado en inglés y español.</p>
+    </div>
+    <div class="info-card text-center" style="border-top: 4px solid #d4af37;">
+        <h3 style="font-size: 2.2rem; color: #004488; margin-bottom: 0.2rem;"><i class="fa-solid fa-graduation-cap"></i> 3</h3>
+        <p style="font-weight: 700; color: #e91e63;">Niveles Educativos</p>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Pre-básica, Básica y Bachilleratos Técnicos.</p>
+    </div>
+</div>
+
+<h2><i class="fa-solid fa-newspaper"></i> Noticias y Destacados</h2>
 
 <div class="grid-3-cols">
     {% for noticia in noticias %}
         <div class="noticia-card fade-in">
             <h3>{{ noticia['titulo'] }}</h3>
-            <p style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;">{{ noticia['fecha'] }}</p>
+            <p style="color: #e91e63; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;">
+                <i class="fa-solid fa-calendar-day"></i> {{ noticia['fecha'] }}
+            </p>
             <p>{{ noticia['contenido'] }}</p>
         </div>
     {% endfor %}
 </div>
 
-<!-- LLAMADO A LA ACCIÓN CONECTADO A WHATSAPP Y FACEBOOK -->
-<div class="info-card fade-in" style="margin-top: 2.5rem; text-align: center;">
+<!-- LLAMADO A LA ACCIÓN -->
+<div class="info-card fade-in text-center" style="margin-top: 2.5rem;">
     <h3>¡Conéctate con Nuestra Institución!</h3>
-    <p>Síguenos en nuestra página oficial de Facebook para ver eventos en vivo, galerías y avisos importantes, o escríbenos directamente por WhatsApp.</p>
-    <p style="margin-top: 1.2rem;">
-        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
-        <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">💬 WhatsApp: 31913765</a>
-    </p>
+    <p>Síguenos en nuestra página oficial de Facebook para eventos en vivo, o escríbenos directamente a nuestro canal de WhatsApp.</p>
+    
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" class="social-btn facebook-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-facebook"></i> Facebook Oficial
+        </a>
+        <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber" target="_blank" class="social-btn whatsapp-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+    </div>
 </div>
 {% endblock %}

@@ -1,37 +1,50 @@
 {% extends "base.html" %}
 
+{% block title %}Nosotros | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+
 {% block content %}
-<h2>Sobre Nuestra Institución</h2>
+<section class="page-header text-center">
+    <h2><i class="fa-solid fa-school"></i> Sobre Nuestra Institución</h2>
+    <p class="subtitle">Conoce nuestra trayectoria, valores y la pasión educativa que nos distingue.</p>
+</section>
 
 <div class="info-card fade-in">
-    <p>En el <strong>Jardín Escuela e Instituto Jesús Nazareno</strong> contamos con más de <strong>10 años de experiencia educando alumnos</strong> bajo estrictos estándares de calidad. Nuestra institución se enorgullece de contar con un plantel de <strong>maestros 100% certificados</strong> tanto en el área de inglés como en español.</p>
-    <p style="margin-top: 1rem;">A lo largo del periodo escolar fomentamos el liderazgo, el civismo y el talento artístico mediante una amplia gama de actividades y disciplinas.</p>
+    <p class="lead-text">
+        En el <strong>Jardín Escuela e Instituto Jesús Nazareno</strong> contamos con más de <strong>10 años de experiencia educando alumnos</strong> bajo estrictos estándares de calidad. Nuestra institución se enorgullece de contar con un plantel de <strong>maestros 100% certificados</strong> tanto en el área de inglés como en español.
+    </p>
+    <p style="margin-top: 1rem;">
+        A lo largo del periodo escolar fomentamos el liderazgo, el civismo y el talento artístico mediante una amplia gama de actividades académicas, deportivas y culturales.
+    </p>
 </div>
 
-<div class="grid-2-cols">
-    <div class="info-card fade-in">
-        <h3>Misión</h3>
+<!-- MISIÓN Y VISIÓN CON DISEÑO DE TARJETAS -->
+<div class="grid-2-cols" style="margin-top: 2rem;">
+    <div class="info-card highlight-card fade-in">
+        <h3><i class="fa-solid fa-bullseye"></i> Misión</h3>
         <p>Proveer una educación integral bilingüe y nacional de excelencia, fomentando valores morales, principios éticos y sólidas destrezas tecnológicas para formar ciudadanos altamente competentes para la sociedad.</p>
     </div>
-    <div class="info-card fade-in">
-        <h3>Visión</h3>
+    <div class="info-card highlight-card fade-in">
+        <h3><i class="fa-solid fa-eye"></i> Visión</h3>
         <p>Ser la institución educativa líder reconocida por su alto nivel académico, compromiso cristiano y moral, formando generaciones preparadas para triunfar en el ámbito universitario y profesional.</p>
     </div>
 </div>
 
-<div class="info-card fade-in">
-    <h3>Valores Institucionales</h3>
-    <ul class="styled-list">
-        <li><strong>Respeto:</strong> Pilar fundamental en la convivencia armónica de toda la comunidad educativa.</li>
-        <li><strong>Responsabilidad:</strong> Compromiso diario con las obligaciones escolares y personales.</li>
-        <li><strong>Honestidad:</strong> Transparencia, honradez y rectitud en cada acto de nuestra vida.</li>
-        <li><strong>Excelencia:</strong> Superación continua en el área académica, espiritual y humana.</li>
+<!-- VALORES INSTITUCIONALES -->
+<div class="info-card fade-in" style="margin-top: 2rem;">
+    <h3><i class="fa-solid fa-heart"></i> Valores Institucionales</h3>
+    <ul class="styled-list values-list">
+        <li><strong><i class="fa-solid fa-check-circle"></i> Respeto:</strong> Pilar fundamental en la convivencia armónica de toda la comunidad educativa.</li>
+        <li><strong><i class="fa-solid fa-check-circle"></i> Responsabilidad:</strong> Compromiso diario con las obligaciones escolares y personales.</li>
+        <li><strong><i class="fa-solid fa-check-circle"></i> Honestidad:</strong> Transparencia, honradez y rectitud en cada acto de nuestra vida.</li>
+        <li><strong><i class="fa-solid fa-check-circle"></i> Excelencia:</strong> Superación continua en el área académica, espiritual y humana.</li>
     </ul>
 </div>
 
-<div class="info-card fade-in">
-    <h3>Actividades del Periodo Escolar</h3>
+<!-- ACTIVIDADES Y AGRUPACIONES -->
+<div class="info-card fade-in" style="margin-top: 2rem;">
+    <h3><i class="fa-solid fa-calendar-days"></i> Actividades del Periodo Escolar</h3>
     <p>Durante el año lectivo, nuestros estudiantes participan activamente en las siguientes festividades y eventos oficiales:</p>
+    
     <div class="grid-2-cols" style="margin-top: 1.2rem;">
         <ol class="styled-list">
             <li>Día de la Madre</li>
@@ -48,55 +61,58 @@
             <li>Clausura y Graduación</li>
         </ol>
     </div>
-    <div style="margin-top: 1.5rem; background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--secondary-pink);">
-        <p>🎺 <strong>Agrupaciones Especiales:</strong> Contamos con nuestra propia y prestigiosa <strong>Banda de Guerra</strong> y grupo de <strong>Danza</strong> institucional.</p>
+    
+    <div class="banner-special" style="margin-top: 1.5rem; background-color: #f0f7ff; padding: 1.2rem; border-radius: 10px; border-left: 5px solid #004488;">
+        <p><i class="fa-solid fa-drum"></i> <strong>Agrupaciones Especiales:</strong> Contamos con nuestra propia y prestigiosa <strong>Banda de Guerra</strong> y grupo de <strong>Danza</strong> institucional.</p>
     </div>
 </div>
 
-<!-- SECCIÓN DE GALERÍA INTEGRADA EN "QUIÉNES SOMOS" -->
+<!-- GALERÍA DE IMÁGENES -->
 <div style="margin-top: 3.5rem;" class="fade-in">
-    <h2>Galería de Momentos Institucionales</h2>
-    <p style="color: var(--text-muted); margin-bottom: 2rem;">Un recorrido visual por las actividades cívicas, culturales, artísticas y académicas que enorgullecen a nuestro instituto. <em>(Haz clic en cualquier imagen para ampliarla)</em></p>
+    <h2 class="text-center"><i class="fa-solid fa-images"></i> Galería de Momentos Institucionales</h2>
+    <p class="text-center" style="color: #666; margin-bottom: 2rem;">
+        Un recorrido visual por las actividades cívicas, culturales, artísticas y académicas que enorgullecen a nuestro instituto. <em>(Haz clic en cualquier imagen para ampliarla)</em>
+    </p>
 
     <div class="gallery-grid">
         <div class="gallery-card">
-            <img src="static/img/aa.jpeg" alt="Banda de Guerra en desfile" onclick="ampliarImagen('static/img/aa.jpeg', 'Banda de Guerra en desfile')">
+            <img src="{{ url_for('static', filename='img/aa.jpeg') }}" alt="Banda de Guerra en desfile" onclick="ampliarImagen(this.src, 'Banda de Guerra en desfile')">
             <p>Banda de Guerra en desfile</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/c.jpeg" alt="Exhibición cultural internacional" onclick="ampliarImagen('static/img/c.jpeg', 'Exhibición cultural internacional')">
+            <img src="{{ url_for('static', filename='img/c.jpeg') }}" alt="Exhibición cultural internacional" onclick="ampliarImagen(this.src, 'Exhibición cultural internacional')">
             <p>Exhibición cultural internacional</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/ccc.jpeg" alt="Representación cultural de Honduras" onclick="ampliarImagen('static/img/ccc.jpeg', 'Representación cultural de Honduras')">
+            <img src="{{ url_for('static', filename='img/ccc.jpeg') }}" alt="Representación cultural de Honduras" onclick="ampliarImagen(this.src, 'Representación cultural de Honduras')">
             <p>Representación cultural de Honduras</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/d.jpeg" alt="Grupo de palillonas" onclick="ampliarImagen('static/img/d.jpeg', 'Grupo de palillonas')">
+            <img src="{{ url_for('static', filename='img/d.jpeg') }}" alt="Grupo de palillonas" onclick="ampliarImagen(this.src, 'Grupo de palillonas')">
             <p>Grupo de palillonas</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/e.jpeg" alt="Representación Etnia Garífuna" onclick="ampliarImagen('static/img/e.jpeg', 'Representación Etnia Garífuna')">
+            <img src="{{ url_for('static', filename='img/e.jpeg') }}" alt="Representación Etnia Garífuna" onclick="ampliarImagen(this.src, 'Representación Etnia Garífuna')">
             <p>Representación Etnia Garífuna</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/ee.jpeg" alt="Sección de panderetas" onclick="ampliarImagen('static/img/ee.jpeg', 'Sección de panderetas')">
+            <img src="{{ url_for('static', filename='img/ee.jpeg') }}" alt="Sección de panderetas" onclick="ampliarImagen(this.src, 'Sección de panderetas')">
             <p>Sección de panderetas</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/eee.jpeg" alt="Banda de guerra en formación" onclick="ampliarImagen('static/img/eee.jpeg', 'Banda de guerra en formación')">
+            <img src="{{ url_for('static', filename='img/eee.jpeg') }}" alt="Banda de guerra en formación" onclick="ampliarImagen(this.src, 'Banda de guerra en formación')">
             <p>Banda de guerra en formación</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/i.jpeg" alt="Presentación escolar y cultural" onclick="ampliarImagen('static/img/i.jpeg', 'Presentación escolar y cultural')">
+            <img src="{{ url_for('static', filename='img/i.jpeg') }}" alt="Presentación escolar y cultural" onclick="ampliarImagen(this.src, 'Presentación escolar y cultural')">
             <p>Presentación escolar y cultural</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/js.jpeg" alt="Reconocimiento a la excelencia" onclick="ampliarImagen('static/img/js.jpeg', 'Reconocimiento a la excelencia')">
+            <img src="{{ url_for('static', filename='img/js.jpeg') }}" alt="Reconocimiento a la excelencia" onclick="ampliarImagen(this.src, 'Reconocimiento a la excelencia')">
             <p>Reconocimiento a la excelencia</p>
         </div>
         <div class="gallery-card">
-            <img src="static/img/l.jpeg" alt="Feria cultural y gastronómica" onclick="ampliarImagen('static/img/l.jpeg', 'Feria cultural y gastronómica')">
+            <img src="{{ url_for('static', filename='img/l.jpeg') }}" alt="Feria cultural y gastronómica" onclick="ampliarImagen(this.src, 'Feria cultural y gastronómica')">
             <p>Feria cultural y gastronómica</p>
         </div>
     </div>

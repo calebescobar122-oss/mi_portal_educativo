@@ -6,52 +6,74 @@
     <meta name="description" content="Portal oficial del Jardín Escuela e Instituto Jesús Nazareno. Educación bilingüe de calidad desde Pre-Kínder hasta Bachillerato.">
     <title>{% block title %}Jardín Escuela e Instituto Jesús Nazareno{% endblock %}</title>
     
+    <!-- Fuentes de Google y FontAwesome para Íconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- CSS principal -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     
-    <!-- Favicon / Ícono de la pestaña -->
+    <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/logo.jpg.jpeg') }}">
 </head>
 <body>
 
     <!-- ENCABEZADO Y NAVEGACIÓN -->
-    <header>
+    <header class="main-header">
         <div class="header-container">
-            <div class="header-brand">
+            <a href="{{ url_for('inicio') }}" class="header-brand">
                 <img src="{{ url_for('static', filename='img/logo.jpg.jpeg') }}" alt="Escudo Institucional" class="header-logo">
-                <h1>Jardín Escuela e Instituto Jesús Nazareno</h1>
-            </div>
+                <span class="brand-title">Jardín Escuela e Instituto Jesús Nazareno</span>
+            </a>
 
             <nav>
-    <ul class="nav-menu">
-        <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-        <li><a href="{{ url_for('quienes') }}">Nosotros</a></li>
-        <li><a href="{{ url_for('servicios') }}">Servicios</a></li>
-        <li><a href="{{ url_for('acerca') }}">Acerca</a></li>
-        <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
- 
-    </ul>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('inicio') }}"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="{{ url_for('mensajes') }}"><i class="fa-solid fa-bullhorn"></i> Mensajes</a></li>
+                    <li><a href="{{ url_for('quienes') }}"><i class="fa-solid fa-users"></i> Nosotros</a></li>
+                    <li><a href="{{ url_for('servicios') }}"><i class="fa-solid fa-graduation-cap"></i> Oferta Académica</a></li>
+                    <li><a href="{{ url_for('acerca') }}"><i class="fa-solid fa-circle-info"></i> Acerca</a></li>
+                    <li><a href="{{ url_for('contacto') }}"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
-    <!-- CONTENIDO DINÁMICO DE LAS VISTAS -->
-    <main>
+    <!-- CONTENIDO DINÁMICO -->
+    <main class="content-wrapper">
         {% block content %}
         {% endblock %}
     </main>
 
-    <!-- PIE DE PÁGINA INSTITUCIONAL -->
-    <footer>
-        <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno - Todos los derechos reservados.</p>
-        <p class="footer-social">
-            Contáctanos: 
-            <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" rel="noopener noreferrer">📘 Facebook Oficial</a> | 
-            <a href="https://wa.me/50431913765" target="_blank" rel="noopener noreferrer">💬 WhatsApp: 31913765</a>
-        </p>
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       title="Escríbenos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- PIE DE PÁGINA INSTITUCIONAL ÚNICO -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno — Todos los derechos reservados.</p>
+            <div class="footer-social">
+                <span>Contáctanos:</span>
+                <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                    <i class="fa-brands fa-facebook"></i> Facebook Oficial
+                </a>
+                <span class="separator">|</span>
+                <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
     </footer>
 
-    <!-- CÓDIGO DE INTERACTIVIDAD SCRIPT.JS -->
+    <!-- SCRIPT PRINCIPAL -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
