@@ -1,231 +1,159 @@
-/* ==========================================================
-   PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE
-   ========================================================== */
-:root {
-  --primary-blue: #3b5998;
-  --secondary-pink: #21191f;
-  --accent-gold: #d4af37;
-  --bg-beige: #f9f6f0;
-  --card-white: #ffffff;
-  --text-main: #2d3142;
-  --border-light: #e6dfd5;
-}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portal oficial del Jardín Escuela e Instituto Jesús Nazareno. Educación bilingüe de calidad desde Pre-Kínder hasta Bachillerato."
+    />
+    <title>
+      {% block title %}Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+    </title>
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-beige);
-  color: var(--text-main);
-  line-height: 1.7;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
 
-/* ==========================================================
-   ENCABEZADO Y ESTRUCTURA CON MENÚ HAMBURGUESA
-   ========================================================== */
-.main-header {
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-  color: white;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  border-bottom: 4px solid var(--accent-gold);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="{{ url_for('static', filename='img/logo.jpg.jpeg') }}"
+    />
 
-.header-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  position: relative;
-}
+    <style>
+      .header-brand {
+        text-decoration: none !important;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-title {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        font-size: 1.15rem;
+        text-decoration: none !important;
+      }
+      .nav-menu a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+      }
+      .nav-menu a:hover {
+        color: #f8c300 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-container">
+        <a href="{{ url_for('inicio') }}" class="header-brand">
+          <img
+            src="{{ url_for('static', filename='img/logo.jpg.jpeg') }}"
+            alt="Escudo Institucional"
+            class="header-logo"
+          />
+          <span class="brand-title"
+            >Jardín Escuela e Instituto Jesús Nazareno</span
+          >
+        </a>
 
-.header-brand {
-  text-decoration: none !important;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+        <button class="mobile-menu-btn" id="menuToggle" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
 
-.header-logo {
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li>
+              <a href="{{ url_for('inicio') }}"
+                ><i class="fa-solid fa-house"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('mensajes') }}"
+                ><i class="fa-solid fa-bullhorn"></i> Mensajes</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('quienes') }}"
+                ><i class="fa-solid fa-users"></i> Nosotros</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('servicios') }}"
+                ><i class="fa-solid fa-graduation-cap"></i> Oferta Académica</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('acerca') }}"
+                ><i class="fa-solid fa-circle-info"></i> Acerca</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('contacto') }}"
+                ><i class="fa-solid fa-envelope"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-.brand-title {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 1.1rem;
-  text-decoration: none !important;
-}
+    <main class="content-wrapper">
+      {% block content %}
+      {% endblock %}
+    </main>
 
-/* Botón Hamburguesa visible en todo momento */
-.mobile-menu-btn {
-  display: block !important;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  cursor: pointer;
-  padding: 4px 8px;
-}
+    <a
+      href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Escríbenos por WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-/* Menú de navegación oculto por defecto que se despliega al hacer clic */
-nav {
-  position: relative;
-}
+    <footer class="main-footer">
+      <div class="footer-container">
+        <p>
+          &copy; 2026 Jardín Escuela e Instituto Jesús Nazareno — Todos los
+          derechos reservados.
+        </p>
+        <div class="footer-social">
+          <span>Contáctanos:</span>
+          <a
+            href="https://www.facebook.com/share/1D74RmNSwm/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link facebook"
+          >
+            <i class="fa-brands fa-facebook"></i> Facebook Oficial
+          </a>
+          <span class="separator">|</span>
+          <a
+            href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link whatsapp"
+          >
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </footer>
 
-ul.nav-menu {
-  display: none; /* Oculto inicialmente */
-  flex-direction: column;
-  width: 260px;
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-  position: absolute;
-  top: calc(100% + 18px);
-  right: 0;
-  padding: 1rem 0;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-  border-radius: 8px;
-  border: 2px solid var(--accent-gold);
-  gap: 0.3rem;
-  list-style: none;
-  z-index: 9999;
-}
-
-/* Clase que activa el despliegue desde JavaScript */
-ul.nav-menu.show, ul.nav-menu.open {
-  display: flex !important;
-}
-
-ul.nav-menu li {
-  width: 100%;
-  list-style: none;
-}
-
-.nav-menu a {
-  display: block;
-  padding: 0.7rem 1.5rem;
-  font-size: 1rem;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
-}
-
-.nav-menu a:hover {
-  background: rgba(212, 175, 55, 0.15);
-  color: #f8c300 !important;
-}
-
-/* ==========================================================
-   CONTENIDO PRINCIPAL Y TARJETAS
-   ========================================================== */
-.content-wrapper {
-  max-width: 1280px;
-  width: 92%;
-  margin: 2rem auto;
-  padding-top: 1rem;
-  flex: 1;
-}
-
-h2 {
-  color: var(--primary-blue);
-  border-bottom: 3px solid var(--accent-gold);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.8rem;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.info-card, .noticia-card, .service-card, form {
-  background-color: var(--card-white);
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-  margin-bottom: 1.8rem;
-  border-top: 4px solid var(--accent-gold);
-  border-left: 1px solid var(--border-light);
-  border-right: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-}
-
-/* ==========================================================
-   PIE DE PÁGINA Y WHATSAPP FLOTANTE
-   ========================================================== */
-.main-footer {
-  background: linear-gradient(135deg, #2c4273, var(--primary-blue));
-  color: white;
-  text-align: center;
-  padding: 2.5rem 1rem;
-  margin-top: auto;
-  border-top: 4px solid var(--accent-gold);
-}
-
-.footer-container p {
-  margin-bottom: 0.6rem;
-}
-
-.footer-social {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 0.8rem;
-}
-
-.social-link {
-  color: var(--accent-gold);
-  text-decoration: none;
-  font-weight: 700;
-  transition: color 0.2s;
-}
-
-.social-link:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.separator {
-  color: rgba(255,255,255,0.5);
-}
-
-.whatsapp-float {
-  position: fixed;
-  width: 55px;
-  height: 55px;
-  bottom: 25px;
-  right: 25px;
-  background-color: #25d366;
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 28px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 18px rgba(37,211,102,0.4);
-}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
