@@ -1,15 +1,84 @@
 /* ==========================================================
-   MENÚ DE NAVEGACIÓN Y RESPONSIVIDAD (PC Y MÓVIL)
+   PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE
+   ========================================================== */
+:root {
+  --primary-blue: #3b5998;
+  --secondary-pink: #21191f;
+  --accent-gold: #d4af37;
+  --ocre-tone: #b89742;
+  --bg-beige: #f9f6f0;
+  --card-white: #ffffff;
+  --text-main: #2d3142;
+  --text-muted: #5c6370;
+  --border-light: #e6dfd5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-beige);
+  color: var(--text-main);
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================================================
+   ENCABEZADO PROFESIONAL Y ESTRUCTURA
+   ========================================================== */
+header {
+  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-bottom: 4px solid var(--accent-gold);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-logo {
+  height: 55px;
+  width: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================
+   NAVEGACIÓN (PC POR DEFECTO)
    ========================================================== */
 .mobile-menu-btn {
-  display: none; /* Oculto por defecto en computadoras grandes */
+  display: none; /* Oculto en computadoras */
   background: none;
   border: none;
   color: white;
   font-size: 1.8rem;
   cursor: pointer;
   padding: 4px 8px;
-  line-height: 1;
 }
 
 nav ul.nav-menu {
@@ -18,6 +87,8 @@ nav ul.nav-menu {
   gap: 1.5rem;
   list-style: none;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul.nav-menu li {
@@ -37,22 +108,23 @@ nav a:hover {
 }
 
 /* ==========================================================
-   ESTILOS EXCLUSIVOS PARA TELÉFONOS Y PANTALLAS PEQUEÑAS (Móvil)
+   DISEÑO RESPONSIVO PARA MÓVILES (Pantallas menores a 900px)
    ========================================================== */
 @media screen and (max-width: 900px) {
   .mobile-menu-btn {
-    display: block !important; /* Muestra el botón hamburguesa en móviles */
+    display: block !important; /* Muestra el botón hamburguesa solo en celulares */
   }
 
   nav ul.nav-menu {
     display: none;
     flex-direction: column;
-    width: 100%; /* Se adapta exactamente al ancho del header en el celular */
+    width: 100%;
     background: linear-gradient(135deg, var(--primary-blue), #2c4273);
     position: absolute;
     top: 100%;
     left: 0;
     padding: 1.2rem 0;
+    box-shadow: dg, 0 10px 20px rgba(0,0,0,0.3);
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     border-bottom: 3px solid var(--accent-gold);
     gap: 0.8rem;
@@ -73,4 +145,107 @@ nav a:hover {
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
   }
+}
+
+/* ==========================================================
+   CONTENIDO PRINCIPAL Y TARJETAS
+   ========================================================== */
+main {
+  max-width: 1280px;
+  width: 92%;
+  margin: 3rem auto;
+  flex: 1;
+}
+
+h2 {
+  color: var(--primary-blue);
+  border-bottom: 3px solid var(--accent-gold);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h3 {
+  color: var(--secondary-pink);
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.info-card, .noticia-card, .service-card, form {
+  background-color: var(--card-white);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  margin-bottom: 1.8rem;
+  border-top: 4px solid var(--accent-gold);
+  border-left: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* ==========================================================
+   PIE DE PÁGINA Y WHATSAPP
+   ========================================================== */
+footer {
+  background: linear-gradient(135deg, #2c4273, var(--primary-blue));
+  color: white;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  margin-top: auto;
+  border-top: 4px solid var(--accent-gold);
+}
+
+footer p {
+  margin-bottom: 0.6rem;
+}
+
+.footer-social a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 700;
+  margin: 0 10px;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.whatsapp-float {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(37,211,102,0.4);
 }
