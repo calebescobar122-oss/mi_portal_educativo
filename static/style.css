@@ -1,34 +1,3 @@
-/* ==========================================================
-   PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE
-   ========================================================== */
-:root {
-  --primary-blue: #3b5998;
-  --secondary-pink: #21191f;
-  --accent-gold: #d4af37;
-  --ocre-tone: #b89742;
-  --bg-beige: #f9f6f0;
-  --card-white: #ffffff;
-  --text-main: #2d3142;
-  --text-muted: #5c6370;
-  --border-light: #e6dfd5;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-beige);
-  color: var(--text-main);
-  line-height: 1.7;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 /* Encabezado Profesional */
 header {
   background: linear-gradient(135deg, var(--primary-blue), #2c4273);
@@ -39,6 +8,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  /* Quitamos cualquier restricción que afecte al menú absoluto */
 }
 
 .header-container {
@@ -48,49 +18,36 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  position: relative;
-}
-
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.header-logo {
-  height: 55px;
-  width: 55px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  /* Eliminamos position: relative para que el menú tome el ancho del header completo */
 }
 
 /* ==========================================================
-   BOTÓN HAMBURGUESA Y MENÚ DESPLEGABLE MÓVIL OPTIMIZADO
+   MENÚ DESPLEGABLE MÓVIL CORREGIDO
    ========================================================== */
 .mobile-menu-btn {
   display: block !important;
   background: none;
   border: none;
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 4px 8px;
+  line-height: 1;
 }
 
 nav ul.nav-menu {
   display: none;
   flex-direction: column;
-  width: 100%;
+  width: 100vw; /* Ocupa todo el ancho de la pantalla del celular */
   background: linear-gradient(135deg, var(--primary-blue), #2c4273);
   position: absolute;
-  top: 100%;
+  top: 100%; /* Justo debajo de la barra del header */
   left: 0;
-  padding: 1rem 0;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  margin-left: 0;
+  padding: 1.2rem 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   border-bottom: 3px solid var(--accent-gold);
-  gap: 0.5rem;
+  gap: 0.8rem;
   text-align: center;
   z-index: 999;
 }
@@ -108,7 +65,7 @@ nav ul.nav-menu a {
   color: #f0f2f5;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   display: block;
   padding: 0.5rem 1rem;
   transition: color 0.2s ease;
@@ -116,105 +73,4 @@ nav ul.nav-menu a {
 
 nav ul.nav-menu a:hover {
   color: var(--accent-gold);
-}
-
-/* Contenido Principal */
-main {
-  max-width: 1280px;
-  width: 92%;
-  margin: 3rem auto;
-  flex: 1;
-}
-
-/* Títulos y Tarjetas */
-h2 {
-  color: var(--primary-blue);
-  border-bottom: 3px solid var(--accent-gold);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.8rem;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-h3 {
-  color: var(--secondary-pink);
-  margin-bottom: 0.8rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.info-card, .noticia-card, .service-card, form {
-  background-color: var(--card-white);
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-  margin-bottom: 1.8rem;
-  border-top: 4px solid var(--accent-gold);
-  border-left: 1px solid var(--border-light);
-  border-right: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-}
-
-/* Pie de página */
-footer {
-  background: linear-gradient(135deg, #2c4273, var(--primary-blue));
-  color: white;
-  text-align: center;
-  padding: 2.5rem 1rem;
-  margin-top: auto;
-  border-top: 4px solid var(--accent-gold);
-}
-
-footer p {
-  margin-bottom: 0.6rem;
-}
-
-.footer-social a {
-  color: var(--accent-gold);
-  text-decoration: none;
-  font-weight: 700;
-  margin: 0 10px;
-  transition: color 0.2s;
-}
-
-.footer-social a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-/* Animaciones y WhatsApp */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.whatsapp-float {
-  position: fixed;
-  width: 55px;
-  height: 55px;
-  bottom: 25px;
-  right: 25px;
-  background-color: #25d366;
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 28px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 18px rgba(37,211,102,0.4);
 }
