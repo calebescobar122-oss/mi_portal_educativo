@@ -1,31 +1,8 @@
-/* Encabezado Profesional */
-header {
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-  color: white;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  border-bottom: 4px solid var(--accent-gold);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  /* Quitamos cualquier restricción que afecte al menú absoluto */
-}
-
-.header-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  /* Eliminamos position: relative para que el menú tome el ancho del header completo */
-}
-
 /* ==========================================================
-   MENÚ DESPLEGABLE MÓVIL CORREGIDO
+   MENÚ DE NAVEGACIÓN Y RESPONSIVIDAD (PC Y MÓVIL)
    ========================================================== */
 .mobile-menu-btn {
-  display: block !important;
+  display: none; /* Oculto por defecto en computadoras grandes */
   background: none;
   border: none;
   color: white;
@@ -36,41 +13,64 @@ header {
 }
 
 nav ul.nav-menu {
-  display: none;
-  flex-direction: column;
-  width: 100vw; /* Ocupa todo el ancho de la pantalla del celular */
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-  position: absolute;
-  top: 100%; /* Justo debajo de la barra del header */
-  left: 0;
-  margin-left: 0;
-  padding: 1.2rem 0;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  border-bottom: 3px solid var(--accent-gold);
-  gap: 0.8rem;
-  text-align: center;
-  z-index: 999;
-}
-
-nav ul.nav-menu.open {
-  display: flex !important;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  list-style: none;
+  align-items: center;
 }
 
 nav ul.nav-menu li {
-  width: 100%;
   list-style: none;
 }
 
-nav ul.nav-menu a {
+nav a {
   color: #f0f2f5;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
-  display: block;
-  padding: 0.5rem 1rem;
+  font-size: 1.05rem;
   transition: color 0.2s ease;
 }
 
-nav ul.nav-menu a:hover {
+nav a:hover {
   color: var(--accent-gold);
+}
+
+/* ==========================================================
+   ESTILOS EXCLUSIVOS PARA TELÉFONOS Y PANTALLAS PEQUEÑAS (Móvil)
+   ========================================================== */
+@media screen and (max-width: 900px) {
+  .mobile-menu-btn {
+    display: block !important; /* Muestra el botón hamburguesa en móviles */
+  }
+
+  nav ul.nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%; /* Se adapta exactamente al ancho del header en el celular */
+    background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1.2rem 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-bottom: 3px solid var(--accent-gold);
+    gap: 0.8rem;
+    text-align: center;
+    z-index: 999;
+  }
+
+  nav ul.nav-menu.open {
+    display: flex !important;
+  }
+
+  nav ul.nav-menu li {
+    width: 100%;
+  }
+
+  nav ul.nav-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+  }
 }
