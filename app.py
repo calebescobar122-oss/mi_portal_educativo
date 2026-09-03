@@ -62,10 +62,5 @@ def acerca():
 def contacto():
     return render_template("contacto.html")
 
-# NUEVA RUTA AGREGADA PARA EL CALENDARIO DE EXÁMENES
-@app.route("/calendario")
-def calendario():
-    return render_template("calendario.html")
-
 if __name__ == "__main__":
     app.run(debug=True)
