@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Mensajes y Avisos | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+
+{% block content %}
+<section class="page-header text-center">
+    <h2><i class="fa-solid fa-bullhorn"></i> Avisos y Comunicados Oficiales</h2>
+    <p class="subtitle">Canal directo para notificaciones de suspensiones de clases, reuniones de padres y actividades escolares.</p>
+</section>
+
+<div class="messages-container" style="max-width: 900px; margin: 0 auto;">
+    {% if avisos %}
+        {% for aviso in avisos %}
+            <div class="info-card fade-in" style="margin-bottom: 1.5rem; border-left: 6px solid {% if aviso['categoria'] == 'Urgente' %}#dc3545{% else %}#004488{% endif %};">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 0.8rem;">
+                    <h3 style="margin: 0; color: #004488;">{{ aviso['titulo'] }}</h3>
+                    <span style="background-color: {% if aviso['categoria'] == 'Urgente' %}#ffebe9{% else %}#e6f0fa{% endif %}; color: {% if aviso['categoria'] == 'Urgente' %}#dc3545{% else %}#004488{% endif %}; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
+                        <i class="fa-solid fa-circle-exclamation"></i> {{ aviso['categoria'] }}
+                    </span>
+                </div>
+                <p style="color: #e91e63; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-clock"></i> Fecha del Comunicado: {{ aviso['fecha'] }}
+                </p>
+                <p style="line-height: 1.6;">{{ aviso['contenido'] }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="info-card text-center fade-in">
+            <p><i class="fa-solid fa-circle-check" style="color: #28a745; font-size: 1.5rem;"></i> No hay comunicados pendientes por el momento.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
