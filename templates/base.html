@@ -17,6 +17,29 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/logo.jpg.jpeg') }}">
+
+    <!-- ESTILOS DIRECTOS PARA CORREGIR EL COLOR DEL TÍTULO Y NAVEGACIÓN -->
+    <style>
+        .header-brand {
+            text-decoration: none !important;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-title {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            font-size: 1.15rem;
+            text-decoration: none !important;
+        }
+        .nav-menu a {
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+        .nav-menu a:hover {
+            color: #f8c300 !important; /* Cambia a amarillo/dorado al pasar el cursor */
+        }
+    </style>
 </head>
 <body>
 
