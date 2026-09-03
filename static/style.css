@@ -5,11 +5,9 @@
   --primary-blue: #3b5998;
   --secondary-pink: #21191f;
   --accent-gold: #d4af37;
-  --ocre-tone: #b89742;
   --bg-beige: #f9f6f0;
   --card-white: #ffffff;
   --text-main: #2d3142;
-  --text-muted: #5c6370;
   --border-light: #e6dfd5;
 }
 
@@ -20,7 +18,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-beige);
   color: var(--text-main);
   line-height: 1.7;
@@ -30,9 +28,9 @@ body {
 }
 
 /* ==========================================================
-   ENCABEZADO PROFESIONAL Y ESTRUCTURA
+   ENCABEZADO Y ESTRUCTURA CON MENÚ HAMBURGUESA
    ========================================================== */
-header {
+.main-header {
   background: linear-gradient(135deg, var(--primary-blue), #2c4273);
   color: white;
   padding: 1rem 2rem;
@@ -49,28 +47,34 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
   position: relative;
 }
 
 .header-brand {
+  text-decoration: none !important;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 12px;
 }
 
 .header-logo {
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--accent-gold);
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* ==========================================================
-   NAVEGACIÓN CON MENÚ HAMBURGUESA PERMANENTE (PC Y MÓVIL)
-   ========================================================== */
+.brand-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem;
+  text-decoration: none !important;
+}
+
+/* Botón Hamburguesa visible en todo momento */
 .mobile-menu-btn {
   display: block !important;
   background: none;
@@ -81,49 +85,57 @@ header {
   padding: 4px 8px;
 }
 
-nav ul.nav-menu {
-  display: none;
-  flex-direction: column;
-  width: 100%;
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding: 1.2rem 0;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  border-bottom: 3px solid var(--accent-gold);
-  gap: 0.8rem;
-  text-align: center;
-  z-index: 999;
+/* Menú de navegación oculto por defecto que se despliega al hacer clic */
+nav {
+  position: relative;
 }
 
-nav ul.nav-menu.open {
+ul.nav-menu {
+  display: none; /* Oculto inicialmente */
+  flex-direction: column;
+  width: 260px;
+  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  position: absolute;
+  top: calc(100% + 18px);
+  right: 0;
+  padding: 1rem 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  border-radius: 8px;
+  border: 2px solid var(--accent-gold);
+  gap: 0.3rem;
+  list-style: none;
+  z-index: 9999;
+}
+
+/* Clase que activa el despliegue desde JavaScript */
+ul.nav-menu.show, ul.nav-menu.open {
   display: flex !important;
 }
 
-nav ul.nav-menu li {
+ul.nav-menu li {
   width: 100%;
   list-style: none;
 }
 
-nav ul.nav-menu a {
+.nav-menu a {
   display: block;
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
-  color: #f0f2f5;
-  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  color: #ffffff !important;
+  text-decoration: none !important;
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: background 0.2s, color 0.2s;
 }
 
-nav ul.nav-menu a:hover {
-  color: var(--accent-gold);
+.nav-menu a:hover {
+  background: rgba(212, 175, 55, 0.15);
+  color: #f8c300 !important;
 }
 
 /* ==========================================================
    CONTENIDO PRINCIPAL Y TARJETAS
    ========================================================== */
-main {
+.content-wrapper {
   max-width: 1280px;
   width: 92%;
   margin: 2rem auto;
@@ -140,13 +152,6 @@ h2 {
   font-weight: 700;
 }
 
-h3 {
-  color: var(--secondary-pink);
-  margin-bottom: 0.8rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
 .info-card, .noticia-card, .service-card, form {
   background-color: var(--card-white);
   border-radius: 10px;
@@ -160,9 +165,9 @@ h3 {
 }
 
 /* ==========================================================
-   PIE DE PÁGINA Y WHATSAPP
+   PIE DE PÁGINA Y WHATSAPP FLOTANTE
    ========================================================== */
-footer {
+.main-footer {
   background: linear-gradient(135deg, #2c4273, var(--primary-blue));
   color: white;
   text-align: center;
@@ -171,32 +176,33 @@ footer {
   border-top: 4px solid var(--accent-gold);
 }
 
-footer p {
+.footer-container p {
   margin-bottom: 0.6rem;
 }
 
-.footer-social a {
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.social-link {
   color: var(--accent-gold);
   text-decoration: none;
   font-weight: 700;
-  margin: 0 10px;
   transition: color 0.2s;
 }
 
-.footer-social a:hover {
+.social-link:hover {
   color: #fff;
   text-decoration: underline;
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+.separator {
+  color: rgba(255,255,255,0.5);
 }
 
 .whatsapp-float {
