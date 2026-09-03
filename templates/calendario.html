@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Calendario de Exámenes | Jardín Escuela e Instituto Jesús Nazareno
+{% endblock %}
+
+{% block content %}
+  <div class="info-card fade-in">
+    <h2><i class="fa-solid fa-calendar-days"></i> Calendario de Exámenes</h2>
+    <p>
+      Consulte las fechas oficiales de evaluaciones para el presente periodo
+      académico.
+    </p>
+
+    <br />
+
+    <div style="overflow-x: auto;">
+      <table
+        style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;"
+      >
+        <thead>
+          <tr
+            style="background: linear-gradient(135deg, var(--primary-blue), #2c4273); color: white;"
+          >
+            <th style="padding: 12px; border: 1px solid var(--border-light);">
+              Parcial / Evaluación
+            </th>
+            <th style="padding: 12px; border: 1px solid var(--border-light);">
+              Fecha de Inicio
+            </th>
+            <th style="padding: 12px; border: 1px solid var(--border-light);">
+              Fecha de Finalización
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in examenes %}
+            <tr>
+              <td
+                style="padding: 12px; border: 1px solid var(--border-light); font-weight: 600;"
+              >
+                {{ item.parcial }}
+              </td>
+              <td style="padding: 12px; border: 1px solid var(--border-light);">
+                {{ item.fecha_inicio }}
+              </td>
+              <td style="padding: 12px; border: 1px solid var(--border-light);">
+                {{ item.fecha_fin }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

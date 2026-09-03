@@ -37,6 +37,13 @@ avisos_institucionales = [
     }
 ]
 
+# CALENDARIO DE EXÁMENES
+calendario_examenes = [
+    {"parcial": "I Parcial", "fecha_inicio": "15 de Marzo, 2026", "fecha_fin": "19 de Marzo, 2026"},
+    {"parcial": "II Parcial", "fecha_inicio": "8 de Junio, 2026", "fecha_fin": "12 de Junio, 2026"},
+    {"parcial": "III Parcial", "fecha_inicio": "14 de Septiembre, 2026", "fecha_fin": "18 de Septiembre, 2026"}
+]
+
 @app.route("/")
 @app.route("/inicio")
 def inicio():
@@ -61,6 +68,10 @@ def acerca():
 @app.route("/contacto")
 def contacto():
     return render_template("contacto.html")
+
+@app.route("/calendario")
+def calendario():
+    return render_template("calendario.html", examenes=calendario_examenes)
 
 if __name__ == "__main__":
     app.run(debug=True)
