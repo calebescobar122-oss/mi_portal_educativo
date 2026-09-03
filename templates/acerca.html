@@ -3,87 +3,250 @@
 {% block title %}Acerca | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
-<section class="page-header text-center">
-    <h2><i class="fa-solid fa-circle-info"></i> Acerca de Nuestra Institución</h2>
-    <p class="subtitle">Conoce nuestra oferta educativa, reglamento interno e información para el año escolar.</p>
-</section>
+  <section
+    class="page-header fade-in"
+    style="text-align: center; margin-bottom: 2rem;"
+  >
+    <h2
+      style="display: inline-block; border-bottom: 3px solid var(--accent-gold); padding-bottom: 0.5rem; color: var(--header-brown);"
+    >
+      <i class="fa-solid fa-circle-info"></i> Acerca de Nuestra Institución
+    </h2>
+    <p
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+    >
+      Conoce nuestra oferta educativa, reglamento interno e información para el
+      año escolar.
+    </p>
+  </section>
 
-<!-- NIVELES EDUCATIVOS -->
-<div class="info-card fade-in">
-    <h3><i class="fa-solid fa-graduation-cap"></i> Niveles Educativos</h3>
-    <p>Brindamos educación integral y continua desde <strong>Pre-Kínder, Kínder y Primaria</strong>, hasta completar la secundaria con el ciclo de <strong>3° de Bachillerato</strong> en sus modalidades de Informática, Finanzas y Humanidades.</p>
-</div>
+  <!-- NIVELES EDUCATIVOS -->
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-gold); margin-bottom: 2rem;"
+  >
+    <h3 style="color: var(--header-brown); margin-bottom: 0.8rem;">
+      <i class="fa-solid fa-graduation-cap"></i> Niveles Educativos
+    </h3>
+    <p style="font-size: 1rem; line-height: 1.7; color: var(--text-main);">
+      Brindamos educación integral y continua desde
+      <strong>Pre-Kínder, Kínder y Primaria</strong>, hasta completar la
+      secundaria con el ciclo de <strong>3° de Bachillerato</strong> en sus
+      modalidades de Informática, Finanzas y Humanidades.
+    </p>
+  </div>
 
-<!-- NORMAS DE LA INSTITUCIÓN -->
-<div class="info-card fade-in">
-    <h3><i class="fa-solid fa-clipboard-list"></i> Normas Más Importantes de la Institución</h3>
-    <p>El uso correcto y puntual del uniforme escolar es de carácter obligatorio para todos los alumnos.</p>
-    
-    <div class="grid-2-cols" style="margin-top: 1.2rem;">
-        <div style="background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
-            <h4 style="color: var(--primary-blue);"><i class="fa-solid fa-person-dress"></i> Normas para Niñas:</h4>
-            <ul class="styled-list">
-                <li>Desde ciclo se utiliza falda-short.</li>
-                <li>Asistir a clases completamente sin maquillaje.</li>
-                <li>Prohibido utilizar uñas acrílicas.</li>
-                <li>Prohibido teñirse o pintarse el cabello.</li>
-                <li>Mantener una postura y asiento adecuado.</li>
-                <li>Utilizar joyería discreta y moderada (no extravagante).</li>
-            </ul>
-        </div>
-        <div style="background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-gold);">
-            <h4 style="color: #b38600;"><i class="fa-solid fa-person"></i> Normas para Niños:</h4>
-            <ul class="styled-list">
-                <li>Corte de cabello formal y limpio.</li>
-                <li>Utilizar la camisa adecuadamente fajada (por dentro).</li>
-                <li>Mantener las uñas cortas y limpias.</li>
-                <li>Usar el calzado institucional correspondiente.</li>
-                <li>Prohibido rasurarse o cortarse las cejas.</li>
-                <li>Prohibido portar piercings o argollas.</li>
-            </ul>
-        </div>
+  <!-- NORMAS DE LA INSTITUCIÓN -->
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-gold); margin-bottom: 2rem;"
+  >
+    <h3 style="color: var(--header-brown); margin-bottom: 0.8rem;">
+      <i class="fa-solid fa-clipboard-list"></i> Normas Más Importantes de la
+      Institución
+    </h3>
+    <p style="font-size: 1rem; color: var(--text-main); margin-bottom: 1.2rem;">
+      El uso correcto y puntual del uniforme escolar es de carácter obligatorio
+      para todos los alumnos.
+    </p>
+
+    <div
+      class="grid-2-cols"
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.2rem;"
+    >
+      <div
+        style="background-color: var(--card-white); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--secondary-pink); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+      >
+        <h4
+          style="color: var(--header-brown); margin-top: 0; margin-bottom: 0.8rem; font-size: 1.1rem;"
+        >
+          <i
+            class="fa-solid fa-person-dress"
+            style="color: var(--secondary-pink);"
+          ></i>
+          Normas para Niñas:
+        </h4>
+        <ul
+          class="styled-list"
+          style="padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-main);"
+        >
+          <li style="margin-bottom: 0.5rem;">
+            Desde ciclo se utiliza falda-short.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Asistir a clases completamente sin maquillaje.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Prohibido utilizar uñas acrílicas.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Prohibido teñirse o pintarse el cabello.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Mantener una postura y asiento adecuado.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Utilizar joyería discreta y moderada (no extravagante).
+          </li>
+        </ul>
+      </div>
+      <div
+        style="background-color: var(--card-white); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-gold); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+      >
+        <h4
+          style="color: var(--header-brown); margin-top: 0; margin-bottom: 0.8rem; font-size: 1.1rem;"
+        >
+          <i class="fa-solid fa-person" style="color: var(--accent-gold);"></i>
+          Normas para Niños:
+        </h4>
+        <ul
+          class="styled-list"
+          style="padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-main);"
+        >
+          <li style="margin-bottom: 0.5rem;">
+            Corte de cabello formal y limpio.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Utilizar la camisa adecuadamente fajada (por dentro).
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Mantener las uñas cortas y limpias.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Usar el calzado institucional correspondiente.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Prohibido rasurarse o cortarse las cejas.
+          </li>
+          <li style="margin-bottom: 0.5rem;">
+            Prohibido portar piercings o argollas.
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <h4 style="margin-top: 1.8rem; color: var(--secondary-pink);"><i class="fa-solid fa-shield-cat"></i> Normas Generales:</h4>
-    <ul class="styled-list">
-        <li>Prohibido llevar teléfonos celulares a la institución.</li>
-        <li>Mantener un respeto absoluto entre compañeros y docentes.</li>
-        <li>Prohibido mantener relaciones amorosas dentro del instituto.</li>
-        <li>Prohibido ingresar a aulas que no correspondan.</li>
-        <li>Días de ropa de color: asistir con vestimenta formal (no pantalones rotos, no camisas cortas).</li>
-        <li>Cumplir puntualmente con los pagos financieros establecidos.</li>
+    <h4
+      style="margin-top: 1.8rem; margin-bottom: 0.8rem; color: var(--header-brown); font-size: 1.1rem;"
+    >
+      <i class="fa-solid fa-shield-cat" style="color: var(--accent-gold);"></i>
+      Normas Generales:
+    </h4>
+    <ul
+      class="styled-list"
+      style="padding-left: 1.5rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-main);"
+    >
+      <li style="margin-bottom: 0.5rem;">
+        Prohibido llevar teléfonos celulares a la institución.
+      </li>
+      <li style="margin-bottom: 0.5rem;">
+        Mantener un respeto absoluto entre compañeros y docentes.
+      </li>
+      <li style="margin-bottom: 0.5rem;">
+        Prohibido mantener relaciones amorosas dentro del instituto.
+      </li>
+      <li style="margin-bottom: 0.5rem;">
+        Prohibido ingresar a aulas que no correspondan.
+      </li>
+      <li style="margin-bottom: 0.5rem;">
+        Días de ropa de color: asistir con vestimenta formal (no pantalones
+        rotos, no camisas cortas).
+      </li>
+      <li style="margin-bottom: 0.5rem;">
+        Cumplir puntualmente con los pagos financieros establecidos.
+      </li>
     </ul>
-</div>
+  </div>
 
-<!-- INFORMACIÓN DE PAGOS Y MATRÍCULA -->
-<div class="grid-2-cols">
-    <div class="info-card fade-in">
-        <h3><i class="fa-solid fa-file-invoice-dollar"></i> Información sobre Pagos</h3>
-        <p>Se cancela la matrícula junto con el mes de enero. En junio se efectúa el pago de dicho mes y el de diciembre. Se debe abonar un único pago anual de <strong>200 Lps por concepto de papelería</strong>.</p>
-        <div style="margin-top: 1rem; padding: 0.8rem; background-color: #fff0f0; border-radius: 6px; border-left: 4px solid #e53e3e;">
-            <p style="color: #c53030; font-weight: 700; font-size: 0.95rem; margin: 0;">⚠️ Importante: Las mensualidades deben pagarse estrictamente en el lapso del 1 al 5 de cada mes.</p>
-        </div>
+  <!-- INFORMACIÓN DE PAGOS Y MATRÍCULA -->
+  <div
+    class="grid-2-cols"
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;"
+  >
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
+    >
+      <h3 style="color: var(--header-brown); margin-bottom: 0.8rem;">
+        <i class="fa-solid fa-file-invoice-dollar"></i> Información sobre Pagos
+      </h3>
+      <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);">
+        Se cancela la matrícula junto con el mes de enero. En junio se efectúa
+        el pago de dicho mes y el de diciembre. Se debe abonar un único pago
+        anual de <strong>200 Lps por concepto de papelería</strong>.
+      </p>
+      <div
+        style="margin-top: 1.2rem; padding: 1rem; background-color: #fdf3f2; border-radius: 6px; border-left: 4px solid var(--secondary-pink);"
+      >
+        <p
+          style="color: var(--header-brown); font-weight: 600; font-size: 0.9rem; margin: 0; line-height: 1.5;"
+        >
+          <i
+            class="fa-solid fa-triangle-exclamation"
+            style="color: var(--secondary-pink);"
+          ></i>
+          <strong>Importante:</strong> Las mensualidades deben pagarse
+          estrictamente en el lapso del 1 al 5 de cada mes.
+        </p>
+      </div>
     </div>
 
-    <div class="info-card fade-in">
-        <h3><i class="fa-solid fa-id-card"></i> Información de Matrícula</h3>
-        <p><strong>Nuevos Ingresos:</strong> Presentar certificados de estudios de años anteriores, acta de conducta, partida de nacimiento del alumno y cédula de identidad del padre o encargado.</p>
-        <p style="margin-top: 1rem;"><strong>Reingresos:</strong> Presentar copia del certificado del año anterior, copia de cédula del encargado, presentarse a la institución y adquirir su bolsa de matrícula.</p>
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
+    >
+      <h3 style="color: var(--header-brown); margin-bottom: 0.8rem;">
+        <i class="fa-solid fa-id-card"></i> Información de Matrícula
+      </h3>
+      <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);">
+        <strong style="color: var(--secondary-pink);">Nuevos Ingresos:</strong>
+        Presentar certificados de estudios de años anteriores, acta de conducta,
+        partida de nacimiento del alumno y cédula de identidad del padre o
+        encargado.
+      </p>
+      <p
+        style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-main);"
+      >
+        <strong style="color: var(--secondary-pink);">Reingresos:</strong>
+        Presentar copia del certificado del año anterior, copia de cédula del
+        encargado, presentarse a la institución y adquirir su bolsa de
+        matrícula.
+      </p>
     </div>
-</div>
+  </div>
 
-<!-- TARJETA DE CONTACTO DIRECTO LIMPIA (SIN NÚMERO ESCRITO) -->
-<div class="info-card fade-in text-center" style="margin-top: 2.5rem;">
-    <h3>¿Tienes dudas o consultas?</h3>
-    <p>Comunícate directamente con nuestro personal administrativo a través de nuestros canales oficiales:</p>
-    
-    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" class="social-btn facebook-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;">
-            <i class="fa-brands fa-facebook"></i> Facebook Oficial
-        </a>
-        <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20informaci%C3%B3n" target="_blank" class="social-btn whatsapp-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </a>
+  <!-- TARJETA DE CONTACTO DIRECTO LIMPIA (SIN NÚMERO ESCRITO) -->
+  <div
+    class="info-card fade-in text-center"
+    style="margin-top: 2.5rem; border-top: 4px solid var(--accent-gold); text-align: center;"
+  >
+    <h3 style="color: var(--header-brown); margin-bottom: 0.5rem;">
+      ¿Tienes dudas o consultas?
+    </h3>
+    <p style="color: var(--text-main); font-size: 0.95rem;">
+      Comunícate directamente con nuestro personal administrativo a través de
+      nuestros canales oficiales:
+    </p>
+
+    <div
+      style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;"
+    >
+      <a
+        href="https://www.facebook.com/share/1D74RmNSwm/"
+        target="_blank"
+        class="social-btn facebook-btn"
+        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600; box-shadow: 0 4px 10px rgba(24,119,242,0.3); transition: transform 0.2s;"
+      >
+        <i class="fa-brands fa-facebook"></i> Facebook Oficial
+      </a>
+      <a
+        href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20informaci%C3%B3n"
+        target="_blank"
+        class="social-btn whatsapp-btn"
+        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600; box-shadow: 0 4px 10px rgba(37,211,102,0.3); transition: transform 0.2s;"
+      >
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
     </div>
-</div>
+  </div>
 {% endblock %}

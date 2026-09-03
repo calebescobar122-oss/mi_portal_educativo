@@ -5,46 +5,74 @@
 {% endblock %}
 
 {% block content %}
-  <div class="info-card fade-in">
-    <h2><i class="fa-solid fa-calendar-days"></i> Calendario de Exámenes</h2>
-    <p>
+  <section
+    class="page-header fade-in"
+    style="text-align: center; margin-bottom: 2rem;"
+  >
+    <h2
+      style="display: inline-block; border-bottom: 3px solid var(--accent-gold); padding-bottom: 0.5rem; color: var(--header-brown);"
+    >
+      <i class="fa-solid fa-calendar-days"></i> Calendario de Exámenes
+    </h2>
+    <p
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+    >
       Consulte las fechas oficiales de evaluaciones para el presente periodo
       académico.
     </p>
+  </section>
 
-    <br />
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-gold);"
+  >
+    <p
+      style="font-size: 1rem; color: var(--text-main); margin-bottom: 1.5rem; line-height: 1.6;"
+    >
+      A continuación se detallan los periodos de evaluación correspondientes al
+      ciclo escolar actual:
+    </p>
 
-    <div style="overflow-x: auto;">
+    <div
+      style="overflow-x: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+    >
       <table
-        style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;"
+        style="width: 100%; border-collapse: collapse; text-align: left; background-color: var(--card-white);"
       >
         <thead>
-          <tr
-            style="background: linear-gradient(135deg, var(--primary-blue), #2c4273); color: white;"
-          >
-            <th style="padding: 12px; border: 1px solid var(--border-light);">
+          <tr style="background-color: var(--header-brown); color: white;">
+            <th
+              style="padding: 14px; border-bottom: 2px solid var(--accent-gold); font-weight: 600;"
+            >
               Parcial / Evaluación
             </th>
-            <th style="padding: 12px; border: 1px solid var(--border-light);">
+            <th
+              style="padding: 14px; border-bottom: 2px solid var(--accent-gold); font-weight: 600;"
+            >
               Fecha de Inicio
             </th>
-            <th style="padding: 12px; border: 1px solid var(--border-light);">
+            <th
+              style="padding: 14px; border-bottom: 2px solid var(--accent-gold); font-weight: 600;"
+            >
               Fecha de Finalización
             </th>
           </tr>
         </thead>
         <tbody>
           {% for item in examenes %}
-            <tr>
+            <tr
+              style="border-bottom: 1px solid var(--border-light); transition: background-color 0.2s;"
+            >
               <td
-                style="padding: 12px; border: 1px solid var(--border-light); font-weight: 600;"
+                style="padding: 14px; font-weight: 600; color: var(--header-brown);"
               >
                 {{ item.parcial }}
               </td>
-              <td style="padding: 12px; border: 1px solid var(--border-light);">
+              <td style="padding: 14px; color: var(--text-main);">
                 {{ item.fecha_inicio }}
               </td>
-              <td style="padding: 12px; border: 1px solid var(--border-light);">
+              <td style="padding: 14px; color: var(--text-main);">
                 {{ item.fecha_fin }}
               </td>
             </tr>

@@ -6,10 +6,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentUrl = window.location.pathname;
 
     links.forEach(link => {
-        if (link.getAttribute("href") && currentUrl.includes(link.getAttribute("href"))) {
-            link.style.color = "var(--accent-gold)";
-            link.style.borderBottom = "2px solid var(--accent-gold)";
-            link.style.paddingBottom = "4px";
+        const href = link.getAttribute("href");
+        if (href) {
+            // Comprobación exacta o si incluye la ruta (evitando '/' global rompiendo todo)
+            const isHomeMatch = (currentUrl === "/" || currentUrl === "/inicio") && (href === "/" || href === "/inicio");
+            const isOtherMatch = href !== "/" && href !== "/inicio" && currentUrl.includes(href);
+
+            if (isHomeMatch || isOtherMatch) {
+                link.style.color = "var(--accent-gold)";
+                link.style.borderBottom = "2px solid var(--accent-gold)";
+                link.style.paddingBottom = "4px";
+            }
         }
     });
 

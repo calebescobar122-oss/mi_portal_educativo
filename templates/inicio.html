@@ -114,13 +114,19 @@
         class="noticia-card fade-in"
         style="border-top: 4px solid var(--accent-gold);"
       >
-        <h3>{{ noticia['titulo'] }}</h3>
+        <h3
+          style="color: var(--header-brown); font-size: 1.2rem; margin-bottom: 0.5rem;"
+        >
+          {{ noticia['titulo'] }}
+        </h3>
         <p
           style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;"
         >
           <i class="fa-solid fa-calendar-day"></i> {{ noticia['fecha'] }}
         </p>
-        <p>{{ noticia['contenido'] }}</p>
+        <p style="font-size: 0.95rem; color: var(--text-main);">
+          {{ noticia['contenido'] }}
+        </p>
       </div>
     {% endfor %}
   </div>
@@ -131,7 +137,7 @@
     style="margin-top: 2.5rem; border-top: 4px solid var(--accent-gold);"
   >
     <h3>¡Conéctate con Nuestra Institución!</h3>
-    <p>
+    <p style="margin-top: 0.5rem;">
       Síguenos en nuestra página oficial de Facebook para eventos en vivo, o
       escríbenos directamente a nuestro canal de WhatsApp.
     </p>
@@ -142,6 +148,7 @@
       <a
         href="https://www.facebook.com/share/1D74RmNSwm/"
         target="_blank"
+        rel="noopener noreferrer"
         class="social-btn facebook-btn"
         style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;"
       >
@@ -150,6 +157,7 @@
       <a
         href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber"
         target="_blank"
+        rel="noopener noreferrer"
         class="social-btn whatsapp-btn"
         style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;"
       >

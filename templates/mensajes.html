@@ -3,59 +3,118 @@
 {% block title %}Mensajes e Informes | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
+  <section
+    class="page-header fade-in"
+    style="text-align: center; margin-bottom: 2rem;"
+  >
+    <h2
+      style="display: inline-block; border-bottom: 3px solid var(--accent-gold); padding-bottom: 0.5rem; color: var(--header-brown);"
+    >
+      <i class="fa-solid fa-bullhorn"></i> Mensajes y Avisos Importantes
+    </h2>
+    <p
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+    >
+      Mantente al día con los comunicados oficiales, circulares y avisos para
+      padres y alumnos.
+    </p>
+  </section>
 
-<section class="info-card fade-in">
-    <h2><i class="fa-solid fa-bullhorn"></i> Mensajes y Avisos Importantes</h2>
-    <p>A continuación se detallan los avisos, comunicados y circulares para los padres de familia y alumnos:</p>
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-gold);"
+  >
+    <p
+      class="lead-text"
+      style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;"
+    >
+      A continuación se detallan las noticias, convocatorias y recordatorios más
+      recientes de nuestra institución educativa:
+    </p>
 
-    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <!-- Aviso 1 -->
+      <article
+        style="background-color: var(--card-white); border-left: 5px solid var(--header-brown); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+      >
+        <h3
+          style="margin-top: 0; color: var(--header-brown); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+        >
+          <i
+            class="fa-solid fa-calendar-check"
+            style="color: var(--secondary-pink);"
+          ></i>
+          Reunión General de Padres de Familia
+        </h3>
 
-        <article style="background-color: #f8f9fa; border-left: 5px solid #1e3a8a; padding: 15px; border-radius: 6px;">
-            <h3 style="margin-top: 0; color: #1e3a8a;">
-                <i class="fa-solid fa-calendar-check"></i>
-                Reunión General de Padres de Familia
-            </h3>
+        <p style="margin: 6px 0; font-size: 0.9rem; color: #777;">
+          <strong>Fecha:</strong> 15 de Marzo, 2026
+        </p>
 
-            <p style="margin: 5px 0; font-size: 0.9em; color: #666;">
-                <strong>Fecha:</strong> 15 de Marzo, 2026
-            </p>
+        <p
+          style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+        >
+          Se convoca a todos los padres de familia a la primera reunión
+          informativa del periodo escolar en las instalaciones del instituto a
+          las 8:00 AM. Su asistencia es de suma importancia para conocer los
+          proyectos y normativas del año lectivo.
+        </p>
+      </article>
 
-            <p>
-                Se convoca a todos los padres de familia a la primera reunión informativa del periodo escolar en las instalaciones del instituto a las 8:00 AM.
-            </p>
-        </article>
+      <!-- Aviso 2 -->
+      <article
+        style="background-color: var(--card-white); border-left: 5px solid var(--accent-gold); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+      >
+        <h3
+          style="margin-top: 0; color: var(--header-brown); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+        >
+          <i
+            class="fa-solid fa-triangle-exclamation"
+            style="color: var(--accent-gold);"
+          ></i>
+          Recordatorio de Pago de Colegiatura
+        </h3>
 
-        <article style="background-color: #f8f9fa; border-left: 5px solid #d97706; padding: 15px; border-radius: 6px;">
-            <h3 style="margin-top: 0; color: #d97706;">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                Recordatorio de Pago de Colegiatura
-            </h3>
+        <p style="margin: 6px 0; font-size: 0.9rem; color: #777;">
+          <strong>Fecha:</strong> 1 de Marzo, 2026
+        </p>
 
-            <p style="margin: 5px 0; font-size: 0.9em; color: #666;">
-                <strong>Fecha:</strong> 1 de Marzo, 2026
-            </p>
+        <p
+          style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+        >
+          Les recordamos que los primeros 5 días de cada mes se realiza el pago
+          de la mensualidad. Pueden realizarlo directamente en el área de
+          administración o mediante transferencia bancaria autorizada.
+        </p>
+      </article>
 
-            <p>
-                Les recordamos que los primeros 5 días de cada mes se realiza el pago de la mensualidad. Pueden realizarlo en administración o mediante transferencia bancaria.
-            </p>
-        </article>
+      <!-- Aviso 3 -->
+      <article
+        style="background-color: var(--card-white); border-left: 5px solid var(--secondary-pink); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+      >
+        <h3
+          style="margin-top: 0; color: var(--header-brown); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+        >
+          <i
+            class="fa-solid fa-graduation-cap"
+            style="color: var(--secondary-pink);"
+          ></i>
+          Horario de Reforzamiento Académico
+        </h3>
 
-        <article style="background-color: #f8f9fa; border-left: 5px solid #10b981; padding: 15px; border-radius: 6px;">
-            <h3 style="margin-top: 0; color: #10b981;">
-                <i class="fa-solid fa-graduation-cap"></i>
-                Horario de Reforzamiento Académico
-            </h3>
+        <p style="margin: 6px 0; font-size: 0.9rem; color: #777;">
+          <strong>Fecha:</strong> 20 de Febrero, 2026
+        </p>
 
-            <p style="margin: 5px 0; font-size: 0.9em; color: #666;">
-                <strong>Fecha:</strong> 20 de Febrero, 2026
-            </p>
-
-            <p>
-                Las tutorías de matemáticas y español iniciarán a partir del próximo lunes en horario de 2:00 PM a 3:30 PM.
-            </p>
-        </article>
-
+        <p
+          style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+        >
+          Las tutorías de matemáticas y español iniciarán a partir del próximo
+          lunes en horario de 2:00 PM a 3:30 PM para aquellos alumnos que
+          requieran apoyo complementario en su rendimiento académico.
+        </p>
+      </article>
     </div>
-</section>
-
+  </div>
 {% endblock %}
