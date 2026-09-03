@@ -107,7 +107,7 @@ ul.nav-menu {
   z-index: 9999;
 }
 
-/* Clase que activa el despliegue desde JavaScript */
+/* Clases que activan el despliegue desde JavaScript */
 ul.nav-menu.show, ul.nav-menu.open {
   display: flex !important;
 }
@@ -162,6 +162,21 @@ h2 {
   border-left: 1px solid var(--border-light);
   border-right: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
+}
+
+/* ==========================================================
+   ANIMACIONES DE APARICIÓN AL HACER SCROLL (FADE-IN)
+   ========================================================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ==========================================================

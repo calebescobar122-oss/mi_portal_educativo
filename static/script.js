@@ -18,15 +18,26 @@ document.addEventListener("DOMContentLoaded", function() {
     const navMenu = document.getElementById("navMenu");
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", function() {
+        menuToggle.addEventListener("click", function(e) {
+            e.stopPropagation();
             navMenu.classList.toggle("open");
+            navMenu.classList.toggle("show");
         });
 
         const menuLinks = navMenu.querySelectorAll("a");
         menuLinks.forEach(link => {
             link.addEventListener("click", function() {
                 navMenu.classList.remove("open");
+                navMenu.classList.remove("show");
             });
+        });
+
+        // Cerrar menú al hacer clic fuera de él
+        document.addEventListener("click", function(e) {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove("open");
+                navMenu.classList.remove("show");
+            }
         });
     }
 

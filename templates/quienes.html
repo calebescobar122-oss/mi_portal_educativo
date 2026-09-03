@@ -3,110 +3,9 @@
 {% block title %}Nosotros | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
-  <style>
-    /* Estilos específicos y responsivos para la galería y tarjetas */
-    .page-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .subtitle {
-      color: var(--text-muted, #5c6370);
-    }
-    .grid-2-cols {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .styled-list {
-      padding-left: 1.5rem;
-    }
-    .styled-list li {
-      margin-bottom: 0.5rem;
-    }
-
-    /* Cuadrícula responsiva para la galería de imágenes */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .gallery-card {
-      background-color: var(--card-white, #ffffff);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--border-light, #e6dfd5);
-      text-align: center;
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-    .gallery-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-    .gallery-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      cursor: pointer;
-      display: block;
-      transition: opacity 0.2s;
-    }
-    .gallery-card img:hover {
-      opacity: 0.9;
-    }
-    .gallery-card p {
-      padding: 0.8rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main, #2d3142);
-      margin: 0;
-    }
-
-    /* Estilo para el modal de imagen ampliada */
-    #imageModal {
-      display: none;
-      position: fixed;
-      z-index: 99999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 1rem;
-    }
-    #imageModal img {
-      max-width: 90%;
-      max-height: 80vh;
-      border-radius: 8px;
-      border: 3px solid #fff;
-    }
-    #imageModal p {
-      color: white;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-align: center;
-    }
-    #imageModal .close-modal {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 2.5rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
-
-  <section class="page-header">
+  <section class="page-header fade-in">
     <h2><i class="fa-solid fa-school"></i> Sobre Nuestra Institución</h2>
-    <p class="subtitle">
+    <p class="subtitle" style="color: var(--text-muted, #5c6370);">
       Conoce nuestra trayectoria, valores y la pasión educativa que nos
       distingue.
     </p>
@@ -127,8 +26,11 @@
     </p>
   </div>
 
-  <!-- MISIÓN Y VISIÓN CON DISEÑO DE TARJETAS -->
-  <div class="grid-2-cols" style="margin-top: 2rem;">
+  <!-- MISIÓN Y VISIÓN -->
+  <div
+    class="grid-2-cols"
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;"
+  >
     <div class="info-card highlight-card fade-in">
       <h3><i class="fa-solid fa-bullseye"></i> Misión</h3>
       <p>
@@ -151,22 +53,25 @@
   <!-- VALORES INSTITUCIONALES -->
   <div class="info-card fade-in" style="margin-top: 2rem;">
     <h3><i class="fa-solid fa-heart"></i> Valores Institucionales</h3>
-    <ul class="styled-list values-list">
-      <li>
+    <ul
+      class="styled-list values-list"
+      style="padding-left: 1.5rem; margin-top: 1rem;"
+    >
+      <li style="margin-bottom: 0.5rem;">
         <strong><i class="fa-solid fa-check-circle"></i> Respeto:</strong> Pilar
         fundamental en la convivencia armónica de toda la comunidad educativa.
       </li>
-      <li>
+      <li style="margin-bottom: 0.5rem;">
         <strong
           ><i class="fa-solid fa-check-circle"></i> Responsabilidad:</strong
         >
         Compromiso diario con las obligaciones escolares y personales.
       </li>
-      <li>
+      <li style="margin-bottom: 0.5rem;">
         <strong><i class="fa-solid fa-check-circle"></i> Honestidad:</strong>
         Transparencia, honradez y rectitud en cada acto de nuestra vida.
       </li>
-      <li>
+      <li style="margin-bottom: 0.5rem;">
         <strong><i class="fa-solid fa-check-circle"></i> Excelencia:</strong>
         Superación continua en el área académica, espiritual y humana.
       </li>
@@ -183,20 +88,27 @@
       siguientes festividades y eventos oficiales:
     </p>
 
-    <div class="grid-2-cols" style="margin-top: 1.2rem;">
-      <ol class="styled-list">
-        <li>Día de la Madre</li>
-        <li>Día del Padre</li>
-        <li>Elección del Gobierno Estudiantil</li>
-        <li>Día del Estudiante</li>
-        <li>Elección de la Madrina de los Estudiantes</li>
-        <li>Día del Indio</li>
+    <div
+      class="grid-2-cols"
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.2rem;"
+    >
+      <ol class="styled-list" style="padding-left: 1.5rem;">
+        <li style="margin-bottom: 0.5rem;">Día de la Madre</li>
+        <li style="margin-bottom: 0.5rem;">Día del Padre</li>
+        <li style="margin-bottom: 0.5rem;">
+          Elección del Gobierno Estudiantil
+        </li>
+        <li style="margin-bottom: 0.5rem;">Día del Estudiante</li>
+        <li style="margin-bottom: 0.5rem;">
+          Elección de la Madrina de los Estudiantes
+        </li>
+        <li style="margin-bottom: 0.5rem;">Día del Indio</li>
       </ol>
-      <ol start="7" class="styled-list">
-        <li>Inauguración de Fiestas Patrias</li>
-        <li>Día del Niño</li>
-        <li>Práctica Profesional</li>
-        <li>Clausura y Graduación</li>
+      <ol start="7" class="styled-list" style="padding-left: 1.5rem;">
+        <li style="margin-bottom: 0.5rem;">Inauguración de Fiestas Patrias</li>
+        <li style="margin-bottom: 0.5rem;">Día del Niño</li>
+        <li style="margin-bottom: 0.5rem;">Práctica Profesional</li>
+        <li style="margin-bottom: 0.5rem;">Clausura y Graduación</li>
       </ol>
     </div>
 
@@ -214,11 +126,12 @@
   </div>
 
   <!-- GALERÍA DE IMÁGENES -->
-  <div style="margin-top: 3.5rem;" class="fade-in">
-    <h2 style="text-align: center;">
+  <div style="margin-top: 3.5rem;">
+    <h2 class="fade-in" style="text-align: center;">
       <i class="fa-solid fa-images"></i> Galería de Momentos Institucionales
     </h2>
     <p
+      class="fade-in"
       style="text-align: center; color: var(--text-muted, #5c6370); margin-bottom: 2rem;"
     >
       Un recorrido visual por las actividades cívicas, culturales, artísticas y
@@ -226,110 +139,179 @@
       <em>(Haz clic en cualquier imagen para ampliarla)</em>
     </p>
 
-    <div class="gallery-grid">
-      <div class="gallery-card">
+    <div
+      class="gallery-grid"
+      style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;"
+    >
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/aa.jpeg') }}"
           alt="Banda de Guerra en desfile"
-          onclick="verImagenAmpliada(this.src, 'Banda de Guerra en desfile')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Banda de Guerra en desfile')"
         />
-        <p>Banda de Guerra en desfile</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Banda de Guerra en desfile
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/c.jpeg') }}"
           alt="Exhibición cultural internacional"
-          onclick="verImagenAmpliada(this.src, 'Exhibición cultural internacional')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Exhibición cultural internacional')"
         />
-        <p>Exhibición cultural internacional</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Exhibición cultural internacional
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/ccc.jpeg') }}"
           alt="Representación cultural de Honduras"
-          onclick="verImagenAmpliada(this.src, 'Representación cultural de Honduras')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Representación cultural de Honduras')"
         />
-        <p>Representación cultural de Honduras</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Representación cultural de Honduras
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/d.jpeg') }}"
           alt="Grupo de palillonas"
-          onclick="verImagenAmpliada(this.src, 'Grupo de palillonas')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Grupo de palillonas')"
         />
-        <p>Grupo de palillonas</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Grupo de palillonas
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/e.jpeg') }}"
           alt="Representación Etnia Garífuna"
-          onclick="verImagenAmpliada(this.src, 'Representación Etnia Garífuna')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Representación Etnia Garífuna')"
         />
-        <p>Representación Etnia Garífuna</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Representación Etnia Garífuna
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/ee.jpeg') }}"
           alt="Sección de panderetas"
-          onclick="verImagenAmpliada(this.src, 'Sección de panderetas')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Sección de panderetas')"
         />
-        <p>Sección de panderetas</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Sección de panderetas
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/eee.jpeg') }}"
           alt="Banda de guerra en formación"
-          onclick="verImagenAmpliada(this.src, 'Banda de guerra en formación')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Banda de guerra en formación')"
         />
-        <p>Banda de guerra en formación</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Banda de guerra en formación
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/i.jpeg') }}"
           alt="Presentación escolar y cultural"
-          onclick="verImagenAmpliada(this.src, 'Presentación escolar y cultural')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Presentación escolar y cultural')"
         />
-        <p>Presentación escolar y cultural</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Presentación escolar y cultural
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/js.jpeg') }}"
           alt="Reconocimiento a la excelencia"
-          onclick="verImagenAmpliada(this.src, 'Reconocimiento a la excelencia')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Reconocimiento a la excelencia')"
         />
-        <p>Reconocimiento a la excelencia</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Reconocimiento a la excelencia
+        </p>
       </div>
-      <div class="gallery-card">
+
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white, #ffffff); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light, #e6dfd5); text-align: center;"
+      >
         <img
           src="{{ url_for('static', filename='img/l.jpeg') }}"
           alt="Feria cultural y gastronómica"
-          onclick="verImagenAmpliada(this.src, 'Feria cultural y gastronómica')"
+          style="width: 100%; height: 180px; object-fit: cover; cursor: pointer; display: block;"
+          onclick="ampliarImagen(this.src, 'Feria cultural y gastronómica')"
         />
-        <p>Feria cultural y gastronómica</p>
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main, #2d3142); margin: 0;"
+        >
+          Feria cultural y gastronómica
+        </p>
       </div>
     </div>
   </div>
-
-  <!-- MODAL PARA AMPLIAR IMÁGENES -->
-  <div id="imageModal" onclick="cerrarModal()">
-    <span class="close-modal">&times;</span>
-    <img id="modalImg" src="" alt="Imagen ampliada" />
-    <p id="modalCaption"></p>
-  </div>
-
-  <script>
-    function verImagenAmpliada(src, captionText) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImg");
-      const modalCaption = document.getElementById("modalCaption");
-
-      modal.style.display = "flex";
-      modalImg.src = src;
-      modalCaption.textContent = captionText;
-    }
-
-    function cerrarModal() {
-      document.getElementById("imageModal").style.display = "none";
-    }
-  </script>
 {% endblock %}
