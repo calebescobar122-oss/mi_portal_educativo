@@ -1,8 +1,12 @@
+/* ==========================================================
+    PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE (BASADA EN EL CARNET)
+    ========================================================== */
 :root {
-  --primary-blue: #3b5998;
-  --secondary-pink: #21191f;
-  --accent-gold: #d4af37;
-  --bg-beige: #f9f6f0;
+  --primary-blue: #1e88e5;       /* Azul brillante de los elementos del carnet */
+  --secondary-pink: #e91e63;     /* Rosado/Fucsia vibrante de la sección de carrera */
+  --accent-gold: #d4af37;        /* Dorado oficial de la identidad y el logo */
+  --header-brown: #7d3c24;       /* Tono marrón institucional del fondo del carnet */
+  --bg-beige: #f9f6f0;           /* Fondo general suave para lectura */
   --card-white: #ffffff;
   --text-main: #2d3142;
   --border-light: #e6dfd5;
@@ -24,8 +28,11 @@ body {
   min-height: 100vh;
 }
 
+/* ==========================================================
+    ENCABEZADO Y ESTRUCTURA CON MENÚ HAMBURGUESA
+    ========================================================== */
 .main-header {
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  background: linear-gradient(135deg, var(--header-brown), #5a2a1a);
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -68,6 +75,7 @@ body {
   text-decoration: none !important;
 }
 
+/* Botón Hamburguesa visible en todo momento */
 .mobile-menu-btn {
   display: block !important;
   background: none;
@@ -78,15 +86,16 @@ body {
   padding: 4px 8px;
 }
 
+/* Menú de navegación desplegable con acentos del carnet */
 nav {
   position: relative;
 }
 
 ul.nav-menu {
-  display: none;
+  display: none; /* Oculto inicialmente */
   flex-direction: column;
   width: 260px;
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  background: linear-gradient(135deg, var(--header-brown), #5a2a1a);
   position: absolute;
   top: calc(100% + 18px);
   right: 0;
@@ -99,6 +108,7 @@ ul.nav-menu {
   z-index: 9999;
 }
 
+/* Clases que activan el despliegue desde JavaScript */
 ul.nav-menu.show, ul.nav-menu.open {
   display: flex !important;
 }
@@ -119,10 +129,14 @@ ul.nav-menu li {
 }
 
 .nav-menu a:hover {
-  background: rgba(212, 175, 55, 0.15);
-  color: #f8c300 !important;
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--accent-gold) !important;
+  border-left: 4px solid var(--secondary-pink);
 }
 
+/* ==========================================================
+    CONTENIDO PRINCIPAL Y TARJETAS
+    ========================================================== */
 .content-wrapper {
   max-width: 1280px;
   width: 92%;
@@ -132,7 +146,7 @@ ul.nav-menu li {
 }
 
 h2 {
-  color: var(--primary-blue);
+  color: var(--header-brown);
   border-bottom: 3px solid var(--accent-gold);
   padding-bottom: 0.5rem;
   margin-bottom: 1.8rem;
@@ -152,6 +166,9 @@ h2 {
   border-bottom: 1px solid var(--border-light);
 }
 
+/* ==========================================================
+    ANIMACIONES DE APARICIÓN AL HACER SCROLL (FADE-IN)
+    ========================================================== */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -164,8 +181,11 @@ h2 {
   transform: translateY(0);
 }
 
+/* ==========================================================
+    PIE DE PÁGINA Y WHATSAPP FLOTANTE
+    ========================================================== */
 .main-footer {
-  background: linear-gradient(135deg, #2c4273, var(--primary-blue));
+  background: linear-gradient(135deg, #5a2a1a, var(--header-brown));
   color: white;
   text-align: center;
   padding: 2.5rem 1rem;
