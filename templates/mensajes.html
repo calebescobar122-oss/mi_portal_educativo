@@ -1,33 +1,61 @@
 {% extends "base.html" %}
 
-{% block title %}Mensajes y Avisos | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+{% block title %}Mensajes e Informes | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
-<section class="page-header text-center">
-    <h2><i class="fa-solid fa-bullhorn"></i> Avisos y Comunicados Oficiales</h2>
-    <p class="subtitle">Canal directo para notificaciones de suspensiones de clases, reuniones de padres y actividades escolares.</p>
+
+<section class="info-card fade-in">
+    <h2><i class="fa-solid fa-bullhorn"></i> Mensajes y Avisos Importantes</h2>
+    <p>A continuación se detallan los avisos, comunicados y circulares para los padres de familia y alumnos:</p>
+
+    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+
+        <article style="background-color: #f8f9fa; border-left: 5px solid #1e3a8a; padding: 15px; border-radius: 6px;">
+            <h3 style="margin-top: 0; color: #1e3a8a;">
+                <i class="fa-solid fa-calendar-check"></i>
+                Reunión General de Padres de Familia
+            </h3>
+
+            <p style="margin: 5px 0; font-size: 0.9em; color: #666;">
+                <strong>Fecha:</strong> 15 de Marzo, 2026
+            </p>
+
+            <p>
+                Se convoca a todos los padres de familia a la primera reunión informativa del periodo escolar en las instalaciones del instituto a las 8:00 AM.
+            </p>
+        </article>
+
+        <article style="background-color: #f8f9fa; border-left: 5px solid #d97706; padding: 15px; border-radius: 6px;">
+            <h3 style="margin-top: 0; color: #d97706;">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Recordatorio de Pago de Colegiatura
+            </h3>
+
+            <p style="margin: 5px 0; font-size: 0.9em; color: #666;">
+                <strong>Fecha:</strong> 1 de Marzo, 2026
+            </p>
+
+            <p>
+                Les recordamos que los primeros 5 días de cada mes se realiza el pago de la mensualidad. Pueden realizarlo en administración o mediante transferencia bancaria.
+            </p>
+        </article>
+
+        <article style="background-color: #f8f9fa; border-left: 5px solid #10b981; padding: 15px; border-radius: 6px;">
+            <h3 style="margin-top: 0; color: #10b981;">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Horario de Reforzamiento Académico
+            </h3>
+
+            <p style="margin: 5px 0; font-size: 0.9em; color: #666;">
+                <strong>Fecha:</strong> 20 de Febrero, 2026
+            </p>
+
+            <p>
+                Las tutorías de matemáticas y español iniciarán a partir del próximo lunes en horario de 2:00 PM a 3:30 PM.
+            </p>
+        </article>
+
+    </div>
 </section>
 
-<div class="messages-container" style="max-width: 900px; margin: 0 auto;">
-    {% if avisos %}
-        {% for aviso in avisos %}
-            <div class="info-card fade-in" style="margin-bottom: 1.5rem; border-left: 6px solid {% if aviso['categoria'] == 'Urgente' %}#dc3545{% else %}#004488{% endif %};">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                    <h3 style="margin: 0; color: #004488;">{{ aviso['titulo'] }}</h3>
-                    <span style="background-color: {% if aviso['categoria'] == 'Urgente' %}#ffebe9{% else %}#e6f0fa{% endif %}; color: {% if aviso['categoria'] == 'Urgente' %}#dc3545{% else %}#004488{% endif %}; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
-                        <i class="fa-solid fa-circle-exclamation"></i> {{ aviso['categoria'] }}
-                    </span>
-                </div>
-                <p style="color: #e91e63; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">
-                    <i class="fa-solid fa-clock"></i> Fecha del Comunicado: {{ aviso['fecha'] }}
-                </p>
-                <p style="line-height: 1.6;">{{ aviso['contenido'] }}</p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <div class="info-card text-center fade-in">
-            <p><i class="fa-solid fa-circle-check" style="color: #28a745; font-size: 1.5rem;"></i> No hay comunicados pendientes por el momento.</p>
-        </div>
-    {% endif %}
-</div>
 {% endblock %}

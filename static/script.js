@@ -1,15 +1,11 @@
-// Archivo de interactividad para el portal web institucional
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Portal Educativo - Jardín Escuela e Instituto Jesús Nazareno cargado correctamente.");
 
-    // ==========================================================
     // 1. RESALTAR EL ENLACE DE NAVEGACIÓN ACTIVO
-    // ==========================================================
     const links = document.querySelectorAll(".nav-menu a");
     const currentUrl = window.location.pathname;
 
     links.forEach(link => {
-        // Compara la ruta de la página actual con el enlace del menú
         if (link.getAttribute("href") && currentUrl.includes(link.getAttribute("href"))) {
             link.style.color = "var(--accent-gold)";
             link.style.borderBottom = "2px solid var(--accent-gold)";
@@ -17,20 +13,35 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // ==========================================================
+    // 1.1. CONTROL DEL MENÚ MÓVIL DESPLEGABLE
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function() {
+            navMenu.classList.toggle("open");
+        });
+
+        const menuLinks = navMenu.querySelectorAll("a");
+        menuLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                navMenu.classList.remove("open");
+            });
+        });
+    }
+
     // 2. ANIMACIÓN DE APARICIÓN AL HACER SCROLL (FADE-IN)
-    // ==========================================================
     const observerOptions = {
         root: null,
         rootMargin: "0px",
-        threshold: 0.15 // Se activa cuando el 15% del elemento ingresa a la pantalla
+        threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Se ejecuta una sola vez por elemento
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -38,62 +49,36 @@ document.addEventListener("DOMContentLoaded", function() {
     const animatedElements = document.querySelectorAll(".fade-in");
     animatedElements.forEach(el => observer.observe(el));
 
-    // ==========================================================
-    // 3. ACORDEÓN DESPLEGABLE PARA PREGUNTAS FRECUENTES (FAQ)
-    // ==========================================================
+    // 3. ACORDEÓN PARA PREGUNTAS FRECUENTES (FAQ)
     const faqQuestions = document.querySelectorAll(".faq-question");
 
     faqQuestions.forEach(question => {
         question.addEventListener("click", function() {
             const faqItem = this.parentElement;
             
-            // Cierra los demás acordeones abiertos (Opcional, para mantenerlo limpio)
             document.querySelectorAll(".faq-item").forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove("active");
                 }
             });
 
-            // Alterna el estado del seleccionado
             faqItem.classList.toggle("active");
         });
     });
 
-    // ==========================================================
-    // 4. BOTÓN FLOTANTE DE WHATSAPP DINÁMICO
-    // ==========================================================
-    if (!document.querySelector(".whatsapp-float")) {
-        const waButton = document.createElement("a");
-        waButton.href = "https://wa.me/50431913765";
-        waButton.target = "_blank";
-        waButton.className = "whatsapp-float";
-        waButton.title = "Escríbenos por WhatsApp";
-        waButton.innerHTML = "💬";
-        document.body.appendChild(waButton);
-    }
-
-    // ==========================================================
-    // 5. RESPUESTA AL ENVIAR EL FORMULARIO DE CONTACTO
-    // ==========================================================
+    // 4. RESPUESTA AL ENVIAR FORMULARIO
     const contactForm = document.querySelector(".contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita el recargado inmediato de la página
-            
-            // Simulación de envío exitoso
+            event.preventDefault();
             alert("¡Gracias por comunicarte con el Instituto Jesús Nazareno! Nos pondremos en contacto contigo a la brevedad.");
             contactForm.reset();
         });
     }
 });
 
-// ==========================================================
-// 6. MODAL / LIGHTBOX PARA AMPLIAR IMÁGENES DE GALERÍA
-// ==========================================================
+// 5. MODAL PARA AMPLIAR IMÁGENES DE GALERÍA
 function ampliarImagen(imagenSrc, titulo) {
-    console.log("Abriendo imagen: " + titulo + " -> Ruta: " + imagenSrc);
-
-    // Revisa si ya existe un modal activo para no duplicar
     let modal = document.getElementById("imageModal");
     if (!modal) {
         modal = document.createElement("div");
@@ -119,7 +104,6 @@ function ampliarImagen(imagenSrc, titulo) {
             </div>
         `;
 
-        // Cerrar al hacer clic sobre el fondo o la X
         modal.addEventListener("click", function() {
             modal.style.display = "none";
         });
@@ -127,7 +111,6 @@ function ampliarImagen(imagenSrc, titulo) {
         document.body.appendChild(modal);
     }
 
-    // Insertar datos y mostrar
     document.getElementById("modalImg").src = imagenSrc;
     document.getElementById("modalCaption").innerText = titulo || "Galería Jesús Nazareno";
     modal.style.display = "flex";
