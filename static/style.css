@@ -124,7 +124,6 @@ nav a:hover {
     top: 100%;
     left: 0;
     padding: 1.2rem 0;
-    box-shadow: dg, 0 10px 20px rgba(0,0,0,0.3);
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     border-bottom: 3px solid var(--accent-gold);
     gap: 0.8rem;
@@ -153,7 +152,8 @@ nav a:hover {
 main {
   max-width: 1280px;
   width: 92%;
-  margin: 3rem auto;
+  margin: 2rem auto;
+  padding-top: 1rem;
   flex: 1;
 }
 
