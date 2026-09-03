@@ -9,30 +9,53 @@
     <p>Bienvenidos al Jardín Escuela e Instituto Jesús Nazareno. Formación bilingüe y en español con más de 10 años de experiencia, impartida por maestros 100% certificados en los niveles de Pre-Kínder hasta Bachillerato en Informática, Finanzas y Humanidades.</p>
 </div>
 
-<!-- CARRUSEL DE IMÁGENES DIPLOMÁTICAS Y ACTIVIDADES -->
-<div class="carousel-container fade-in" style="margin-bottom: 2.5rem; position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-    <div class="carousel-slide" style="display: flex; transition: transform 0.5s ease-in-out;">
-        <img src="{{ url_for('static', filename='img/aa.jpeg') }}" alt="Banda de Guerra Institucional" style="width: 100%; height: 380px; object-fit: cover;">
+<!-- CARRUSEL DE IMÁGENES AUTOMÁTICO (4 IMÁGENES) -->
+<div class="carousel-container fade-in" style="margin-bottom: 2.5rem; position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #f8c300;">
+    <div class="carousel-slide active">
+        <img src="{{ url_for('static', filename='img/carrusel1.jpeg') }}" alt="Desfile Cívico - Banda Jesús Nazareno" style="width: 100%; height: 380px; object-fit: cover; display: block;">
+    </div>
+    <div class="carousel-slide" style="display: none;">
+        <img src="{{ url_for('static', filename='img/carrusel2.jpeg') }}" alt="Alumnos en Desfile Cívico" style="width: 100%; height: 380px; object-fit: cover; display: block;">
+    </div>
+    <div class="carousel-slide" style="display: none;">
+        <img src="{{ url_for('static', filename='img/carrusel3.jpg') }}" alt="Representación Cultural y Folclórica" style="width: 100%; height: 380px; object-fit: cover; display: block;">
+    </div>
+    <div class="carousel-slide" style="display: none;">
+        <img src="{{ url_for('static', filename='img/carrusel4.jpeg') }}" alt="Cuadro de Panderetas y Palillonas" style="width: 100%; height: 380px; object-fit: cover; display: block;">
+    </div>
+
+    <!-- Indicadores de puntos -->
+    <div class="carousel-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
+        <span class="dot active" onclick="setSlide(0)" style="height: 12px; width: 12px; background-color: #e91e63; border-radius: 50%; cursor: pointer; display: inline-block;"></span>
+        <span class="dot" onclick="setSlide(1)" style="height: 12px; width: 12px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%; cursor: pointer; display: inline-block;"></span>
+        <span class="dot" onclick="setSlide(2)" style="height: 12px; width: 12px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%; cursor: pointer; display: inline-block;"></span>
+        <span class="dot" onclick="setSlide(3)" style="height: 12px; width: 12px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%; cursor: pointer; display: inline-block;"></span>
     </div>
 </div>
 
 <!-- TARJETAS DE ESTADÍSTICAS / LOGROS INSTITUCIONALES -->
 <div class="grid-3-cols fade-in" style="margin-bottom: 2.5rem;">
-    <div class="info-card text-center" style="border-top: 4px solid #d4af37;">
-        <h3 style="font-size: 2.2rem; color: #004488; margin-bottom: 0.2rem;"><i class="fa-solid fa-award"></i> +10</h3>
+    <div class="info-card text-center" style="border-top: 4px solid #f8c300;">
+        <h3 style="font-size: 2.2rem; color: #1c3d73; margin-bottom: 0.2rem;"><i class="fa-solid fa-award"></i> +10</h3>
         <p style="font-weight: 700; color: #e91e63;">Años de Trayectoria</p>
         <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Formando líderes con sólidos valores morales y cívicos.</p>
     </div>
-    <div class="info-card text-center" style="border-top: 4px solid #d4af37;">
-        <h3 style="font-size: 2.2rem; color: #004488; margin-bottom: 0.2rem;"><i class="fa-solid fa-user-check"></i> 100%</h3>
+    <div class="info-card text-center" style="border-top: 4px solid #f8c300;">
+        <h3 style="font-size: 2.2rem; color: #1c3d73; margin-bottom: 0.2rem;"><i class="fa-solid fa-user-check"></i> 100%</h3>
         <p style="font-weight: 700; color: #e91e63;">Docentes Certificados</p>
         <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Personal altamente capacitado en inglés y español.</p>
     </div>
-    <div class="info-card text-center" style="border-top: 4px solid #d4af37;">
-        <h3 style="font-size: 2.2rem; color: #004488; margin-bottom: 0.2rem;"><i class="fa-solid fa-graduation-cap"></i> 3</h3>
+    <div class="info-card text-center" style="border-top: 4px solid #f8c300;">
+        <h3 style="font-size: 2.2rem; color: #1c3d73; margin-bottom: 0.2rem;"><i class="fa-solid fa-graduation-cap"></i> 3</h3>
         <p style="font-weight: 700; color: #e91e63;">Niveles Educativos</p>
         <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Pre-básica, Básica y Bachilleratos Técnicos.</p>
     </div>
+</div>
+
+<!-- DESTACADO ÁREA DE INGLÉS (COLOR CAFÉ DEL LOGO) -->
+<div class="fade-in" style="border-left: 5px solid #6f4e37; background-color: #fcf8f5; padding: 1.2rem 1.5rem; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="color: #6f4e37; margin-bottom: 0.4rem; font-size: 1.3rem;"><i class="fa-solid fa-language"></i> Program Bilingüe / English Department</h3>
+    <p style="color: #4a382a; margin: 0; line-height: 1.5;">Fortalecemos el aprendizaje intensivo del idioma inglés desde Pre-Básica hasta Bachillerato con metodologías dinámicas e interactivas.</p>
 </div>
 
 <h2><i class="fa-solid fa-newspaper"></i> Noticias y Destacados</h2>
@@ -63,4 +86,33 @@
         </a>
     </div>
 </div>
+
+<!-- SCRIPT DE NAVEGACIÓN Y ROTACIÓN DEL CARRUSEL -->
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = 'none';
+            dots[i].style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+        });
+        
+        slideIndex = (index + slides.length) % slides.length;
+        slides[slideIndex].style.display = 'block';
+        dots[slideIndex].style.backgroundColor = '#e91e63';
+    }
+
+    function setSlide(index) {
+        slideIndex = index;
+        showSlide(slideIndex);
+    }
+
+    // Cambiar automáticamente cada 4.5 segundos
+    setInterval(() => {
+        slideIndex++;
+        showSlide(slideIndex);
+    }, 4500);
+</script>
 {% endblock %}
