@@ -69,10 +69,10 @@ header {
 }
 
 /* ==========================================================
-   NAVEGACIÓN (PC POR DEFECTO)
+   NAVEGACIÓN CON MENÚ HAMBURGUESA PERMANENTE (PC Y MÓVIL)
    ========================================================== */
 .mobile-menu-btn {
-  display: none; /* Oculto en computadoras */
+  display: block !important;
   background: none;
   border: none;
   color: white;
@@ -82,68 +82,42 @@ header {
 }
 
 nav ul.nav-menu {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  list-style: none;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 1.2rem 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-bottom: 3px solid var(--accent-gold);
+  gap: 0.8rem;
+  text-align: center;
+  z-index: 999;
+}
+
+nav ul.nav-menu.open {
+  display: flex !important;
 }
 
 nav ul.nav-menu li {
+  width: 100%;
   list-style: none;
 }
 
-nav a {
+nav ul.nav-menu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
   color: #f0f2f5;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.05rem;
   transition: color 0.2s ease;
 }
 
-nav a:hover {
+nav ul.nav-menu a:hover {
   color: var(--accent-gold);
-}
-
-/* ==========================================================
-   DISEÑO RESPONSIVO PARA MÓVILES (Pantallas menores a 900px)
-   ========================================================== */
-@media screen and (max-width: 900px) {
-  .mobile-menu-btn {
-    display: block !important; /* Muestra el botón hamburguesa solo en celulares */
-  }
-
-  nav ul.nav-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 1.2rem 0;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    border-bottom: 3px solid var(--accent-gold);
-    gap: 0.8rem;
-    text-align: center;
-    z-index: 999;
-  }
-
-  nav ul.nav-menu.open {
-    display: flex !important;
-  }
-
-  nav ul.nav-menu li {
-    width: 100%;
-  }
-
-  nav ul.nav-menu a {
-    display: block;
-    padding: 0.5rem 1rem;
-    font-size: 1.1rem;
-  }
 }
 
 /* ==========================================================
