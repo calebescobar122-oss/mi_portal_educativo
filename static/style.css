@@ -67,7 +67,7 @@ header {
 }
 
 /* ==========================================================
-   BOTÓN HAMBURGUESA Y MENÚ DESPLEGABLE
+   BOTÓN HAMBURGUESA Y MENÚ DESPLEGABLE MÓVIL OPTIMIZADO
    ========================================================== */
 .mobile-menu-btn {
   display: block !important;
@@ -87,10 +87,10 @@ nav ul.nav-menu {
   position: absolute;
   top: 100%;
   left: 0;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   box-shadow: 0 8px 16px rgba(0,0,0,0.25);
   border-bottom: 3px solid var(--accent-gold);
-  gap: 1rem;
+  gap: 0.5rem;
   text-align: center;
   z-index: 999;
 }
@@ -104,17 +104,17 @@ nav ul.nav-menu li {
   list-style: none;
 }
 
-nav a {
+nav ul.nav-menu a {
   color: #f0f2f5;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   display: block;
-  padding: 0.6rem 0;
+  padding: 0.5rem 1rem;
   transition: color 0.2s ease;
 }
 
-nav a:hover {
+nav ul.nav-menu a:hover {
   color: var(--accent-gold);
 }
 
