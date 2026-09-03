@@ -3,8 +3,9 @@
 {% block content %}
 <h2>Contáctanos</h2>
 
-<div class="info-card" style="text-align: center; margin-bottom: 2.5rem;">
-    <h3>¿Necesitas más información detallada?</h3>
+<!-- TARJETA PRINCIPAL CON ANIMACIÓN FADE-IN -->
+<div class="info-card fade-in" style="text-align: center; margin-bottom: 2.5rem;">
+    <h3>¿Necesitas información inmediata?</h3>
     <p>Te invitamos a visitar nuestra página oficial en Facebook o escribirnos directamente a nuestro número de WhatsApp institucional <strong>31913765</strong>.</p>
     <p style="margin-top: 1.2rem;">
         <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: 700; margin-right: 2rem; text-decoration: none;">📘 Facebook Oficial</a>
@@ -13,18 +14,29 @@
 </div>
 
 <div class="grid-2-cols">
-    <div class="info-card">
+    <!-- INFORMACIÓN DE CONTACTO Y UBICACIÓN CON MAPA -->
+    <div class="info-card fade-in">
         <h3>Información Institucional</h3>
         <p><strong>Institución:</strong> Jardín Escuela e Instituto Jesús Nazareno</p>
         <p><strong>WhatsApp Oficial:</strong> 31913765</p>
         <p><strong>Ubicación:</strong> San Pedro Sula, Honduras</p>
-        <p><strong>Horario:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
-        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
-            <p style="font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno. Todos los derechos reservados.</p>
+        <p><strong>Horario de Atención:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
+        
+        <!-- MAPA INTERACTIVO -->
+        <div style="margin-top: 1.5rem; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61538.16327318721!2d-88.0583125!3d15.5041725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f665b4c16a241b1%3A0x8e83348123284f23!2sSan%20Pedro%20Sula%2C%20Honduras!5e0!3m2!1ses!2s!4v1710000000000!5m2!1ses!2s" 
+                width="100%" 
+                height="220" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
         </div>
     </div>
 
-    <form class="contact-form">
+    <!-- FORMULARIO DE CONTACTO -->
+    <form class="contact-form fade-in">
         <h3>Formulario de Consulta Importante</h3>
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>
@@ -40,5 +52,52 @@
         </div>
         <button type="submit">Enviar Mensaje</button>
     </form>
+</div>
+
+<!-- NUEVA SECCIÓN: LISTA DESPLEGABLE DE PREGUNTAS FRECUENTES (FAQ) -->
+<div class="info-card fade-in" style="margin-top: 3rem;">
+    <h3 style="margin-bottom: 1.5rem;">Preguntas Frecuentes e Información Escolar</h3>
+    
+    <div class="faq-container">
+        <div class="faq-item">
+            <button type="button" class="faq-question">
+                <span>📋 ¿Cuáles son los requisitos de matrícula?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Para formalizar la inscripción debes presentar: Partida de nacimiento original, copia de tarjeta de identidad de los padres o encargados, certificado de conducta del centro anterior y la ficha de matrícula llena.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button type="button" class="faq-question">
+                <span>🎓 ¿Qué niveles académicos y modalidades ofrecen?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Contamos con formación integral bilingüe desde <strong>Pre-básica</strong> (Kínder/Pre-kínder), <strong>Básica</strong> (1er a 9no grado) y <strong>Secundaria / Bachillerato</strong> con estándares de alta calidad académica.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button type="button" class="faq-question">
+                <span>🎺 ¿Qué disciplinas y actividades extracurriculares hay?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Nuestros estudiantes forman parte de la prestigiosa Banda de Guerra institucional, grupo de Danza, cuadro de panderetas, torneos deportivos y ferias culturales durante el periodo escolar.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button type="button" class="faq-question">
+                <span>⏰ ¿Cuáles son los horarios de clases?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Las clases inician puntualmente a las 7:00 AM para todos los niveles de Lunes a Viernes. La jornada regular concluye según la jornada del grado escolar.</p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

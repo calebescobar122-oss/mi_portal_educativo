@@ -3,17 +3,19 @@
 {% block content %}
 <h2>Acerca de Nuestra Institución</h2>
 
-<div class="info-card">
+<!-- NIVELES EDUCATIVOS -->
+<div class="info-card fade-in">
     <h3>Niveles Educativos</h3>
     <p>Brindamos educación integral y continua desde <strong>Pre-Kínder, Kínder y Primaria</strong>, hasta completar la secundaria con el ciclo de <strong>3° de Bachillerato</strong> en sus modalidades de Informática, Finanzas y Humanidades.</p>
 </div>
 
-<div class="info-card">
+<!-- NORMAS DE LA INSTITUCIÓN -->
+<div class="info-card fade-in">
     <h3>Normas Más Importantes de la Institución</h3>
     <p>El uso correcto y puntual del uniforme escolar es de carácter obligatorio para todos los alumnos.</p>
     
     <div class="grid-2-cols" style="margin-top: 1.2rem;">
-        <div>
+        <div style="background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
             <h4>Normas para Niñas:</h4>
             <ul class="styled-list">
                 <li>Desde ciclo se utiliza falda-short.</li>
@@ -24,7 +26,7 @@
                 <li>Utilizar joyería discreta y moderada (no extravagante).</li>
             </ul>
         </div>
-        <div>
+        <div style="background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-gold);">
             <h4>Normas para Niños:</h4>
             <ul class="styled-list">
                 <li>Corte de cabello formal y limpio.</li>
@@ -37,7 +39,7 @@
         </div>
     </div>
 
-    <h4 style="margin-top: 1.8rem;">Normas Generales:</h4>
+    <h4 style="margin-top: 1.8rem; color: var(--secondary-pink);">Normas Generales:</h4>
     <ul class="styled-list">
         <li>Prohibido llevar teléfonos celulares a la institución.</li>
         <li>Mantener un respeto absoluto entre compañeros y docentes.</li>
@@ -48,23 +50,30 @@
     </ul>
 </div>
 
+<!-- INFORMACIÓN DE PAGOS Y MATRÍCULA -->
 <div class="grid-2-cols">
-    <div class="info-card">
+    <div class="info-card fade-in">
         <h3>Información sobre Pagos</h3>
         <p>Se cancela la matrícula junto con el mes de enero. En junio se efectúa el pago de dicho mes y el de diciembre. Se debe abonar un único pago anual de <strong>200 Lps por concepto de papelería</strong>.</p>
-        <p style="margin-top: 1rem; color: var(--secondary-pink); font-weight: 700;">⚠️ Importante: Las mensualidades deben pagarse estrictamente en el lapso del 1 al 5 de cada mes.</p>
+        <div style="margin-top: 1rem; padding: 0.8rem; background-color: #fff0f0; border-radius: 6px; border-left: 4px solid #e53e3e;">
+            <p style="color: #c53030; font-weight: 700; font-size: 0.95rem;">⚠️ Importante: Las mensualidades deben pagarse estrictamente en el lapso del 1 al 5 de cada mes.</p>
+        </div>
     </div>
 
-    <div class="info-card">
+    <div class="info-card fade-in">
         <h3>Información de Matrícula</h3>
         <p><strong>Nuevos Ingresos:</strong> Presentar certificados de estudios de años anteriores, acta de conducta, partida de nacimiento del alumno y cédula de identidad del padre o encargado.</p>
         <p style="margin-top: 1rem;"><strong>Reingresos:</strong> Presentar copia del certificado del año anterior, copia de cédula del encargado, presentarse a la institución y adquirir su bolsa de matrícula.</p>
     </div>
 </div>
 
-<div class="info-card" style="text-align: center; background: linear-gradient(135deg, var(--bg-beige), #fff);">
+<!-- TARJETA DE CONTACTO DIRECTO -->
+<div class="info-card fade-in" style="text-align: center; background: linear-gradient(135deg, var(--bg-beige), #fff);">
     <h3>Contacto Directo y Derechos</h3>
     <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno. Todos los derechos reservados.</p>
-    <p style="margin-top: 0.8rem;">WhatsApp: <strong>31913765</strong> | <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: bold;">Visita nuestra página de Facebook</a></p>
+    <p style="margin-top: 0.8rem;">
+        💬 WhatsApp: <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: bold; text-decoration: none;">31913765</a> | 
+        📘 <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">Visita nuestra página de Facebook</a>
+    </p>
 </div>
 {% endblock %}

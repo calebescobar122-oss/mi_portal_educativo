@@ -1,16 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="hero-banner">
+<!-- BANNER PRINCIPAL CON ANIMACIÓN FADE-IN -->
+<div class="hero-banner fade-in">
     <h2>Excelencia Educativa y Moral</h2>
     <p>Bienvenidos al Jardín Escuela e Instituto Jesús Nazareno. Formación bilingüe y en español con más de 10 años de experiencia, impartida por maestros 100% certificados en los niveles de Pre-Kínder hasta Bachillerato en Informática, Finanzas y Humanidades.</p>
+</div>
+
+<!-- TARJETAS DE ESTADÍSTICAS / LOGROS INSTITUCIONALES -->
+<div class="grid-3-cols fade-in" style="margin-bottom: 2.5rem;">
+    <div class="info-card" style="text-align: center; border-top: 4px solid var(--accent-gold);">
+        <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 0.2rem;">+10</h3>
+        <p style="font-weight: 700; color: var(--secondary-pink);">Años de Trayectoria</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Formando líderes con valores morales y religiosos.</p>
+    </div>
+    <div class="info-card" style="text-align: center; border-top: 4px solid var(--accent-gold);">
+        <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 0.2rem;">100%</h3>
+        <p style="font-weight: 700; color: var(--secondary-pink);">Docentes Certificados</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Personal altamente capacitado en inglés y español.</p>
+    </div>
+    <div class="info-card" style="text-align: center; border-top: 4px solid var(--accent-gold);">
+        <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 0.2rem;">3</h3>
+        <p style="font-weight: 700; color: var(--secondary-pink);">Niveles Educativos</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Pre-básica, Básica y Bachilleratos Técnicos.</p>
+    </div>
 </div>
 
 <h2>Noticias y Avisos Recientes</h2>
 
 <div class="grid-3-cols">
     {% for noticia in noticias %}
-        <div class="noticia-card">
+        <div class="noticia-card fade-in">
             <h3>{{ noticia['titulo'] }}</h3>
             <p style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;">{{ noticia['fecha'] }}</p>
             <p>{{ noticia['contenido'] }}</p>
@@ -18,7 +38,8 @@
     {% endfor %}
 </div>
 
-<div class="info-card" style="margin-top: 2.5rem; text-align: center;">
+<!-- LLAMADO A LA ACCIÓN CONECTADO A WHATSAPP Y FACEBOOK -->
+<div class="info-card fade-in" style="margin-top: 2.5rem; text-align: center;">
     <h3>¡Conéctate con Nuestra Institución!</h3>
     <p>Síguenos en nuestra página oficial de Facebook para ver eventos en vivo, galerías y avisos importantes, o escríbenos directamente por WhatsApp.</p>
     <p style="margin-top: 1.2rem;">

@@ -3,44 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardín Escuela e Instituto Jesús Nazareno</title>
-    <link rel="stylesheet" href="static/style.css">
+    <meta name="description" content="Portal oficial del Jardín Escuela e Instituto Jesús Nazareno. Educación bilingüe de calidad desde Pre-Kínder hasta Bachillerato.">
+    <title>{% block title %}Jardín Escuela e Instituto Jesús Nazareno{% endblock %}</title>
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <!-- Favicon / Ícono de la pestaña -->
+    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/logo.jpg.jpeg') }}">
 </head>
 <body>
 
+    <!-- ENCABEZADO Y NAVEGACIÓN -->
     <header>
         <div class="header-container">
             <div class="header-brand">
-                <img src="static/img/logo.jpg.jpeg" alt="Escudo Institucional" class="header-logo">
+                <img src="{{ url_for('static', filename='img/logo.jpg.jpeg') }}" alt="Escudo Institucional" class="header-logo">
                 <h1>Jardín Escuela e Instituto Jesús Nazareno</h1>
             </div>
 
             <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="quienes.html">Nosotros</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="acerca.html">Acerca</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
+    <ul class="nav-menu">
+        <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+        <li><a href="{{ url_for('quienes') }}">Nosotros</a></li>
+        <li><a href="{{ url_for('servicios') }}">Servicios</a></li>
+        <li><a href="{{ url_for('acerca') }}">Acerca</a></li>
+        <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+ 
+    </ul>
             </nav>
         </div>
     </header>
 
+    <!-- CONTENIDO DINÁMICO DE LAS VISTAS -->
     <main>
         {% block content %}
         {% endblock %}
     </main>
 
+    <!-- PIE DE PÁGINA INSTITUCIONAL -->
     <footer>
         <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno - Todos los derechos reservados.</p>
         <p class="footer-social">
             Contáctanos: 
-            <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank">Facebook Oficial</a> | 
-            <a href="https://wa.me/50431913765" target="_blank">WhatsApp: 31913765</a>
+            <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" rel="noopener noreferrer">📘 Facebook Oficial</a> | 
+            <a href="https://wa.me/50431913765" target="_blank" rel="noopener noreferrer">💬 WhatsApp: 31913765</a>
         </p>
     </footer>
 
-    <script src="static/script.js"></script>
+    <!-- CÓDIGO DE INTERACTIVIDAD SCRIPT.JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
