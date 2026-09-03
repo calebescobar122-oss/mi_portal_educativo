@@ -1,14 +1,14 @@
 /* ==========================================================
-   PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE
+   PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE (Colores del Carnet)
    ========================================================== */
 :root {
-  --primary-blue: #3b5998;
-  --secondary-pink: #21191f;
-  --accent-gold: #d4af37;
-  --bg-beige: #f9f6f0;
-  --card-white: #ffffff;
-  --text-main: #2d3142;
-  --border-light: #e6dfd5;
+  --primary-brown: #6b3a2a;     /* Marrón institucional del carnet */
+  --accent-pink: #d946a6;       /* Rosado / Fucsia característico */
+  --accent-gold: #d4af37;       /* Dorado institucional */
+  --bg-beige: #f9f6f0;          /* Fondo general suave */
+  --card-white: #ffffff;        /* Blanco para tarjetas */
+  --text-main: #2d3142;         /* Texto principal */
+  --border-light: #e6dfd5;      /* Bordes sutiles */
 }
 
 * {
@@ -28,10 +28,10 @@ body {
 }
 
 /* ==========================================================
-   ENCABEZADO Y ESTRUCTURA CON MENÚ HAMBURGUESA
+   ENCABEZADO Y ESTRUCTURA CON MENÚ HAMBURGUESA ARRIBA A LA DERECHA
    ========================================================== */
 .main-header {
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  background: linear-gradient(135deg, var(--primary-brown), #4a281c);
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -74,7 +74,7 @@ body {
   text-decoration: none !important;
 }
 
-/* Botón Hamburguesa visible en todo momento */
+/* Botón Hamburguesa visible en todo momento (Esquina Superior Derecha) */
 .mobile-menu-btn {
   display: block !important;
   background: none;
@@ -85,7 +85,7 @@ body {
   padding: 4px 8px;
 }
 
-/* Menú de navegación oculto por defecto que se despliega al hacer clic */
+/* Menú desplegable posicionado exactamente a la derecha */
 nav {
   position: relative;
 }
@@ -93,8 +93,8 @@ nav {
 ul.nav-menu {
   display: none; /* Oculto inicialmente */
   flex-direction: column;
-  width: 260px;
-  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  width: 280px;
+  background: linear-gradient(135deg, var(--primary-brown), #4a281c);
   position: absolute;
   top: calc(100% + 18px);
   right: 0;
@@ -118,8 +118,10 @@ ul.nav-menu li {
 }
 
 .nav-menu a {
-  display: block;
-  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.8rem 1.5rem;
   font-size: 1rem;
   color: #ffffff !important;
   text-decoration: none !important;
@@ -127,9 +129,15 @@ ul.nav-menu li {
   transition: background 0.2s, color 0.2s;
 }
 
+.nav-menu a i {
+  color: var(--accent-gold);
+  width: 20px;
+  text-align: center;
+}
+
 .nav-menu a:hover {
-  background: rgba(212, 175, 55, 0.15);
-  color: #f8c300 !important;
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--accent-gold) !important;
 }
 
 /* ==========================================================
@@ -144,7 +152,7 @@ ul.nav-menu li {
 }
 
 h2 {
-  color: var(--primary-blue);
+  color: var(--primary-brown);
   border-bottom: 3px solid var(--accent-gold);
   padding-bottom: 0.5rem;
   margin-bottom: 1.8rem;
@@ -183,7 +191,7 @@ h2 {
    PIE DE PÁGINA Y WHATSAPP FLOTANTE
    ========================================================== */
 .main-footer {
-  background: linear-gradient(135deg, #2c4273, var(--primary-blue));
+  background: linear-gradient(135deg, #4a281c, var(--primary-brown));
   color: white;
   text-align: center;
   padding: 2.5rem 1rem;
