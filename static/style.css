@@ -48,7 +48,7 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  position: relative;
 }
 
 .header-brand {
@@ -66,23 +66,41 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-header h1 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #fff;
+/* ==========================================================
+   BOTÓN HAMBURGUESA Y MENÚ DESPLEGABLE
+   ========================================================== */
+.mobile-menu-btn {
+  display: block !important;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 5px 10px;
 }
 
 nav ul.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-blue), #2c4273);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 1.5rem 0;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  border-bottom: 3px solid var(--accent-gold);
+  gap: 1rem;
+  text-align: center;
+  z-index: 999;
+}
+
+nav ul.nav-menu.open {
+  display: flex !important;
 }
 
 nav ul.nav-menu li {
+  width: 100%;
   list-style: none;
 }
 
@@ -90,8 +108,10 @@ nav a {
   color: #f0f2f5;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s ease, transform 0.2s ease;
+  font-size: 1.1rem;
+  display: block;
+  padding: 0.6rem 0;
+  transition: color 0.2s ease;
 }
 
 nav a:hover {
@@ -162,14 +182,11 @@ footer p {
   text-decoration: underline;
 }
 
-/* ==========================================================
-   ANIMACIONES Y MENÚ MÓVIL DESPLEGABLE
-   ========================================================== */
+/* Animaciones y WhatsApp */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  will-change: opacity, transform;
 }
 
 .fade-in.visible {
@@ -200,55 +217,4 @@ footer p {
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 18px rgba(37,211,102,0.4);
-}
-
-/* Botón Hamburguesa */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  nav ul.nav-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: linear-gradient(135deg, var(--primary-blue), #2c4273);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 1.5rem 0;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    border-bottom: 3px solid var(--accent-gold);
-    gap: 1rem;
-    text-align: center;
-  }
-
-  nav ul.nav-menu.open {
-    display: flex !important;
-  }
-
-  nav ul.nav-menu li {
-    width: 100%;
-  }
-
-  nav ul.nav-menu a {
-    display: block;
-    padding: 0.5rem 0;
-    font-size: 1.1rem;
-  }
 }
