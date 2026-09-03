@@ -1,22 +1,27 @@
 {% extends "base.html" %}
 
+{% block title %}Acerca | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+
 {% block content %}
-<h2>Acerca de Nuestra Institución</h2>
+<section class="page-header text-center">
+    <h2><i class="fa-solid fa-circle-info"></i> Acerca de Nuestra Institución</h2>
+    <p class="subtitle">Conoce nuestra oferta educativa, reglamento interno e información para el año escolar.</p>
+</section>
 
 <!-- NIVELES EDUCATIVOS -->
 <div class="info-card fade-in">
-    <h3>Niveles Educativos</h3>
+    <h3><i class="fa-solid fa-graduation-cap"></i> Niveles Educativos</h3>
     <p>Brindamos educación integral y continua desde <strong>Pre-Kínder, Kínder y Primaria</strong>, hasta completar la secundaria con el ciclo de <strong>3° de Bachillerato</strong> en sus modalidades de Informática, Finanzas y Humanidades.</p>
 </div>
 
 <!-- NORMAS DE LA INSTITUCIÓN -->
 <div class="info-card fade-in">
-    <h3>Normas Más Importantes de la Institución</h3>
+    <h3><i class="fa-solid fa-clipboard-list"></i> Normas Más Importantes de la Institución</h3>
     <p>El uso correcto y puntual del uniforme escolar es de carácter obligatorio para todos los alumnos.</p>
     
     <div class="grid-2-cols" style="margin-top: 1.2rem;">
         <div style="background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
-            <h4>Normas para Niñas:</h4>
+            <h4 style="color: var(--primary-blue);"><i class="fa-solid fa-person-dress"></i> Normas para Niñas:</h4>
             <ul class="styled-list">
                 <li>Desde ciclo se utiliza falda-short.</li>
                 <li>Asistir a clases completamente sin maquillaje.</li>
@@ -27,7 +32,7 @@
             </ul>
         </div>
         <div style="background-color: var(--bg-beige); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-gold);">
-            <h4>Normas para Niños:</h4>
+            <h4 style="color: #b38600;"><i class="fa-solid fa-person"></i> Normas para Niños:</h4>
             <ul class="styled-list">
                 <li>Corte de cabello formal y limpio.</li>
                 <li>Utilizar la camisa adecuadamente fajada (por dentro).</li>
@@ -39,7 +44,7 @@
         </div>
     </div>
 
-    <h4 style="margin-top: 1.8rem; color: var(--secondary-pink);">Normas Generales:</h4>
+    <h4 style="margin-top: 1.8rem; color: var(--secondary-pink);"><i class="fa-solid fa-shield-cat"></i> Normas Generales:</h4>
     <ul class="styled-list">
         <li>Prohibido llevar teléfonos celulares a la institución.</li>
         <li>Mantener un respeto absoluto entre compañeros y docentes.</li>
@@ -53,27 +58,32 @@
 <!-- INFORMACIÓN DE PAGOS Y MATRÍCULA -->
 <div class="grid-2-cols">
     <div class="info-card fade-in">
-        <h3>Información sobre Pagos</h3>
+        <h3><i class="fa-solid fa-file-invoice-dollar"></i> Información sobre Pagos</h3>
         <p>Se cancela la matrícula junto con el mes de enero. En junio se efectúa el pago de dicho mes y el de diciembre. Se debe abonar un único pago anual de <strong>200 Lps por concepto de papelería</strong>.</p>
         <div style="margin-top: 1rem; padding: 0.8rem; background-color: #fff0f0; border-radius: 6px; border-left: 4px solid #e53e3e;">
-            <p style="color: #c53030; font-weight: 700; font-size: 0.95rem;">⚠️ Importante: Las mensualidades deben pagarse estrictamente en el lapso del 1 al 5 de cada mes.</p>
+            <p style="color: #c53030; font-weight: 700; font-size: 0.95rem; margin: 0;">⚠️ Importante: Las mensualidades deben pagarse estrictamente en el lapso del 1 al 5 de cada mes.</p>
         </div>
     </div>
 
     <div class="info-card fade-in">
-        <h3>Información de Matrícula</h3>
+        <h3><i class="fa-solid fa-id-card"></i> Información de Matrícula</h3>
         <p><strong>Nuevos Ingresos:</strong> Presentar certificados de estudios de años anteriores, acta de conducta, partida de nacimiento del alumno y cédula de identidad del padre o encargado.</p>
         <p style="margin-top: 1rem;"><strong>Reingresos:</strong> Presentar copia del certificado del año anterior, copia de cédula del encargado, presentarse a la institución y adquirir su bolsa de matrícula.</p>
     </div>
 </div>
 
-<!-- TARJETA DE CONTACTO DIRECTO -->
-<div class="info-card fade-in" style="text-align: center; background: linear-gradient(135deg, var(--bg-beige), #fff);">
-    <h3>Contacto Directo y Derechos</h3>
-    <p>&copy; 2026 Jardín Escuela e Instituto Jesús Nazareno. Todos los derechos reservados.</p>
-    <p style="margin-top: 0.8rem;">
-        💬 WhatsApp: <a href="https://wa.me/50431913765" target="_blank" style="color: #25d366; font-weight: bold; text-decoration: none;">31913765</a> | 
-        📘 <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">Visita nuestra página de Facebook</a>
-    </p>
+<!-- TARJETA DE CONTACTO DIRECTO LIMPIA (SIN NÚMERO ESCRITO) -->
+<div class="info-card fade-in text-center" style="margin-top: 2.5rem;">
+    <h3>¿Tienes dudas o consultas?</h3>
+    <p>Comunícate directamente con nuestro personal administrativo a través de nuestros canales oficiales:</p>
+    
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/share/1D74RmNSwm/" target="_blank" class="social-btn facebook-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-facebook"></i> Facebook Oficial
+        </a>
+        <a href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20informaci%C3%B3n" target="_blank" class="social-btn whatsapp-btn" style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+    </div>
 </div>
 {% endblock %}
