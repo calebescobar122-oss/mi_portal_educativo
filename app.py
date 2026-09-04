@@ -49,7 +49,7 @@ def mensajes():
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
-    return render_template("nosotros.html", noticias=noticias_recientes)
+    return render_template("quienes.html", noticias=noticias_recientes)
 
 @app.route("/servicios")
 def servicios():
