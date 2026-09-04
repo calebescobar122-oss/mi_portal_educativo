@@ -35,11 +35,84 @@ avisos_institucionales = [
     }
 ]
 
-# CALENDARIO DE FECHAS (Controlado exclusivamente por el programador)
-calendario_escolar = [
-    {"dia": 2, "mes": "Septiembre", "titulo": "Examen Parcial"},
-    {"dia": 10, "mes": "Septiembre", "titulo": "Suspensión de Clases"},
-    {"dia": 15, "mes": "Septiembre", "titulo": "Reunión de Padres"}
+# CALENDARIO ANUAL COMPLETO: Controlado exclusivamente por ti desde el backend
+calendario_anual = [
+    {
+        "mes": "Enero 2026",
+        "dias_totales": 31,
+        "inicio_dia": 4, # 0=Dom, 1=Lun, etc. (Ejemplo de estructura)
+        "eventos": [{"dia": 15, "titulo": "Planificación Docente"}]
+    },
+    {
+        "mes": "Febrero 2026",
+        "dias_totales": 28,
+        "inicio_dia": 0,
+        "eventos": [{"dia": 1, "titulo": "Inicio de Matrículas"}]
+    },
+    {
+        "mes": "Marzo 2026",
+        "dias_totales": 31,
+        "inicio_dia": 0,
+        "eventos": [{"dia": 1, "titulo": "Inicio de Clases Oficial"}]
+    },
+    {
+        "mes": "Abril 2026",
+        "dias_totales": 30,
+        "inicio_dia": 3,
+        "eventos": [{"dia": 2, "titulo": "Asueto de Semana Santa"}]
+    },
+    {
+        "mes": "Mayo 2026",
+        "dias_totales": 31,
+        "inicio_dia": 5,
+        "eventos": [{"dia": 1, "titulo": "Día del Trabajo"}]
+    },
+    {
+        "mes": "Junio 2026",
+        "dias_totales": 30,
+        "inicio_dia": 1,
+        "eventos": [{"dia": 15, "titulo": "Exámenes del II Parcial"}]
+    },
+    {
+        "mes": "Julio 2026",
+        "dias_totales": 31,
+        "inicio_dia": 3,
+        "eventos": [{"dia": 20, "titulo": "Vacaciones de Medio Año"}]
+    },
+    {
+        "mes": "Agosto 2026",
+        "dias_totales": 31,
+        "inicio_dia": 6,
+        "eventos": [{"dia": 1, "titulo": "Reanudación de Clases"}]
+    },
+    {
+        "mes": "Septiembre 2026",
+        "dias_totales": 30,
+        "inicio_dia": 2,
+        "eventos": [
+            {"dia": 2, "titulo": "Examen Parcial"},
+            {"dia": 10, "titulo": "Suspensión de Clases"},
+            {"dia": 15, "titulo": "Reunión de Padres"}
+        ]
+    },
+    {
+        "mes": "Octubre 2026",
+        "dias_totales": 31,
+        "inicio_dia": 4,
+        "eventos": [{"dia": 3, "titulo": "Feriado Cívico"}]
+    },
+    {
+        "mes": "Noviembre 2026",
+        "dias_totales": 30,
+        "inicio_dia": 0,
+        "eventos": [{"dia": 25, "titulo": "Clausura de Año Escolar"}]
+    },
+    {
+        "mes": "Diciembre 2026",
+        "dias_totales": 31,
+        "inicio_dia": 2,
+        "eventos": [{"dia": 25, "titulo": "Navidad"}]
+    }
 ]
 
 @app.route("/")
@@ -49,7 +122,7 @@ def inicio():
 
 @app.route("/mensajes")
 def mensajes():
-    return render_template("mensajes.html", avisos=avisos_institucionales, noticias=noticias_recientes, calendario=calendario_escolar)
+    return render_template("mensajes.html", avisos=avisos_institucionales, noticias=noticias_recientes, calendario=calendario_anual)
 
 @app.route("/quienes")
 @app.route("/quienes-somos")

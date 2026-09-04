@@ -10,174 +10,119 @@
     <h2
       style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);"
     >
-      <i class="fa-solid fa-bullhorn"></i> Mensajes y Calendario Escolar
+      <i class="fa-solid fa-bullhorn"></i> Mensajes y Calendario Anual 2026
     </h2>
     <p style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;">
-      Consulta los comunicados oficiales y la programación de todo el año
-      lectivo 2026.
+      Consulta los comunicados oficiales y la programación completa de todos los
+      meses del año lectivo.
     </p>
   </section>
 
   <div
-    style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 2rem; align-items: start;"
+    style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;"
     class="mensajes-layout"
   >
-    <!-- COLUMNA IZQUIERDA: AVISOS Y NOTICIAS -->
-    <div>
-      <div
-        class="info-card fade-in"
-        style="border-top: 4px solid var(--accent-yellow); background: var(--card-white); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);"
+    <!-- SECCIÓN DE AVISOS OFICIALES -->
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-yellow); background: var(--card-white); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);"
+    >
+      <h3
+        style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem;"
       >
-        <h3
-          style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem;"
-        >
-          <i class="fa-solid fa-circle-exclamation"></i> Avisos Oficiales
-        </h3>
+        <i class="fa-solid fa-circle-exclamation"></i> Avisos Oficiales
+      </h3>
 
-        {% if avisos %}
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            {% for aviso in avisos %}
-              <article
-                style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 16px; border-radius: 8px; border: 1px solid var(--border-light);"
+      {% if avisos %}
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;"
+        >
+          {% for aviso in avisos %}
+            <article
+              style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 16px; border-radius: 8px; border: 1px solid var(--border-light);"
+            >
+              <h4
+                style="margin: 0; color: var(--header-blue); font-size: 1.05rem;"
               >
-                <h4
-                  style="margin: 0; color: var(--header-blue); font-size: 1.05rem;"
-                >
-                  {{ aviso.titulo }}
-                </h4>
-                <p style="margin: 4px 0; font-size: 0.85rem; color: #64748b;">
-                  <strong>Fecha:</strong> {{ aviso.fecha }}
-                </p>
-                <p
-                  style="font-size: 0.92rem; line-height: 1.5; color: var(--text-main); margin-top: 6px;"
-                >
-                  {{ aviso.contenido }}
-                </p>
-              </article>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
+                {{ aviso.titulo }}
+              </h4>
+              <p style="margin: 4px 0; font-size: 0.85rem; color: #64748b;">
+                <strong>Fecha:</strong> {{ aviso.fecha }}
+              </p>
+              <p
+                style="font-size: 0.92rem; line-height: 1.5; color: var(--text-main); margin-top: 6px;"
+              >
+                {{ aviso.contenido }}
+              </p>
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
 
-    <!-- COLUMNA DERECHA: CALENDARIO ESTILO APLICACIÓN (CUADRÍCULA) -->
-    <aside style="position: sticky; top: 20px;">
+    <!-- SECCIÓN DE CALENDARIO DE TODOS LOS MESES DEL AÑO -->
+    <div>
       <div
-        style="background-color: var(--card-white); border-top: 4px solid var(--header-blue); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;"
       >
-        <div
-          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;"
+        <h3
+          style="color: var(--header-blue); margin: 0; border-left: 4px solid var(--secondary-pink); padding-left: 0.5rem;"
         >
-          <h3 style="color: var(--header-blue); font-size: 1.1rem; margin: 0;">
-            <i
-              class="fa-solid fa-calendar-days"
-              style="color: var(--secondary-pink);"
-            ></i>
-            Septiembre 2026
-          </h3>
-          <span
-            style="font-size: 0.75rem; background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 6px; color: #475569;"
-            ><i class="fa-solid fa-lock"></i> Admin</span
-          >
-        </div>
-
-        <!-- Mini Cuadricula del Calendario -->
-        <table
-          style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
+          <i class="fa-solid fa-calendar-days"></i> Calendario de Todo el Año
+          2026
+        </h3>
+        <span
+          style="font-size: 0.8rem; background: #e2e8f0; padding: 0.3rem 0.8rem; border-radius: 6px; color: #475569;"
+          ><i class="fa-solid fa-lock"></i> Control de Administración</span
         >
-          <thead>
-            <tr style="color: #64748b; font-size: 0.75rem;">
-              <th style="padding-bottom: 8px;">D</th>
-              <th style="padding-bottom: 8px;">L</th>
-              <th style="padding-bottom: 8px;">M</th>
-              <th style="padding-bottom: 8px;">M</th>
-              <th style="padding-bottom: 8px;">J</th>
-              <th style="padding-bottom: 8px;">V</th>
-              <th style="padding-bottom: 8px;">S</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 6px; color: #cbd5e1;">30</td>
-              <td style="padding: 6px; color: #cbd5e1;">31</td>
-              <td style="padding: 6px;">1</td>
-              <td
-                style="padding: 6px; background: var(--secondary-pink); color: white; border-radius: 50%; font-weight: bold;"
-              >
-                2
-              </td>
-              <td style="padding: 6px;">3</td>
-              <td style="padding: 6px;">4</td>
-              <td style="padding: 6px;">5</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px;">6</td>
-              <td style="padding: 6px;">7</td>
-              <td style="padding: 6px;">8</td>
-              <td style="padding: 6px;">9</td>
-              <td
-                style="padding: 6px; background: #e2e8f0; border-radius: 4px; font-weight: bold;"
-              >
-                10
-              </td>
-              <td style="padding: 6px;">11</td>
-              <td style="padding: 6px;">12</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px;">13</td>
-              <td style="padding: 6px;">14</td>
-              <td
-                style="padding: 6px; background: #e2e8f0; border-radius: 4px; font-weight: bold;"
-              >
-                15
-              </td>
-              <td style="padding: 6px;">16</td>
-              <td style="padding: 6px;">17</td>
-              <td style="padding: 6px;">18</td>
-              <td style="padding: 6px;">19</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px;">20</td>
-              <td style="padding: 6px;">21</td>
-              <td style="padding: 6px;">22</td>
-              <td style="padding: 6px;">23</td>
-              <td style="padding: 6px;">24</td>
-              <td style="padding: 6px;">25</td>
-              <td style="padding: 6px;">26</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px;">27</td>
-              <td style="padding: 6px;">28</td>
-              <td style="padding: 6px;">29</td>
-              <td style="padding: 6px;">30</td>
-              <td style="padding: 6px; color: #cbd5e1;">1</td>
-              <td style="padding: 6px; color: #cbd5e1;">2</td>
-              <td style="padding: 6px; color: #cbd5e1;">3</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Leyenda de eventos sincronizados con app.py -->
-        <div
-          style="margin-top: 1.2rem; border-top: 1px solid var(--border-light); padding-top: 0.8rem;"
-        >
-          <small
-            style="display: block; font-weight: bold; color: var(--header-blue); margin-bottom: 0.4rem;"
-            >Eventos programados:</small
-          >
-          <ul
-            style="margin: 0; padding-left: 1rem; font-size: 0.8rem; color: var(--text-main); display: flex; flex-direction: column; gap: 4px;"
-          >
-            {% for evento in calendario %}
-              <li>
-                <strong>{{ evento.dia }} {{ evento.mes[:3] }}:</strong>
-                {{ evento.titulo }}
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
       </div>
-    </aside>
+
+      <!-- Cuadrícula responsiva que muestra todos los meses dinámicamente -->
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;"
+      >
+        {% for obj_mes in calendario %}
+          <div
+            style="background-color: var(--card-white); border-radius: 12px; padding: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid var(--border-light); border-top: 4px solid var(--header-blue);"
+          >
+            <h4
+              style="color: var(--header-blue); font-size: 1.1rem; margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;"
+            >
+              {{ obj_mes.mes }}
+            </h4>
+
+            <!-- Listado de eventos programados para este mes específico -->
+            <div style="font-size: 0.88rem;">
+              {% if obj_mes.eventos %}
+                <strong
+                  style="color: var(--text-main); display: block; margin-bottom: 0.5rem;"
+                  >Eventos del mes:</strong
+                >
+                <ul
+                  style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 6px; color: var(--text-main);"
+                >
+                  {% for ev in obj_mes.eventos %}
+                    <li>
+                      <span
+                        style="color: var(--secondary-pink); font-weight: bold;"
+                        >Día {{ ev.dia }}:</span
+                      >
+                      {{ ev.titulo }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p
+                  style="color: #94a3b8; font-style: italic; text-align: center; margin: 1rem 0;"
+                >
+                  Sin eventos programados este mes.
+                </p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
   <style>
