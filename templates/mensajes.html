@@ -13,8 +13,8 @@
       <i class="fa-solid fa-bullhorn"></i> Mensajes y Calendario Anual 2026
     </h2>
     <p style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;">
-      Consulta los comunicados oficiales y la programación de todos los meses en
-      formato de cuadrícula.
+      Consulta los comunicados oficiales y despliega el mes de tu interés para
+      ver su programación.
     </p>
   </section>
 
@@ -60,15 +60,19 @@
       {% endif %}
     </div>
 
-    <!-- SECCIÓN DE CALENDARIO ANUAL EN CUADRÍCULAS -->
-    <div>
+    <!-- CALENDARIO ANUAL EN FORMATO DESPLEGABLE (ACORDEÓN) -->
+    <div
+      style="background-color: var(--card-white); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid var(--border-light); border-top: 4px solid var(--header-blue);"
+    >
       <div
-        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;"
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-light); padding-bottom: 0.8rem;"
       >
-        <h3
-          style="color: var(--header-blue); margin: 0; border-left: 4px solid var(--secondary-pink); padding-left: 0.5rem;"
-        >
-          <i class="fa-solid fa-calendar-days"></i> Calendario Detallado 2026
+        <h3 style="color: var(--header-blue); margin: 0;">
+          <i
+            class="fa-solid fa-calendar-days"
+            style="color: var(--secondary-pink);"
+          ></i>
+          Calendario Desplegable 2026
         </h3>
         <span
           style="font-size: 0.8rem; background: #e2e8f0; padding: 0.3rem 0.8rem; border-radius: 6px; color: #475569;"
@@ -76,70 +80,87 @@
         >
       </div>
 
-      <!-- Cuadrícula general para mostrar los 12 meses -->
-      <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;"
-      >
+      <!-- Contenedor de menús desplegables por mes -->
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
         {% for m in calendario %}
-          <div
-            style="background-color: var(--card-white); border-radius: 12px; padding: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid var(--border-light); border-top: 4px solid var(--header-blue);"
+          <details
+            style="background-color: #fafbfc; border-radius: 8px; border: 1px solid var(--border-light); overflow: hidden; transition: all 0.3s ease;"
           >
-            <h4
-              style="color: var(--header-blue); font-size: 1.1rem; margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;"
+            <summary
+              style="color: var(--header-blue); font-size: 1rem; padding: 1rem 1.2rem; cursor: pointer; font-weight: bold; background: #ffffff; display: flex; justify-content: space-between; align-items: center; outline: none; user-select: none;"
             >
-              {{ m.nombre }} 2026
-            </h4>
+              <span>
+                <i
+                  class="fa-solid fa-calendar-day"
+                  style="color: var(--secondary-pink); margin-right: 8px;"
+                ></i>
+                {{ m.nombre }} 2026
+              </span>
+              <span
+                style="font-size: 0.85rem; color: #64748b; font-weight: normal;"
+              >
+                {% if m.eventos|length > 0 %}
+                  <span
+                    style="background: var(--secondary-pink); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;"
+                    >{{ m.eventos|length }} eventos</span
+                  >
+                {% else %}
+                  Sin eventos
+                {% endif %}
+              </span>
+            </summary>
 
-            <!-- Tabla de Cuadrícula Tradicional -->
-            <table
-              style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
+            <div
+              style="padding: 1.2rem; background: #ffffff; border-top: 1px solid var(--border-light); max-width: 350px; margin: 0 auto;"
             >
-              <thead>
-                <tr style="color: #64748b; font-size: 0.75rem;">
-                  <th style="padding-bottom: 8px;">D</th>
-                  <th style="padding-bottom: 8px;">L</th>
-                  <th style="padding-bottom: 8px;">M</th>
-                  <th style="padding-bottom: 8px;">M</th>
-                  <th style="padding-bottom: 8px;">J</th>
-                  <th style="padding-bottom: 8px;">V</th>
-                  <th style="padding-bottom: 8px;">S</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for semana in m.matriz %}
-                  <tr>
-                    {% for dia in semana %}
-                      <td
-                        style="padding: 6px; vertical-align: top; height: 35px;"
-                      >
-                        {% if dia != 0 %}
-                          {% if dia in m.eventos %}
-                            <!-- Día destacado con evento -->
-                            <div
-                              style="background: var(--secondary-pink); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-weight: bold; font-size: 0.75rem;"
-                            >
-                              {{ dia }}
-                            </div>
-                            <span
-                              style="font-size: 0.65rem; color: var(--secondary-pink); display: block; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-                              title="{{ m.eventos[dia] }}"
-                            >
-                              {{ m.eventos[dia] }}
-                            </span>
-                          {% else %}
-                            <!-- Día normal -->
-                            <span style="color: var(--text-main);"
-                              >{{ dia }}</span
-                            >
-                          {% endif %}
-                        {% endif %}
-                      </td>
-                    {% endfor %}
+              <table
+                style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
+              >
+                <thead>
+                  <tr style="color: #64748b; font-size: 0.75rem;">
+                    <th style="padding-bottom: 8px;">D</th>
+                    <th style="padding-bottom: 8px;">L</th>
+                    <th style="padding-bottom: 8px;">M</th>
+                    <th style="padding-bottom: 8px;">M</th>
+                    <th style="padding-bottom: 8px;">J</th>
+                    <th style="padding-bottom: 8px;">V</th>
+                    <th style="padding-bottom: 8px;">S</th>
                   </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {% for semana in m.matriz %}
+                    <tr>
+                      {% for dia in semana %}
+                        <td
+                          style="padding: 6px; vertical-align: top; height: 35px;"
+                        >
+                          {% if dia != 0 %}
+                            {% if dia in m.eventos %}
+                              <div
+                                style="background: var(--secondary-pink); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-weight: bold; font-size: 0.75rem;"
+                              >
+                                {{ dia }}
+                              </div>
+                              <span
+                                style="font-size: 0.65rem; color: var(--secondary-pink); display: block; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                title="{{ m.eventos[dia] }}"
+                              >
+                                {{ m.eventos[dia] }}
+                              </span>
+                            {% else %}
+                              <span style="color: var(--text-main);"
+                                >{{ dia }}</span
+                              >
+                            {% endif %}
+                          {% endif %}
+                        </td>
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </details>
         {% endfor %}
       </div>
     </div>
