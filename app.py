@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from whitenoise import WhiteNoise
 
 app = Flask(__name__)
-# Configuración de WhiteNoise para servir archivos estáticos (CSS, JS, imágenes) en Render
-app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
+# Corregido con el prefijo 'static/' para que coincida con las rutas de Flask
+app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/", prefix="static/")
 app.secret_key = 'clave_secreta_institucional'
 
 @app.route('/')
@@ -29,7 +29,6 @@ def acerca():
 
 @app.route('/mensajes')
 def mensajes():
-    # Lista de exámenes integrada en la sección de mensajes/calendario
     examenes = [
         {"parcial": "I Parcial", "fecha_inicio": "16 de Marzo, 2026", "fecha_fin": "20 de Marzo, 2026"},
         {"parcial": "II Parcial", "fecha_inicio": "08 de Junio, 2026", "fecha_fin": "12 de Junio, 2026"},
