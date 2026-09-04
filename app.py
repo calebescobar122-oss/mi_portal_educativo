@@ -2,7 +2,6 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# NOTICIAS Y DESTACADOS DE LA PORTADA
 noticias_recientes = [
     {
         "titulo": "¡Inscripciones Abiertas 2026!",
@@ -21,7 +20,6 @@ noticias_recientes = [
     }
 ]
 
-# AVISOS Y COMUNICADOS URGENTES (SECCIÓN MENSAJES)
 avisos_institucionales = [
     {
         "titulo": "Aviso Importante: Suspensión de Clases",
@@ -37,6 +35,13 @@ avisos_institucionales = [
     }
 ]
 
+# CALENDARIO ESCOLAR: Controlado exclusivamente por ti (el programador)
+calendario_escolar = [
+    {"dia": "02", "mes": "Septiembre", "titulo": "Examen Parcial"},
+    {"dia": "10", "mes": "Septiembre", "titulo": "Suspensión de Clases"},
+    {"dia": "15", "mes": "Septiembre", "titulo": "Reunión de Padres"}
+]
+
 @app.route("/")
 @app.route("/inicio")
 def inicio():
@@ -44,7 +49,7 @@ def inicio():
 
 @app.route("/mensajes")
 def mensajes():
-    return render_template("mensajes.html", avisos=avisos_institucionales, noticias=noticias_recientes)
+    return render_template("mensajes.html", avisos=avisos_institucionales, noticias=noticias_recientes, calendario=calendario_escolar)
 
 @app.route("/quienes")
 @app.route("/quienes-somos")
