@@ -3,18 +3,32 @@
 {% block title %}Contacto | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
-  <section class="page-header text-center">
-    <h2><i class="fa-solid fa-address-book"></i> Contáctanos</h2>
-    <p class="subtitle">
+  <section class="page-header text-center" style="margin-bottom: 2rem;">
+    <h2>
+      <i
+        class="fa-solid fa-address-book"
+        style="color: var(--accent-gold);"
+      ></i>
+      Contáctanos
+    </h2>
+    <p
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+    >
       Estamos a tu disposición para atender cualquier duda sobre matrículas,
       traslados o información escolar.
     </p>
   </section>
 
   <!-- TARJETA DE CONTACTO RÁPIDO -->
-  <div class="info-card fade-in text-center" style="margin-bottom: 2.5rem;">
-    <h3>¿Necesitas información inmediata?</h3>
-    <p>
+  <div
+    class="info-card fade-in text-center"
+    style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
+  >
+    <h3 style="color: var(--header-brown); margin-bottom: 0.5rem;">
+      ¿Necesitas información inmediata?
+    </h3>
+    <p style="color: var(--text-main);">
       Escríbenos directamente a nuestras redes oficiales o por nuestro canal
       directo de atención:
     </p>
@@ -26,7 +40,9 @@
         href="https://www.facebook.com/share/1D74RmNSwm/"
         target="_blank"
         class="social-btn facebook-btn"
-        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;"
+        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.transform='translateY(0)'"
       >
         <i class="fa-brands fa-facebook"></i> Facebook Oficial
       </a>
@@ -34,31 +50,42 @@
         href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20saber"
         target="_blank"
         class="social-btn whatsapp-btn"
-        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;"
+        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s;"
+        onmouseover="this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.transform='translateY(0)'"
       >
         <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
       </a>
     </div>
   </div>
 
-  <div class="grid-2-cols">
+  <div class="grid-2-cols" style="gap: 2rem; margin-bottom: 2.5rem;">
     <!-- INFORMACIÓN INSTITUCIONAL Y UBICACIÓN -->
-    <div class="info-card fade-in">
-      <h3>
-        <i class="fa-solid fa-building-columns"></i> Información Institucional
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
+    >
+      <h3 style="color: var(--header-brown); margin-bottom: 1rem;">
+        <i
+          class="fa-solid fa-building-columns"
+          style="color: var(--accent-gold);"
+        ></i>
+        Información Institucional
       </h3>
-      <p>
+      <p style="color: var(--text-main); margin-bottom: 0.6rem;">
         <strong>Institución:</strong> Jardín Escuela e Instituto Jesús Nazareno
       </p>
-      <p><strong>Ubicación:</strong> San Pedro Sula, Cortés, Honduras</p>
-      <p>
+      <p style="color: var(--text-main); margin-bottom: 0.6rem;">
+        <strong>Ubicación:</strong> San Pedro Sula, Cortés, Honduras
+      </p>
+      <p style="color: var(--text-main); margin-bottom: 1.2rem;">
         <strong>Atención Presencial:</strong> Lunes a Viernes (7:00 AM - 4:00
         PM)
       </p>
 
       <!-- MAPA INTERACTIVO -->
       <div
-        style="margin-top: 1.5rem; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"
+        style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #e0d5cb;"
       >
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61538.16327318721!2d-88.0583125!3d15.5041725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f665b4c16a241b1%3A0x8e83348123284f23!2sSan%20Pedro%20Sula%2C%20Honduras!5e0!3m2!1ses!2s!4v1710000000000!5m2!1ses!2s"
@@ -72,63 +99,142 @@
       </div>
     </div>
 
-    <!-- FORMULARIO DE CONSULTAS -->
-    <form class="contact-form fade-in">
-      <h3><i class="fa-solid fa-paper-plane"></i> Formulario de Consultas</h3>
-      <div class="form-group">
-        <label for="nombre">Nombre Completo</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          placeholder="Tu nombre completo"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="correo">Correo Electrónico o Teléfono</label>
-        <input
-          type="text"
-          id="correo"
-          name="correo"
-          placeholder="ejemplo@correo.com / Teléfono"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="mensaje">Consulta o Información requerida</label>
-        <textarea
-          id="mensaje"
-          name="mensaje"
-          rows="4"
-          placeholder="Escribe tu consulta sobre admisiones, pagos u oferta académica..."
-          required
-        ></textarea>
-      </div>
-      <button
-        type="submit"
-        style="width: 100%; padding: 0.8rem; background-color: #004488; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;"
+    <!-- FORMULARIO DE CONSULTAS MEJORADO -->
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold); background: #ffffff;"
+    >
+      <form
+        class="contact-form"
+        style="display: flex; flex-direction: column; gap: 1.1rem;"
       >
-        Enviar Consulta
-      </button>
-    </form>
+        <h3 style="color: var(--header-brown); margin-bottom: 0.2rem;">
+          <i
+            class="fa-solid fa-paper-plane"
+            style="color: var(--secondary-pink);"
+          ></i>
+          Formulario de Consultas
+        </h3>
+
+        <div
+          class="form-group"
+          style="display: flex; flex-direction: column; gap: 0.4rem;"
+        >
+          <label
+            for="nombre"
+            style="font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
+            >Nombre Completo</label
+          >
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Tu nombre completo"
+            required
+            style="padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--accent-gold)'"
+            onblur="this.style.borderColor='#ccc'"
+          />
+        </div>
+
+        <div
+          class="form-group"
+          style="display: flex; flex-direction: column; gap: 0.4rem;"
+        >
+          <label
+            for="correo"
+            style="font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
+            >Correo Electrónico o Teléfono</label
+          >
+          <input
+            type="text"
+            id="correo"
+            name="correo"
+            placeholder="ejemplo@correo.com / Teléfono"
+            required
+            style="padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--accent-gold)'"
+            onblur="this.style.borderColor='#ccc'"
+          />
+        </div>
+
+        <div
+          class="form-group"
+          style="display: flex; flex-direction: column; gap: 0.4rem;"
+        >
+          <label
+            for="mensaje"
+            style="font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
+            >Consulta o Información requerida</label
+          >
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            rows="3"
+            placeholder="Escribe tu consulta sobre admisiones, pagos u oferta académica..."
+            required
+            style="padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; outline: none; resize: vertical; transition: border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--accent-gold)'"
+            onblur="this.style.borderColor='#ccc'"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          style="width: 100%; padding: 0.85rem; background-color: var(--header-brown); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background-color 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"
+          onmouseover="this.style.backgroundColor='#5a3e2b'"
+          onmouseout="this.style.backgroundColor='var(--header-brown)'"
+        >
+          <i class="fa-solid fa-paper-plane"></i> Enviar Consulta
+        </button>
+      </form>
+    </div>
   </div>
 
-  <!-- PREGUNTAS FRECUENTES (FAQ) -->
-  <div class="info-card fade-in" style="margin-top: 3rem;">
-    <h3 style="margin-bottom: 1.5rem;">
-      <i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes e
-      Información Escolar
+  <!-- PREGUNTAS FRECUENTES (FAQ) CON DISEÑO DE ACORDEÓN PROFESIONAL -->
+  <div
+    class="info-card fade-in"
+    style="margin-top: 2rem; border-top: 4px solid var(--accent-gold);"
+  >
+    <h3
+      style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
+    >
+      <i
+        class="fa-solid fa-circle-question"
+        style="color: var(--secondary-pink);"
+      ></i>
+      Preguntas Frecuentes e Información Escolar
     </h3>
 
-    <div class="faq-container">
-      <div class="faq-item">
-        <button type="button" class="faq-question">
+    <div
+      class="faq-container"
+      style="display: flex; flex-direction: column; gap: 0.8rem;"
+    >
+      <!-- FAQ 1 -->
+      <div
+        class="faq-item"
+        style="border: 1px solid #e0d5cb; border-radius: 8px; overflow: hidden; background: #ffffff;"
+      >
+        <button
+          type="button"
+          class="faq-question"
+          onclick="toggleFaq(this)"
+          style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
+        >
           <span>📋 ¿Cuáles son los requisitos de matrícula?</span>
-          <span class="faq-icon">+</span>
+          <span
+            class="faq-icon"
+            style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;"
+            >+</span
+          >
         </button>
-        <div class="faq-answer">
-          <p>
+        <div
+          class="faq-answer"
+          style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.2rem; background: #fff;"
+        >
+          <p
+            style="margin: 0; color: var(--text-main); font-size: 0.95rem; line-height: 1.6;"
+          >
             Para formalizar la inscripción debes presentar: Partida de
             nacimiento original, copia de tarjeta de identidad de los padres o
             encargados, certificado de conducta del centro anterior y la ficha
@@ -137,13 +243,31 @@
         </div>
       </div>
 
-      <div class="faq-item">
-        <button type="button" class="faq-question">
+      <!-- FAQ 2 -->
+      <div
+        class="faq-item"
+        style="border: 1px solid #e0d5cb; border-radius: 8px; overflow: hidden; background: #ffffff;"
+      >
+        <button
+          type="button"
+          class="faq-question"
+          onclick="toggleFaq(this)"
+          style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
+        >
           <span>🎓 ¿Qué niveles académicos y modalidades ofrecen?</span>
-          <span class="faq-icon">+</span>
+          <span
+            class="faq-icon"
+            style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;"
+            >+</span
+          >
         </button>
-        <div class="faq-answer">
-          <p>
+        <div
+          class="faq-answer"
+          style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.2rem; background: #fff;"
+        >
+          <p
+            style="margin: 0; color: var(--text-main); font-size: 0.95rem; line-height: 1.6;"
+          >
             Contamos con formación integral bilingüe desde
             <strong>Pre-básica</strong> (Kínder/Pre-kínder),
             <strong>Básica</strong> (1er a 9no grado) y
@@ -153,13 +277,31 @@
         </div>
       </div>
 
-      <div class="faq-item">
-        <button type="button" class="faq-question">
+      <!-- FAQ 3 -->
+      <div
+        class="faq-item"
+        style="border: 1px solid #e0d5cb; border-radius: 8px; overflow: hidden; background: #ffffff;"
+      >
+        <button
+          type="button"
+          class="faq-question"
+          onclick="toggleFaq(this)"
+          style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
+        >
           <span>🎺 ¿Qué disciplinas y actividades extracurriculares hay?</span>
-          <span class="faq-icon">+</span>
+          <span
+            class="faq-icon"
+            style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;"
+            >+</span
+          >
         </button>
-        <div class="faq-answer">
-          <p>
+        <div
+          class="faq-answer"
+          style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.2rem; background: #fff;"
+        >
+          <p
+            style="margin: 0; color: var(--text-main); font-size: 0.95rem; line-height: 1.6;"
+          >
             Nuestros estudiantes forman parte de la prestigiosa Banda de Guerra
             institucional, grupo de Danza, cuadro de panderetas, torneos
             deportivos y ferias culturales durante el periodo escolar.
@@ -167,13 +309,31 @@
         </div>
       </div>
 
-      <div class="faq-item">
-        <button type="button" class="faq-question">
+      <!-- FAQ 4 -->
+      <div
+        class="faq-item"
+        style="border: 1px solid #e0d5cb; border-radius: 8px; overflow: hidden; background: #ffffff;"
+      >
+        <button
+          type="button"
+          class="faq-question"
+          onclick="toggleFaq(this)"
+          style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
+        >
           <span>⏰ ¿Cuáles son los horarios de clases?</span>
-          <span class="faq-icon">+</span>
+          <span
+            class="faq-icon"
+            style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;"
+            >+</span
+          >
         </button>
-        <div class="faq-answer">
-          <p>
+        <div
+          class="faq-answer"
+          style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.2rem; background: #fff;"
+        >
+          <p
+            style="margin: 0; color: var(--text-main); font-size: 0.95rem; line-height: 1.6;"
+          >
             Las clases inician puntualmente a las 7:00 AM para todos los niveles
             de Lunes a Viernes. La jornada regular concluye según la jornada del
             grado escolar.
@@ -182,4 +342,34 @@
       </div>
     </div>
   </div>
+
+  <!-- SCRIPT PARA EL FUNCIONAMIENTO DEL ACORDEÓN -->
+  <script>
+    function toggleFaq(button) {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector(".faq-icon");
+
+      // Cerrar las demás pestañas abiertas (opcional, para una experiencia más limpia)
+      document.querySelectorAll(".faq-answer").forEach((item) => {
+        if (item !== answer) {
+          item.style.maxHeight = null;
+          item.style.padding = "0 1.2rem";
+          const otherIcon =
+            item.previousElementSibling.querySelector(".faq-icon");
+          if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Alternar la pestaña actual
+      if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
+        answer.style.maxHeight = "0px";
+        answer.style.padding = "0 1.2rem";
+        icon.style.transform = "rotate(0deg)";
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + 30 + "px";
+        answer.style.padding = "1rem 1.2rem";
+        icon.style.transform = "rotate(45deg)";
+      }
+    }
+  </script>
 {% endblock %}
