@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# NOTICIAS Y DESTACADOS DE LA PORTADA
+# NOTICIAS Y DESTACADOS DE LA PORTADA (TRASLADADOS A MENSAJES)
 noticias_recientes = [
     {
         "titulo": "¡Inscripciones Abiertas 2026!",
@@ -40,11 +40,11 @@ avisos_institucionales = [
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-    return render_template("inicio.html", noticias=noticias_recientes)
+    return render_template("inicio.html")
 
 @app.route("/mensajes")
 def mensajes():
-    return render_template("mensajes.html", avisos=avisos_institucionales)
+    return render_template("mensajes.html", avisos=avisos_institucionales, noticias=noticias_recientes)
 
 # Soportar ambas rutas para evitar errores 404 si el menú apunta diferente
 @app.route("/quienes")

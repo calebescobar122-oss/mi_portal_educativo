@@ -8,7 +8,7 @@
     style="text-align: center; margin-bottom: 2rem;"
   >
     <h2
-      style="display: inline-block; border-bottom: 3px solid var(--accent-gold); padding-bottom: 0.5rem; color: var(--header-brown);"
+      style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);"
     >
       <i class="fa-solid fa-bullhorn"></i> Mensajes y Avisos Importantes
     </h2>
@@ -21,100 +21,185 @@
     </p>
   </section>
 
+  <!-- SECCIÓN DE NOTICIAS Y DESTACADOS (TRASLADADAS DESDE EL INICIO) -->
+  <div style="margin-bottom: 2.5rem;">
+    <h3
+      style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem;"
+    >
+      <i class="fa-solid fa-newspaper"></i> Noticias y Destacados
+    </h3>
+
+    {% if noticias %}
+      <div
+        class="grid-3-cols"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;"
+      >
+        {% for noticia in noticias %}
+          <div
+            class="noticia-card fade-in"
+            style="background-color: var(--card-white); border-radius: 12px; padding: 1.8rem; box-shadow: 0 8px 25px rgba(0,0,0,0.05); border-top: 4px solid var(--accent-yellow); border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);"
+          >
+            <h3
+              style="color: var(--header-blue); font-size: 1.2rem; margin-bottom: 0.5rem;"
+            >
+              {{ noticia['titulo'] }}
+            </h3>
+            <p
+              style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;"
+            >
+              <i class="fa-solid fa-calendar-day"></i> {{ noticia['fecha'] }}
+            </p>
+            <p
+              style="font-size: 0.95rem; color: var(--text-main); line-height: 1.6;"
+            >
+              {{ noticia['contenido'] }}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- SECCIÓN DE AVISOS INSTITUCIONALES -->
   <div
     class="info-card fade-in"
-    style="border-top: 4px solid var(--accent-gold);"
+    style="border-top: 4px solid var(--accent-yellow);"
   >
-    <p
-      class="lead-text"
-      style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;"
+    <h3
+      style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem;"
     >
-      A continuación se detallan las noticias, convocatorias y recordatorios más
-      recientes de nuestra institución educativa:
-    </p>
+      <i class="fa-solid fa-circle-exclamation"></i> Avisos y Comunicados
+      Oficiales
+    </h3>
 
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      <!-- Aviso 1 -->
-      <article
-        style="background-color: var(--card-white); border-left: 5px solid var(--header-brown); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
-      >
-        <h3
-          style="margin-top: 0; color: var(--header-brown); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+    {% if avisos %}
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        {% for aviso in avisos %}
+          <article
+            style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+          >
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;"
+            >
+              <h3
+                style="margin: 0; color: var(--header-blue); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+              >
+                <i
+                  class="fa-solid {% if aviso.categoria == 'Urgente' %}
+                    fa-triangle-exclamation text-danger
+                  {% else %}
+                    fa-calendar-check
+                  {% endif %}"
+                  style="color: var(--secondary-pink);"
+                ></i>
+                {{ aviso.titulo }}
+              </h3>
+              {% if aviso.categoria %}
+                <span
+                  style="background-color: var(--light-pink); color: var(--secondary-pink); padding: 0.2rem 0.8rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600;"
+                >
+                  {{ aviso.categoria }}
+                </span>
+              {% endif %}
+            </div>
+
+            <p style="margin: 6px 0; font-size: 0.9rem; color: #64748b;">
+              <strong>Fecha:</strong> {{ aviso.fecha }}
+            </p>
+
+            <p
+              style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+            >
+              {{ aviso.contenido }}
+            </p>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <!-- Estáticos de respaldo por si el backend no manda la lista -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Aviso 1 -->
+        <article
+          style="background-color: var(--card-white); border-left: 5px solid var(--header-blue); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
         >
-          <i
-            class="fa-solid fa-calendar-check"
-            style="color: var(--secondary-pink);"
-          ></i>
-          Reunión General de Padres de Familia
-        </h3>
+          <h3
+            style="margin-top: 0; color: var(--header-blue); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+          >
+            <i
+              class="fa-solid fa-calendar-check"
+              style="color: var(--secondary-pink);"
+            ></i>
+            Reunión General de Padres de Familia
+          </h3>
 
-        <p style="margin: 6px 0; font-size: 0.9rem; color: #777;">
-          <strong>Fecha:</strong> 15 de Marzo, 2026
-        </p>
+          <p style="margin: 6px 0; font-size: 0.9rem; color: #64748b;">
+            <strong>Fecha:</strong> 15 de Marzo, 2026
+          </p>
 
-        <p
-          style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+          <p
+            style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+          >
+            Se convoca a todos los padres de familia a la primera reunión
+            informativa del periodo escolar en las instalaciones del instituto a
+            las 8:00 AM. Su asistencia es de suma importancia para conocer los
+            proyectos y normativas del año lectivo.
+          </p>
+        </article>
+
+        <!-- Aviso 2 -->
+        <article
+          style="background-color: var(--card-white); border-left: 5px solid var(--accent-yellow); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
         >
-          Se convoca a todos los padres de familia a la primera reunión
-          informativa del periodo escolar en las instalaciones del instituto a
-          las 8:00 AM. Su asistencia es de suma importancia para conocer los
-          proyectos y normativas del año lectivo.
-        </p>
-      </article>
+          <h3
+            style="margin-top: 0; color: var(--header-blue); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+          >
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              style="color: var(--accent-yellow);"
+            ></i>
+            Recordatorio de Pago de Colegiatura
+          </h3>
 
-      <!-- Aviso 2 -->
-      <article
-        style="background-color: var(--card-white); border-left: 5px solid var(--accent-gold); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
-      >
-        <h3
-          style="margin-top: 0; color: var(--header-brown); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+          <p style="margin: 6px 0; font-size: 0.9rem; color: #64748b;">
+            <strong>Fecha:</strong> 1 de Marzo, 2026
+          </p>
+
+          <p
+            style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+          >
+            Les recordamos que los primeros 5 días de cada mes se realiza el
+            pago de la mensualidad. Pueden realizarlo directamente en el área de
+            administración o mediante transferencia bancaria autorizada.
+          </p>
+        </article>
+
+        <!-- Aviso 3 -->
+        <article
+          style="background-color: var(--card-white); border-left: 5px solid var(--secondary-pink); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
         >
-          <i
-            class="fa-solid fa-triangle-exclamation"
-            style="color: var(--accent-gold);"
-          ></i>
-          Recordatorio de Pago de Colegiatura
-        </h3>
+          <h3
+            style="margin-top: 0; color: var(--header-blue); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
+          >
+            <i
+              class="fa-solid fa-graduation-cap"
+              style="color: var(--secondary-pink);"
+            ></i>
+            Horario de Reforzamiento Académico
+          </h3>
 
-        <p style="margin: 6px 0; font-size: 0.9rem; color: #777;">
-          <strong>Fecha:</strong> 1 de Marzo, 2026
-        </p>
+          <p style="margin: 6px 0; font-size: 0.9rem; color: #64748b;">
+            <strong>Fecha:</strong> 20 de Febrero, 2026
+          </p>
 
-        <p
-          style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
-        >
-          Les recordamos que los primeros 5 días de cada mes se realiza el pago
-          de la mensualidad. Pueden realizarlo directamente en el área de
-          administración o mediante transferencia bancaria autorizada.
-        </p>
-      </article>
-
-      <!-- Aviso 3 -->
-      <article
-        style="background-color: var(--card-white); border-left: 5px solid var(--secondary-pink); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
-      >
-        <h3
-          style="margin-top: 0; color: var(--header-brown); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
-        >
-          <i
-            class="fa-solid fa-graduation-cap"
-            style="color: var(--secondary-pink);"
-          ></i>
-          Horario de Reforzamiento Académico
-        </h3>
-
-        <p style="margin: 6px 0; font-size: 0.9rem; color: #777;">
-          <strong>Fecha:</strong> 20 de Febrero, 2026
-        </p>
-
-        <p
-          style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
-        >
-          Las tutorías de matemáticas y español iniciarán a partir del próximo
-          lunes en horario de 2:00 PM a 3:30 PM para aquellos alumnos que
-          requieran apoyo complementario en su rendimiento académico.
-        </p>
-      </article>
-    </div>
+          <p
+            style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
+          >
+            Las tutorías de matemáticas y español iniciarán a partir del próximo
+            lunes en horario de 2:00 PM a 3:30 PM para aquellos alumnos que
+            requieran apoyo complementario en su rendimiento académico.
+          </p>
+        </article>
+      </div>
+    {% endif %}
   </div>
 {% endblock %}

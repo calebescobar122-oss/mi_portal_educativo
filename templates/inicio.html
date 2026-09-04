@@ -6,10 +6,10 @@
   <!-- BANNER PRINCIPAL CON ANIMACIÓN FADE-IN Y TOQUE INSTITUCIONAL -->
   <div
     class="hero-banner fade-in"
-    style="background: linear-gradient(135deg, #ffffff, var(--bg-beige)); padding: 2.5rem; border-radius: 12px; border-left: 6px solid var(--header-brown); box-shadow: 0 6px 20px rgba(0,0,0,0.06); margin-bottom: 2.5rem; position: relative; overflow: hidden;"
+    style="background: linear-gradient(135deg, #ffffff, var(--bg-beige)); padding: 2.5rem; border-radius: 12px; border-left: 6px solid var(--header-blue); box-shadow: 0 6px 20px rgba(0,0,0,0.06); margin-bottom: 2.5rem; position: relative; overflow: hidden;"
   >
     <div
-      style="position: absolute; right: -20px; bottom: -30px; opacity: 0.05; font-size: 12rem; color: var(--header-brown); pointer-events: none;"
+      style="position: absolute; right: -20px; bottom: -30px; opacity: 0.05; font-size: 12rem; color: var(--header-blue); pointer-events: none;"
     >
       <i class="fa-solid fa-graduation-cap"></i>
     </div>
@@ -19,7 +19,7 @@
       <i class="fa-solid fa-star"></i> Ciclo Escolar 2026
     </span>
     <h2
-      style="color: var(--header-brown); border: none; padding: 0; margin-bottom: 1rem; font-size: 2.2rem;"
+      style="color: var(--header-blue); border: none; padding: 0; margin-bottom: 1rem; font-size: 2.2rem;"
     >
       Excelencia Educativa y Moral
     </h2>
@@ -37,10 +37,10 @@
   <div class="grid-3-cols fade-in" style="margin-bottom: 2.5rem;">
     <div
       class="info-card text-center"
-      style="border-top: 4px solid var(--accent-gold);"
+      style="border-top: 4px solid var(--accent-yellow);"
     >
       <h3
-        style="font-size: 2.2rem; color: var(--header-brown); margin-bottom: 0.2rem;"
+        style="font-size: 2.2rem; color: var(--header-blue); margin-bottom: 0.2rem;"
       >
         <i class="fa-solid fa-award"></i> +10
       </h3>
@@ -53,10 +53,10 @@
     </div>
     <div
       class="info-card text-center"
-      style="border-top: 4px solid var(--accent-gold);"
+      style="border-top: 4px solid var(--accent-yellow);"
     >
       <h3
-        style="font-size: 2.2rem; color: var(--header-brown); margin-bottom: 0.2rem;"
+        style="font-size: 2.2rem; color: var(--header-blue); margin-bottom: 0.2rem;"
       >
         <i class="fa-solid fa-user-check"></i> 100%
       </h3>
@@ -69,10 +69,10 @@
     </div>
     <div
       class="info-card text-center"
-      style="border-top: 4px solid var(--accent-gold);"
+      style="border-top: 4px solid var(--accent-yellow);"
     >
       <h3
-        style="font-size: 2.2rem; color: var(--header-brown); margin-bottom: 0.2rem;"
+        style="font-size: 2.2rem; color: var(--header-blue); margin-bottom: 0.2rem;"
       >
         <i class="fa-solid fa-graduation-cap"></i> 3
       </h3>
@@ -88,53 +88,24 @@
   <!-- DESTACADO ÁREA DE INGLÉS -->
   <div
     class="fade-in"
-    style="border-left: 5px solid var(--header-brown); background-color: #fcf8f5; padding: 1.2rem 1.5rem; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);"
+    style="border-left: 5px solid var(--header-blue); background-color: var(--light-pink); padding: 1.2rem 1.5rem; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);"
   >
     <h3
-      style="color: var(--header-brown); margin-bottom: 0.4rem; font-size: 1.3rem;"
+      style="color: var(--header-blue); margin-bottom: 0.4rem; font-size: 1.3rem;"
     >
       <i class="fa-solid fa-language"></i> Programa Bilingüe / English
       Department
     </h3>
-    <p style="color: #4a382a; margin: 0; line-height: 1.5;">
+    <p style="color: var(--text-main); margin: 0; line-height: 1.5;">
       Fortalecemos el aprendizaje intensivo del idioma inglés desde Pre-Básica
       hasta Bachillerato con metodologías dinámicas e interactivas.
     </p>
   </div>
 
-  <h2
-    style="color: var(--header-brown); border-bottom: 3px solid var(--accent-gold);"
-  >
-    <i class="fa-solid fa-newspaper"></i> Noticias y Destacados
-  </h2>
-
-  <div class="grid-3-cols">
-    {% for noticia in noticias %}
-      <div
-        class="noticia-card fade-in"
-        style="border-top: 4px solid var(--accent-gold);"
-      >
-        <h3
-          style="color: var(--header-brown); font-size: 1.2rem; margin-bottom: 0.5rem;"
-        >
-          {{ noticia['titulo'] }}
-        </h3>
-        <p
-          style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;"
-        >
-          <i class="fa-solid fa-calendar-day"></i> {{ noticia['fecha'] }}
-        </p>
-        <p style="font-size: 0.95rem; color: var(--text-main);">
-          {{ noticia['contenido'] }}
-        </p>
-      </div>
-    {% endfor %}
-  </div>
-
   <!-- LLAMADO A LA ACCIÓN -->
   <div
     class="info-card fade-in text-center"
-    style="margin-top: 2.5rem; border-top: 4px solid var(--accent-gold);"
+    style="margin-top: 2.5rem; border-top: 4px solid var(--accent-yellow);"
   >
     <h3>¡Conéctate con Nuestra Institución!</h3>
     <p style="margin-top: 0.5rem;">
