@@ -92,7 +92,7 @@
       class="info-card fade-in"
       style="border-top: 4px solid var(--accent-gold);"
     >
-      <h3 style="color: var(--header-brown); margin-bottom: 1rem;">
+      <h3 style="color: var(--header-brown); margin-bottom: 1.0rem;">
         <i
           class="fa-solid fa-building-columns"
           style="color: var(--accent-gold);"
@@ -111,12 +111,25 @@
         PM)
       </p>
 
-      <!-- MAPA INTERACTIVO -->
+      <!-- MAPA INTERACTIVO CON BOTÓN EXTERNO HACIA GOOGLE MAPS -->
       <div
-        style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #e0d5cb;"
+        style="position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #e0d5cb;"
       >
+        <div style="position: absolute; top: 10px; left: 10px; z-index: 10;">
+          <a
+            href="https://www.google.com/maps/place/CEMNG+Jes%C3%BAs+Nazareno/@15.4758056,-87.9431578,17z"
+            target="_blank"
+            style="background: #ffffff; color: #1a73e8; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: inline-flex; align-items: center; gap: 5px;"
+          >
+            Abrir en Maps
+            <i
+              class="fa-solid fa-arrow-up-right-from-square"
+              style="font-size: 0.75rem;"
+            ></i>
+          </a>
+        </div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.5!2d-88.025!3d15.505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzE4LjAiTiA4OMKwMSczMC4wIlc!5e0!3m2!1ses!2shn!4v1710000000000!5m2!1ses!2shn"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.5!2d-87.9431578!3d15.4758056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6643e8cecd0147%3A0x3d275836ce414fd9!2sCEMNG%20Jes%C3%BAs%20Nazareno!5e0!3m2!1ses!2shn!4v1710000000000!5m2!1ses!2shn"
           width="100%"
           height="230"
           style="border:0;"
