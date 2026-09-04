@@ -87,13 +87,15 @@
   </div>
 
   <div class="grid-2-cols" style="gap: 2rem; margin-bottom: 2.5rem;">
-    <!-- FORMULARIO DE CONSULTAS MEJORADO -->
+    <!-- FORMULARIO DE CONSULTAS MEJORADO CONECTADO A FLASK -->
     <div
       class="info-card fade-in"
       style="border-top: 4px solid var(--accent-gold); background: #ffffff;"
     >
       <form
         class="contact-form"
+        method="POST"
+        action="{{ url_for('contacto') }}"
         style="display: flex; flex-direction: column; gap: 1.1rem;"
       >
         <h3 style="color: var(--header-brown); margin-bottom: 0.2rem;">
