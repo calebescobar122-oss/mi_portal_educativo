@@ -76,7 +76,7 @@
       <div style="display: flex; flex-direction: column; gap: 20px;">
         {% for aviso in avisos %}
           <article
-            style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
+            style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' or aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
           >
             <div
               style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;"

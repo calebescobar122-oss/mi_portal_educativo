@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# NOTICIAS Y DESTACADOS DE LA PORTADA (TRASLADADOS A MENSAJES)
+# NOTICIAS Y DESTACADOS DE LA PORTADA
 noticias_recientes = [
     {
         "titulo": "¡Inscripciones Abiertas 2026!",
@@ -46,7 +46,6 @@ def inicio():
 def mensajes():
     return render_template("mensajes.html", avisos=avisos_institucionales, noticias=noticias_recientes)
 
-# Soportar ambas rutas para evitar errores 404 si el menú apunta diferente
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
