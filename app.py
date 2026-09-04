@@ -35,11 +35,11 @@ avisos_institucionales = [
     }
 ]
 
-# CALENDARIO ESCOLAR: Controlado exclusivamente por ti (el programador)
+# CALENDARIO DE FECHAS (Controlado exclusivamente por el programador)
 calendario_escolar = [
-    {"dia": "02", "mes": "Septiembre", "titulo": "Examen Parcial"},
-    {"dia": "10", "mes": "Septiembre", "titulo": "Suspensión de Clases"},
-    {"dia": "15", "mes": "Septiembre", "titulo": "Reunión de Padres"}
+    {"dia": 2, "mes": "Septiembre", "titulo": "Examen Parcial"},
+    {"dia": 10, "mes": "Septiembre", "titulo": "Suspensión de Clases"},
+    {"dia": 15, "mes": "Septiembre", "titulo": "Reunión de Padres"}
 ]
 
 @app.route("/")

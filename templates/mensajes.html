@@ -10,61 +10,20 @@
     <h2
       style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);"
     >
-      <i class="fa-solid fa-bullhorn"></i> Mensajes y Avisos Importantes
+      <i class="fa-solid fa-bullhorn"></i> Mensajes y Calendario Escolar
     </h2>
     <p style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;">
-      Mantente al día con los comunicados oficiales, circulares y el calendario
-      de fechas institucionales.
+      Consulta los comunicados oficiales y la programación de todo el año
+      lectivo 2026.
     </p>
   </section>
 
-  <!-- CONTENEDOR PRINCIPAL: DIVIDIDO EN CONTENIDO (IZQ) Y CALENDARIO DEL PROGRAMADOR (DER) -->
   <div
-    style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;"
+    style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 2rem; align-items: start;"
     class="mensajes-layout"
   >
-    <!-- COLUMNA IZQUIERDA: NOTICIAS Y AVISOS -->
+    <!-- COLUMNA IZQUIERDA: AVISOS Y NOTICIAS -->
     <div>
-      <!-- SECCIÓN DE NOTICIAS Y DESTACADOS -->
-      <div style="margin-bottom: 2.5rem;">
-        <h3
-          style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem;"
-        >
-          <i class="fa-solid fa-newspaper"></i> Noticias y Destacados
-        </h3>
-
-        {% if noticias %}
-          <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;"
-          >
-            {% for noticia in noticias %}
-              <div
-                class="fade-in"
-                style="background-color: var(--card-white); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border-top: 4px solid var(--accent-yellow); border: 1px solid var(--border-light);"
-              >
-                <h4
-                  style="color: var(--header-blue); font-size: 1.1rem; margin-bottom: 0.4rem;"
-                >
-                  {{ noticia['titulo'] }}
-                </h4>
-                <p
-                  style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;"
-                >
-                  <i class="fa-solid fa-calendar-day"></i>
-                  {{ noticia['fecha'] }}
-                </p>
-                <p
-                  style="font-size: 0.9rem; color: var(--text-main); line-height: 1.5;"
-                >
-                  {{ noticia['contenido'] }}
-                </p>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
-
-      <!-- SECCIÓN DE AVISOS INSTITUCIONALES -->
       <div
         class="info-card fade-in"
         style="border-top: 4px solid var(--accent-yellow); background: var(--card-white); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);"
@@ -72,45 +31,23 @@
         <h3
           style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem;"
         >
-          <i class="fa-solid fa-circle-exclamation"></i> Avisos y Comunicados
-          Oficiales
+          <i class="fa-solid fa-circle-exclamation"></i> Avisos Oficiales
         </h3>
 
         {% if avisos %}
           <div style="display: flex; flex-direction: column; gap: 20px;">
             {% for aviso in avisos %}
               <article
-                style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 16px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid var(--border-light);"
+                style="background-color: var(--card-white); border-left: 5px solid {% if aviso.categoria == 'Urgente' %}var(--secondary-pink){% else %}var(--header-blue){% endif %}; padding: 16px; border-radius: 8px; border: 1px solid var(--border-light);"
               >
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;"
+                <h4
+                  style="margin: 0; color: var(--header-blue); font-size: 1.05rem;"
                 >
-                  <h4
-                    style="margin: 0; color: var(--header-blue); font-size: 1.05rem; display: flex; align-items: center; gap: 8px;"
-                  >
-                    <i
-                      class="fa-solid {% if aviso.categoria == 'Urgente' %}
-                        fa-triangle-exclamation text-danger
-                      {% else %}
-                        fa-calendar-check
-                      {% endif %}"
-                      style="color: var(--secondary-pink);"
-                    ></i>
-                    {{ aviso.titulo }}
-                  </h4>
-                  {% if aviso.categoria %}
-                    <span
-                      style="background-color: #ffeef2; color: var(--secondary-pink); padding: 0.2rem 0.7rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;"
-                    >
-                      {{ aviso.categoria }}
-                    </span>
-                  {% endif %}
-                </div>
-
+                  {{ aviso.titulo }}
+                </h4>
                 <p style="margin: 4px 0; font-size: 0.85rem; color: #64748b;">
                   <strong>Fecha:</strong> {{ aviso.fecha }}
                 </p>
-
                 <p
                   style="font-size: 0.92rem; line-height: 1.5; color: var(--text-main); margin-top: 6px;"
                 >
@@ -119,152 +56,130 @@
               </article>
             {% endfor %}
           </div>
-        {% else %}
-          <!-- Respaldo estático si no hay avisos en el backend -->
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <!-- Aviso 1 -->
-            <article
-              style="background-color: var(--card-white); border-left: 5px solid var(--header-blue); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
-            >
-              <h4
-                style="margin-top: 0; color: var(--header-blue); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
-              >
-                <i
-                  class="fa-solid fa-calendar-check"
-                  style="color: var(--secondary-pink);"
-                ></i>
-                Reunión General de Padres de Familia
-              </h4>
-              <p style="margin: 6px 0; font-size: 0.9rem; color: #64748b;">
-                <strong>Fecha:</strong> 15 de Septiembre, 2026
-              </p>
-              <p
-                style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
-              >
-                Se convoca a todos los padres de familia a la reunión
-                informativa del periodo escolar en las instalaciones del
-                instituto a las 8:00 AM.
-              </p>
-            </article>
-
-            <!-- Aviso 2 -->
-            <article
-              style="background-color: var(--card-white); border-left: 5px solid var(--accent-yellow); padding: 18px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
-            >
-              <h4
-                style="margin-top: 0; color: var(--header-blue); font-size: 1.15rem; display: flex; align-items: center; gap: 10px;"
-              >
-                <i
-                  class="fa-solid fa-triangle-exclamation"
-                  style="color: var(--accent-yellow);"
-                ></i>
-                Recordatorio de Colegiatura
-              </h4>
-              <p style="margin: 6px 0; font-size: 0.9rem; color: #64748b;">
-                <strong>Fecha:</strong> 1 de Septiembre, 2026
-              </p>
-              <p
-                style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 8px;"
-              >
-                Les recordamos que los primeros 5 días de cada mes se realiza el
-                pago de la mensualidad en administración.
-              </p>
-            </article>
-          </div>
         {% endif %}
       </div>
     </div>
 
-    <!-- COLUMNA DERECHA: CALENDARIO DE FECHAS (CONTROLADO EXCLUSIVAMENTE POR EL PROGRAMADOR) -->
+    <!-- COLUMNA DERECHA: CALENDARIO ESTILO APLICACIÓN (CUADRÍCULA) -->
     <aside style="position: sticky; top: 20px;">
       <div
         style="background-color: var(--card-white); border-top: 4px solid var(--header-blue); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-light);"
       >
-        <h3
-          style="color: var(--header-blue); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;"
         >
-          <i
-            class="fa-solid fa-calendar-days"
-            style="color: var(--secondary-pink);"
-          ></i>
-          Calendario de Fechas
-        </h3>
+          <h3 style="color: var(--header-blue); font-size: 1.1rem; margin: 0;">
+            <i
+              class="fa-solid fa-calendar-days"
+              style="color: var(--secondary-pink);"
+            ></i>
+            Septiembre 2026
+          </h3>
+          <span
+            style="font-size: 0.75rem; background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 6px; color: #475569;"
+            ><i class="fa-solid fa-lock"></i> Admin</span
+          >
+        </div>
 
-        <p
-          style="font-size: 0.78rem; color: #64748b; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 4px;"
+        <!-- Mini Cuadricula del Calendario -->
+        <table
+          style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
         >
-          <i class="fa-solid fa-lock" style="font-size: 0.7rem;"></i> Gestionado
-          por programación
-        </p>
+          <thead>
+            <tr style="color: #64748b; font-size: 0.75rem;">
+              <th style="padding-bottom: 8px;">D</th>
+              <th style="padding-bottom: 8px;">L</th>
+              <th style="padding-bottom: 8px;">M</th>
+              <th style="padding-bottom: 8px;">M</th>
+              <th style="padding-bottom: 8px;">J</th>
+              <th style="padding-bottom: 8px;">V</th>
+              <th style="padding-bottom: 8px;">S</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 6px; color: #cbd5e1;">30</td>
+              <td style="padding: 6px; color: #cbd5e1;">31</td>
+              <td style="padding: 6px;">1</td>
+              <td
+                style="padding: 6px; background: var(--secondary-pink); color: white; border-radius: 50%; font-weight: bold;"
+              >
+                2
+              </td>
+              <td style="padding: 6px;">3</td>
+              <td style="padding: 6px;">4</td>
+              <td style="padding: 6px;">5</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px;">6</td>
+              <td style="padding: 6px;">7</td>
+              <td style="padding: 6px;">8</td>
+              <td style="padding: 6px;">9</td>
+              <td
+                style="padding: 6px; background: #e2e8f0; border-radius: 4px; font-weight: bold;"
+              >
+                10
+              </td>
+              <td style="padding: 6px;">11</td>
+              <td style="padding: 6px;">12</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px;">13</td>
+              <td style="padding: 6px;">14</td>
+              <td
+                style="padding: 6px; background: #e2e8f0; border-radius: 4px; font-weight: bold;"
+              >
+                15
+              </td>
+              <td style="padding: 6px;">16</td>
+              <td style="padding: 6px;">17</td>
+              <td style="padding: 6px;">18</td>
+              <td style="padding: 6px;">19</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px;">20</td>
+              <td style="padding: 6px;">21</td>
+              <td style="padding: 6px;">22</td>
+              <td style="padding: 6px;">23</td>
+              <td style="padding: 6px;">24</td>
+              <td style="padding: 6px;">25</td>
+              <td style="padding: 6px;">26</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px;">27</td>
+              <td style="padding: 6px;">28</td>
+              <td style="padding: 6px;">29</td>
+              <td style="padding: 6px;">30</td>
+              <td style="padding: 6px; color: #cbd5e1;">1</td>
+              <td style="padding: 6px; color: #cbd5e1;">2</td>
+              <td style="padding: 6px; color: #cbd5e1;">3</td>
+            </tr>
+          </tbody>
+        </table>
 
-        {% if calendario %}
-          <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+        <!-- Leyenda de eventos sincronizados con app.py -->
+        <div
+          style="margin-top: 1.2rem; border-top: 1px solid var(--border-light); padding-top: 0.8rem;"
+        >
+          <small
+            style="display: block; font-weight: bold; color: var(--header-blue); margin-bottom: 0.4rem;"
+            >Eventos programados:</small
+          >
+          <ul
+            style="margin: 0; padding-left: 1rem; font-size: 0.8rem; color: var(--text-main); display: flex; flex-direction: column; gap: 4px;"
+          >
             {% for evento in calendario %}
-              <div
-                style="display: flex; align-items: center; background: #f8fafc; padding: 0.7rem; border-radius: 8px; border: 1px solid var(--border-light);"
-              >
-                <!-- Bloque visual tipo fecha de calendario -->
-                <div
-                  style="background-color: var(--header-blue); color: white; min-width: 42px; text-align: center; border-radius: 6px; padding: 0.3rem 0.2rem; margin-right: 0.8rem;"
-                >
-                  <span
-                    style="display: block; font-size: 1.1rem; font-weight: bold; line-height: 1;"
-                    >{{ evento.dia }}</span
-                  >
-                  <span style="font-size: 0.65rem; text-transform: uppercase;"
-                    >{{ evento.mes[:3] }}</span
-                  >
-                </div>
-                <!-- Descripción del evento -->
-                <div style="overflow: hidden;">
-                  <h4
-                    style="color: var(--header-blue); margin: 0; font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-                    title="{{ evento.titulo }}"
-                  >
-                    {{ evento.titulo }}
-                  </h4>
-                  <small style="color: #64748b; font-size: 0.75rem;"
-                    >{{ evento.mes }} 2026</small
-                  >
-                </div>
-              </div>
+              <li>
+                <strong>{{ evento.dia }} {{ evento.mes[:3] }}:</strong>
+                {{ evento.titulo }}
+              </li>
             {% endfor %}
-          </div>
-        {% else %}
-          <!-- Respaldo por si el backend no manda la lista de calendario -->
-          <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-            <div
-              style="display: flex; align-items: center; background: #f8fafc; padding: 0.7rem; border-radius: 8px; border: 1px solid var(--border-light);"
-            >
-              <div
-                style="background-color: var(--header-blue); color: white; min-width: 42px; text-align: center; border-radius: 6px; padding: 0.3rem 0.2rem; margin-right: 0.8rem;"
-              >
-                <span
-                  style="display: block; font-size: 1.1rem; font-weight: bold; line-height: 1;"
-                  >02</span
-                >
-                <span style="font-size: 0.65rem; text-transform: uppercase;"
-                  >SEP</span
-                >
-              </div>
-              <div>
-                <h4
-                  style="color: var(--header-blue); margin: 0; font-size: 0.88rem; font-weight: 600;"
-                >
-                  Examen Parcial
-                </h4>
-                <small style="color: #64748b; font-size: 0.75rem;"
-                  >Septiembre 2026</small
-                >
-              </div>
-            </div>
-          </div>
-        {% endif %}
+          </ul>
+        </div>
       </div>
     </aside>
   </div>
 
-  <!-- Estilo responsivo para que en celulares se apile verticalmente -->
   <style>
     @media (max-width: 768px) {
       .mensajes-layout {
