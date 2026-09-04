@@ -1,121 +1,108 @@
 {% extends "base.html" %}
 
-{% block title %}Oferta Académica | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+{% block title %}Servicios | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
-  <div class="fade-in" style="margin-bottom: 2rem; text-align: center;">
+  <section class="page-header text-center fade-in" style="margin-bottom: 2rem;">
     <h2
-      style="display: inline-block; border-bottom: 3px solid var(--accent-gold); padding-bottom: 0.5rem;"
+      style="display: inline-block; border-bottom: 3px solid var(--accent-gold); padding-bottom: 0.5rem; color: var(--header-brown);"
     >
-      <i class="fa-solid fa-graduation-cap"></i> Oferta Académica
+      <i class="fa-solid fa-book-open"></i> Servicios Educativos
     </h2>
-    <p style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;">
-      Educación integral con valores, disciplina y excelencia académica para
-      cada etapa del desarrollo estudiantil.
-    </p>
-  </div>
-
-  <!-- NIVELES EDUCATIVOS -->
-  <div class="grid-3-cols fade-in">
-    <div
-      class="info-card text-center"
-      style="border-top: 4px solid var(--accent-gold);"
-    >
-      <h3
-        style="color: var(--header-brown); font-size: 1.4rem; margin-bottom: 0.3rem;"
-      >
-        <i class="fa-solid fa-child"></i> Pre-Básica
-      </h3>
-      <p
-        style="color: var(--secondary-pink); font-weight: 700; margin-bottom: 0.8rem; font-size: 0.95rem;"
-      >
-        Pre-Kínder y Kínder
-      </p>
-      <p style="font-size: 0.95rem;">
-        Desarrollo temprano, estimulación cognitiva y valores morales en un
-        ambiente seguro, lúdico y cálido.
-      </p>
-    </div>
-
-    <div
-      class="info-card text-center"
-      style="border-top: 4px solid var(--accent-gold);"
-    >
-      <h3
-        style="color: var(--header-brown); font-size: 1.4rem; margin-bottom: 0.3rem;"
-      >
-        <i class="fa-solid fa-book-open"></i> Educación Básica
-      </h3>
-      <p
-        style="color: var(--secondary-pink); font-weight: 700; margin-bottom: 0.8rem; font-size: 0.95rem;"
-      >
-        1er a 9no Grado
-      </p>
-      <p style="font-size: 0.95rem;">
-        Sólida formación académica con énfasis en matemáticas, ciencias,
-        desarrollo humano, cívica y artes.
-      </p>
-    </div>
-
-    <div
-      class="info-card text-center"
-      style="border-top: 4px solid var(--accent-gold);"
-    >
-      <h3
-        style="color: var(--header-brown); font-size: 1.4rem; margin-bottom: 0.3rem;"
-      >
-        <i class="fa-solid fa-user-graduate"></i> Bachilleratos
-      </h3>
-      <p
-        style="color: var(--secondary-pink); font-weight: 700; margin-bottom: 0.8rem; font-size: 0.95rem;"
-      >
-        Secundaria Técnica y Profesional
-      </p>
-      <p style="font-size: 0.95rem;">
-        Especialidades preparadas para el éxito universitario y laboral con
-        altos estándares educativos.
-      </p>
-    </div>
-  </div>
-
-  <!-- TARJETAS DE CONTACTO DIRECTO LIMPIAS -->
-  <div
-    class="info-card fade-in text-center"
-    style="margin-top: 2.5rem; border-top: 4px solid var(--accent-gold);"
-  >
-    <h3
-      style="color: var(--header-brown); font-size: 1.5rem; margin-bottom: 0.5rem;"
-    >
-      ¿Deseas matricularte o recibir más información?
-    </h3>
     <p
-      style="font-size: 1rem; max-width: 800px; margin: 0 auto; color: #64748b;"
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
     >
-      Comunícate directamente con nuestro personal administrativo a través de
-      los canales oficiales de atención.
+      Conoce la oferta académica y programas especiales que ofrecemos para el
+      desarrollo integral de los estudiantes.
     </p>
+  </section>
+
+  <div
+    class="grid-3-cols"
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;"
+  >
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
+    >
+      <h3
+        style="color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.2rem;"
+      >
+        <i class="fa-solid fa-child" style="color: var(--secondary-pink);"></i>
+        Pre-Básica
+      </h3>
+      <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);">
+        Estimulación temprana, aprestamiento y bases sólidas en Pre-Kínder y
+        Kínder con un ambiente seguro, lúdico y bilingüe.
+      </p>
+    </div>
 
     <div
-      style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;"
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
     >
-      <a
-        href="https://www.facebook.com/share/1D74RmNSwm/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-btn facebook-btn"
-        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #1877f2; color: #fff; font-weight: 600;"
+      <h3
+        style="color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.2rem;"
       >
-        <i class="fa-brands fa-facebook"></i> Facebook Oficial
-      </a>
-      <a
-        href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20informaci%C3%B3n%20sobre%20la%20oferta%20acad%C3%A9mica"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-btn whatsapp-btn"
-        style="text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; background-color: #25d366; color: #fff; font-weight: 600;"
-      >
-        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-      </a>
+        <i class="fa-solid fa-school" style="color: var(--accent-gold);"></i>
+        Educación Básica
+      </h3>
+      <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);">
+        De 1.° a 9.° grado, enfocada en potenciar habilidades analíticas,
+        científicas, lingüísticas y tecnológicas en los alumnos.
+      </p>
     </div>
+
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
+    >
+      <h3
+        style="color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.2rem;"
+      >
+        <i
+          class="fa-solid fa-graduation-cap"
+          style="color: var(--secondary-pink);"
+        ></i>
+        Bachilleratos Técnicos
+      </h3>
+      <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);">
+        Secundaria completa con modalidades en
+        <strong>Informática, Finanzas y Humanidades</strong>, preparando
+        profesionales listos para la universidad.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-gold);"
+  >
+    <h3 style="color: var(--header-brown); margin-bottom: 0.8rem;">
+      <i class="fa-solid fa-medal" style="color: var(--accent-gold);"></i>
+      Actividades Extracurriculares
+    </h3>
+    <ul
+      class="styled-list"
+      style="padding-left: 1.5rem; font-size: 0.95rem; line-height: 1.7; color: var(--text-main);"
+    >
+      <li>
+        <strong>Banda de Guerra Institucional:</strong> Orgullo cívico y
+        participación destacada en desfiles patrios.
+      </li>
+      <li>
+        <strong>Grupo de Danza y Folclor:</strong> Promoción de las tradiciones
+        culturales de Honduras.
+      </li>
+      <li>
+        <strong>Cuadro de Panderetas y Bastoneras:</strong> Disciplina,
+        coordinación y talento artístico.
+      </li>
+      <li>
+        <strong>Torneos Deportivos Internos:</strong> Fomento de la salud
+        física, el compañerismo y el trabajo en equipo.
+      </li>
+    </ul>
   </div>
 {% endblock %}

@@ -1,77 +1,47 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
+app.secret_key = 'clave_secreta_institucional'
 
-# NOTICIAS Y DESTACADOS DE LA PORTADA
-noticias_recientes = [
-    {
-        "titulo": "¡Inscripciones Abiertas 2026!",
-        "fecha": "Periodo Escolar 2026",
-        "contenido": "Matrículas disponibles para Pre-Kínder, Kínder, Primaria y Secundaria (Informática, Finanzas y Humanidades). ¡Forma parte de nuestra gran familia!"
-    },
-    {
-        "titulo": "Excelencia Académica Bilingüe y Nacional",
-        "fecha": "Formación Integral",
-        "contenido": "Clases 100% certificadas en inglés y español con maestros altamente calificados y más de 10 años de trayectoria educativa."
-    },
-    {
-        "titulo": "Orgullo Cívico y Cultural",
-        "fecha": "Actividades Escolares",
-        "contenido": "Destacada participación de nuestra Banda de Guerra y Grupo de Danza en los desfiles patrios y eventos culturales de la comunidad."
-    }
-]
-
-# AVISOS Y COMUNICADOS URGENTES (SECCIÓN MENSAJES)
-avisos_institucionales = [
-    {
-        "titulo": "Aviso Importante: Suspensión de Clases",
-        "fecha": "10 de Septiembre, 2026",
-        "categoria": "Urgente",
-        "contenido": "Estimada comunidad educativa, se les informa que el día jueves 10 de septiembre no habrá clases por motivo de asueto institucional. Reanudamos actividades normales el viernes 11."
-    },
-    {
-        "titulo": "Reunión de Padres de Familia",
-        "fecha": "15 de Septiembre, 2026",
-        "categoria": "General",
-        "contenido": "Convocatoria a todos los padres de familia para la entrega del reporte de avance académico correspondiente al parcial."
-    }
-]
-
-# CALENDARIO DE EXÁMENES
-calendario_examenes = [
-    {"parcial": "I Parcial", "fecha_inicio": "15 de Marzo, 2026", "fecha_fin": "19 de Marzo, 2026"},
-    {"parcial": "II Parcial", "fecha_inicio": "8 de Junio, 2026", "fecha_fin": "12 de Junio, 2026"},
-    {"parcial": "III Parcial", "fecha_inicio": "14 de Septiembre, 2026", "fecha_fin": "18 de Septiembre, 2026"}
-]
-
-@app.route("/")
-@app.route("/inicio")
+@app.route('/')
 def inicio():
-    return render_template("inicio.html", noticias=noticias_recientes)
+    noticias = [
+        {"titulo": "Inscripciones Abiertas 2027", "descripcion": "Ya está disponible el proceso de matrícula para el próximo año lectivo con beneficios por pronto pago.", "fecha": "02 Mar 2026"},
+        {"titulo": "Competencia de Declamación", "descripcion": "Nuestros alumnos de Tercer Ciclo destacaron en el festival cívico interinstitucional.", "fecha": "25 Feb 2026"},
+        {"titulo": "Escuela para Padres", "descripcion": "Les invitamos a la conferencia formativa este próximo sábado en el auditorio principal.", "fecha": "18 Feb 2026"}
+    ]
+    return render_template('inicio.html', noticias=noticias)
 
-@app.route("/mensajes")
-def mensajes():
-    return render_template("mensajes.html", avisos=avisos_institucionales)
-
-@app.route("/quienes")
+@app.route('/quienes-somos')
 def quienes():
-    return render_template("quienes.html")
+    return render_template('quienes.html')
 
-@app.route("/servicios")
+@app.route('/servicios')
 def servicios():
-    return render_template("servicios.html")
+    return render_template('servicios.html')
 
-@app.route("/acerca")
+@app.route('/acerca')
 def acerca():
-    return render_template("acerca.html")
+    return render_template('acerca.html')
 
-@app.route("/contacto")
+@app.route('/mensajes')
+def mensajes():
+    # Lista de exámenes que ahora se muestra en la sección de mensajes/calendario
+    examenes = [
+        {"parcial": "I Parcial", "fecha_inicio": "16 de Marzo, 2026", "fecha_fin": "20 de Marzo, 2026"},
+        {"parcial": "II Parcial", "fecha_inicio": "08 de Junio, 2026", "fecha_fin": "12 de Junio, 2026"},
+        {"parcial": "III Parcial", "fecha_inicio": "14 de Septiembre, 2026", "fecha_fin": "18 de Septiembre, 2026"},
+        {"parcial": "IV Parcial", "fecha_inicio": "23 de Noviembre, 2026", "fecha_fin": "27 de Noviembre, 2026"}
+    ]
+    return render_template('mensajes.html', examenes=examenes)
+
+@app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
-    return render_template("contacto.html")
+    if request.method == 'POST':
+        nombre = request.form.get('nombre')
+        flash(f'¡Gracias {nombre}! Tu mensaje ha sido enviado con éxito.', 'success')
+        return redirect(url_for('contacto'))
+    return render_template('contacto.html')
 
-@app.route("/calendario")
-def calendario():
-    return render_template("calendario.html", examenes=calendario_examenes)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

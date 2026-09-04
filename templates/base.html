@@ -3,189 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portal oficial del Jardín Escuela e Instituto Jesús Nazareno. Educación bilingüe y técnica de calidad desde Pre-Kínder hasta Bachillerato."
-    />
     <title>
       {% block title %}Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
     </title>
-
-    <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- FontAwesome para Iconos -->
+    <!-- FontAwesome para iconos -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
-    <!-- Archivo CSS Principal -->
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Estilos personalizados -->
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='css/style.css') }}"
     />
-
-    <!-- Favicon Oficial -->
-    <link
-      rel="icon"
-      type="image/jpeg"
-      href="{{ url_for('static', filename='img/logo.jpg.jpeg') }}"
-    />
-
-    <style>
-      .header-brand {
-        text-decoration: none !important;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .brand-title {
-        color: #ffffff !important;
-        font-weight: 700 !important;
-        font-size: 1.1rem;
-        text-decoration: none !important;
-        line-height: 1.3;
-      }
-    </style>
   </head>
   <body>
-    <!-- ENCABEZADO INSTITUCIONAL -->
+    <!-- NAVEGACIÓN -->
     <header class="main-header">
-      <div class="header-container">
-        <a href="{{ url_for('inicio') }}" class="header-brand">
-          <img
-            src="{{ url_for('static', filename='img/logo.jpg.jpeg') }}"
-            alt="Escudo Institucional"
-            class="header-logo"
-            onerror="this.style.display='none'"
-          />
-          <div>
-            <span class="brand-title">Jardín Escuela e Instituto</span><br />
-            <span
-              style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;"
-              >Jesús Nazareno</span
-            >
-          </div>
+      <div class="container nav-container">
+        <a href="{{ url_for('inicio') }}" class="logo">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>Jesús Nazareno</span>
         </a>
-
-        <!-- Botón del Menú Hamburguesa -->
-        <button class="mobile-menu-btn" id="menuToggle" aria-label="Abrir menú">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
           <i class="fa-solid fa-bars"></i>
         </button>
-
-        <!-- Menú de Navegación -->
-        <nav>
-          <ul class="nav-menu" id="navMenu">
-            <li>
-              <a href="{{ url_for('inicio') }}"
-                ><i class="fa-solid fa-house"></i> Inicio</a
-              >
-            </li>
-            <li>
-              <a href="{{ url_for('mensajes') }}"
-                ><i class="fa-solid fa-bullhorn"></i> Mensajes</a
-              >
-            </li>
-            <li>
-              <a href="{{ url_for('quienes') }}"
-                ><i class="fa-solid fa-users"></i> Nosotros</a
-              >
-            </li>
-            <li>
-              <a href="{{ url_for('servicios') }}"
-                ><i class="fa-solid fa-graduation-cap"></i> Oferta Académica</a
-              >
-            </li>
-            <li>
-              <a href="{{ url_for('calendario') }}"
-                ><i class="fa-solid fa-calendar-days"></i> Calendario de
-                Exámenes</a
-              >
-            </li>
-            <li>
-              <a href="{{ url_for('acerca') }}"
-                ><i class="fa-solid fa-circle-info"></i> Acerca</a
-              >
-            </li>
-            <li>
-              <a href="{{ url_for('contacto') }}"
-                ><i class="fa-solid fa-envelope"></i> Contacto</a
-              >
-            </li>
-          </ul>
+        <nav class="nav-menu" id="navMenu">
+          <a
+            href="{{ url_for('inicio') }}"
+            class="{% if request.endpoint == 'inicio' %}active{% endif %}"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a
+            href="{{ url_for('quienes') }}"
+            class="{% if request.endpoint == 'quienes' %}active{% endif %}"
+            ><i class="fa-solid fa-users"></i> Quiénes Somos</a
+          >
+          <a
+            href="{{ url_for('servicios') }}"
+            class="{% if request.endpoint == 'servicios' %}active{% endif %}"
+            ><i class="fa-solid fa-book-open"></i> Servicios</a
+          >
+          <a
+            href="{{ url_for('acerca') }}"
+            class="{% if request.endpoint == 'acerca' %}active{% endif %}"
+            ><i class="fa-solid fa-circle-info"></i> Acerca</a
+          >
+          <a
+            href="{{ url_for('mensajes') }}"
+            class="{% if request.endpoint == 'mensajes' %}active{% endif %}"
+            ><i class="fa-solid fa-bullhorn"></i> Mensajes</a
+          >
+          <a
+            href="{{ url_for('contacto') }}"
+            class="{% if request.endpoint == 'contacto' %}active{% endif %}"
+            ><i class="fa-solid fa-address-book"></i> Contacto</a
+          >
         </nav>
       </div>
     </header>
 
-    <!-- CONTENIDO DINÁMICO DE CADA VISTA -->
-    <main class="content-wrapper">{% block content %}{% endblock %}</main>
-
-    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
-    <a
-      href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20deseo%20m%C3%A1s%20informaci%C3%B3n"
-      class="whatsapp-float"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="WhatsApp"
-    >
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container main-content">
+      {% block content %}{% endblock %}
+    </main>
 
     <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
-      <div class="footer-container">
-        <p
-          style="font-weight: 700; font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 0.4rem;"
-        >
-          Jardín Escuela e Instituto Jesús Nazareno
+      <div class="container footer-content">
+        <p>
+          &copy; 2026 Jardín Escuela e Instituto Jesús Nazareno. San Pedro Sula,
+          Honduras.
         </p>
-        <p>Formando con valores, disciplina y excelencia académica.</p>
-
-        <div
-          class="footer-social"
-          style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;"
-        >
-          <span>Contáctanos:</span>
-          <a
-            href="https://www.facebook.com/share/1D74RmNSwm/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-            style="color: white; text-decoration: none; background-color: #1877f2; padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;"
-          >
-            <i class="fa-brands fa-facebook"></i> Facebook Oficial
-          </a>
-          <a
-            href="https://wa.me/50493067316?text=Hola%20Jard%C3%ADn%20Escuela%20e%20Instituto%20Jes%C3%BAs%20Nazareno,%20necesito%20informaci%C3%B3n"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-            style="color: white; text-decoration: none; background-color: #25d366; padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;"
-          >
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-          </a>
-          <span style="opacity: 0.8;"
-            ><i
-              class="fa-solid fa-location-dot"
-              style="color: var(--accent-gold);"
-            ></i>
-            San Pedro Sula, Honduras</span
-          >
-        </div>
-
-        <p style="margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.8;">
-          &copy; 2026 Todos los derechos reservados.
+        <p class="footer-sub">
+          Formando con valores, disciplina y excelencia académica.
         </p>
       </div>
     </footer>
 
-    <!-- Script de Interactividad (Menú y Scroll Animations) -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Script principal -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>
