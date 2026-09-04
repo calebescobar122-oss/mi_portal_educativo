@@ -216,7 +216,6 @@ h2:hover::after {
   overflow: hidden;
 }
 
-/* Efecto de elevación e iluminación en tarjetas al pasar el cursor */
 .info-card:hover, .noticia-card:hover, .service-card:hover, form:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 35px rgba(125, 60, 36, 0.12);
@@ -239,7 +238,7 @@ h2:hover::after {
 }
 
 /* ==========================================================
-    CLASES AUXILIARES DE DISEÑO (GRID Y ALINEACIÓN)
+    CLASES AUXILIARES DE DISEÑO
     ========================================================== */
 .grid-3-cols {
   display: grid;
@@ -264,23 +263,149 @@ h2:hover::after {
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* ==========================================================
-    ANIMACIONES DE APARICIÓN AL HACER SCROLL (FADE-IN AVANZADO)
-    ========================================================== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
-  will-change: opacity, transform;
+/* Estilos para botones de redes sociales en contacto */
+.social-link {
+  color: white;
+  text-decoration: none;
+  background-color: var(--primary-blue);
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(30, 136, 229, 0.3);
+  transition: all 0.3s ease;
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+.social-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.social-link.disabled {
+  background-color: #94a3b8 !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Formulario profesional */
+.professional-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--header-brown);
+  font-size: 0.95rem;
+}
+
+.form-control {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--border-light);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.form-control:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--header-brown), #5a2a1a);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(125, 60, 36, 0.3);
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(125, 60, 36, 0.4);
+}
+
+/* Acordeón de Preguntas Frecuentes */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.faq-item {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  background-color: #f1f5f9;
+  color: var(--primary-blue);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
+  padding: 0 1.2rem;
+  background-color: #fff;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  padding: 1rem 1.2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-question i {
+  transition: transform 0.3s;
 }
 
 /* ==========================================================
-    PIE DE PÁGINA Y WHATSAPP FLOTANTE CON PULSO DINÁMICO
+    PIE DE PÁGINA Y WHATSAPP FLOTANTE
     ========================================================== */
 .main-footer {
   background: linear-gradient(135deg, #5a2a1a, var(--header-brown));
@@ -303,25 +428,6 @@ h2:hover::after {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 1rem;
-}
-
-.social-link {
-  color: var(--accent-gold);
-  text-decoration: none;
-  font-weight: 700;
-  transition: all 0.3s ease;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.social-link:hover {
-  color: #fff;
-  background-color: rgba(212, 175, 55, 0.2);
-  transform: translateY(-2px);
-}
-
-.separator {
-  color: rgba(255,255,255,0.4);
 }
 
 .whatsapp-float {
@@ -353,4 +459,12 @@ h2:hover::after {
 
 .whatsapp-float:hover {
   transform: scale(1.15) rotate(10deg);
+}
+
+@media (max-width: 768px) {
+  ul.nav-menu {
+    width: 100%;
+    right: 0;
+    top: 100%;
+  }
 }
