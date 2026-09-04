@@ -73,10 +73,10 @@
         Información Institucional
       </h3>
       <p style="color: var(--text-main); margin-bottom: 0.6rem;">
-        <strong>Institución:</strong> Jardín Escuela e Instituto Jesús Nazareno
+        <strong>Institución:</strong> CEMNG Jesús Nazareno
       </p>
       <p style="color: var(--text-main); margin-bottom: 0.6rem;">
-        <strong>Ubicación:</strong> San Pedro Sula, Cortés, Honduras
+        <strong>Ubicación:</strong> San Pedro Sula, Cortés, HN
       </p>
       <p style="color: var(--text-main); margin-bottom: 1.2rem;">
         <strong>Atención Presencial:</strong> Lunes a Viernes (7:00 AM - 4:00
@@ -88,7 +88,7 @@
         style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #e0d5cb;"
       >
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61538.16327318721!2d-88.0583125!3d15.5041725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f665b4c16a241b1%3A0x8e83348123284f23!2sSan%20Pedro%20Sula%2C%20Honduras!5e0!3m2!1ses!2s!4v1710000000000!5m2!1ses!2s"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.5!2d-88.025!3d15.505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzE4LjAiTiA4OMKwMSczMC4wIlc!5e0!3m2!1ses!2shn!4v1710000000000!5m2!1ses!2shn"
           width="100%"
           height="230"
           style="border:0;"
@@ -349,7 +349,6 @@
       const answer = button.nextElementSibling;
       const icon = button.querySelector(".faq-icon");
 
-      // Cerrar las demás pestañas abiertas (opcional, para una experiencia más limpia)
       document.querySelectorAll(".faq-answer").forEach((item) => {
         if (item !== answer) {
           item.style.maxHeight = null;
@@ -360,7 +359,6 @@
         }
       });
 
-      // Alternar la pestaña actual
       if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
         answer.style.maxHeight = "0px";
         answer.style.padding = "0 1.2rem";
