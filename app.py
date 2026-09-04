@@ -40,7 +40,7 @@ avisos_institucionales = [
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-    return render_template("inicio.html")
+    return render_template("inicio.html", noticias=noticias_recientes)
 
 @app.route("/mensajes")
 def mensajes():
