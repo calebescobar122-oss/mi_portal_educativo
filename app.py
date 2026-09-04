@@ -2,8 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from whitenoise import WhiteNoise
 
 app = Flask(__name__)
-# Corregido con el prefijo 'static/' para que coincida con las rutas de Flask
-app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/", prefix="static/")
+
+# Configuración correcta de WhiteNoise para Flask
+app.wsgi_app = WhiteNoise(app.wsgi_app)
+app.wsgi_app.add_files('static', prefix='static')
+
 app.secret_key = 'clave_secreta_institucional'
 
 @app.route('/')
