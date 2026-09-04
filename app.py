@@ -1,52 +1,66 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-from whitenoise import WhiteNoise
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Configuración correcta de WhiteNoise para Flask
-app.wsgi_app = WhiteNoise(app.wsgi_app)
-app.wsgi_app.add_files('static', prefix='static')
+# NOTICIAS Y DESTACADOS DE LA PORTADA
+noticias_recientes = [
+    {
+        "titulo": "¡Inscripciones Abiertas 2026!",
+        "fecha": "Periodo Escolar 2026",
+        "contenido": "Matrículas disponibles para Pre-Kínder, Kínder, Primaria y Secundaria (Informática, Finanzas y Humanidades). ¡Forma parte de nuestra gran familia!"
+    },
+    {
+        "titulo": "Excelencia Académica Bilingüe y Nacional",
+        "fecha": "Formación Integral",
+        "contenido": "Clases 100% certificadas en inglés y español con maestros altamente calificados y más de 10 años de trayectoria educativa."
+    },
+    {
+        "titulo": "Orgullo Cívico y Cultural",
+        "fecha": "Actividades Escolares",
+        "contenido": "Destacada participación de nuestra Banda de Guerra y Grupo de Danza en los desfiles patrios y eventos culturales de la comunidad."
+    }
+]
 
-app.secret_key = 'clave_secreta_institucional'
+# AVISOS Y COMUNICADOS URGENTES (SECCIÓN MENSAJES)
+avisos_institucionales = [
+    {
+        "titulo": "Aviso Importante: Suspensión de Clases",
+        "fecha": "10 de Septiembre, 2026",
+        "categoria": "Urgente",
+        "contenido": "Estimada comunidad educativa, se les informa que el día jueves 10 de septiembre no habrá clases por motivo de asueto institucional. Reanudamos actividades normales el viernes 11."
+    },
+    {
+        "titulo": "Reunión de Padres de Familia",
+        "fecha": "15 de Septiembre, 2026",
+        "categoria": "General",
+        "contenido": "Convocatoria a todos los padres de familia para la entrega del reporte de avance académico correspondiente al parcial."
+    }
+]
 
-@app.route('/')
+@app.route("/")
+@app.route("/inicio")
 def inicio():
-    noticias = [
-        {"titulo": "Inscripciones Abiertas 2027", "descripcion": "Ya está disponible el proceso de matrícula para el próximo año lectivo con beneficios por pronto pago.", "fecha": "02 Mar 2026"},
-        {"titulo": "Competencia de Declamación", "descripcion": "Nuestros alumnos de Tercer Ciclo destacaron en el festival cívico interinstitucional.", "fecha": "25 Feb 2026"},
-        {"titulo": "Escuela para Padres", "descripcion": "Les invitamos a la conferencia formativa este próximo sábado en el auditorio principal.", "fecha": "18 Feb 2026"}
-    ]
-    return render_template('inicio.html', noticias=noticias)
+    return render_template("inicio.html", noticias=noticias_recientes)
 
-@app.route('/quienes-somos')
-def quienes():
-    return render_template('quienes.html')
-
-@app.route('/servicios')
-def servicios():
-    return render_template('servicios.html')
-
-@app.route('/acerca')
-def acerca():
-    return render_template('acerca.html')
-
-@app.route('/mensajes')
+@app.route("/mensajes")
 def mensajes():
-    examenes = [
-        {"parcial": "I Parcial", "fecha_inicio": "16 de Marzo, 2026", "fecha_fin": "20 de Marzo, 2026"},
-        {"parcial": "II Parcial", "fecha_inicio": "08 de Junio, 2026", "fecha_fin": "12 de Junio, 2026"},
-        {"parcial": "III Parcial", "fecha_inicio": "14 de Septiembre, 2026", "fecha_fin": "18 de Septiembre, 2026"},
-        {"parcial": "IV Parcial", "fecha_inicio": "23 de Noviembre, 2026", "fecha_fin": "27 de Noviembre, 2026"}
-    ]
-    return render_template('mensajes.html', examenes=examenes)
+    return render_template("mensajes.html", avisos=avisos_institucionales)
 
-@app.route('/contacto', methods=['GET', 'POST'])
+@app.route("/quienes")
+def quienes():
+    return render_template("quienes.html")
+
+@app.route("/servicios")
+def servicios():
+    return render_template("servicios.html")
+
+@app.route("/acerca")
+def acerca():
+    return render_template("acerca.html")
+
+@app.route("/contacto")
 def contacto():
-    if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        flash(f'¡Gracias {nombre}! Tu mensaje ha sido enviado con éxito.', 'success')
-        return redirect(url_for('contacto'))
-    return render_template('contacto.html')
+    return render_template("contacto.html")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

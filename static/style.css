@@ -1,204 +1,356 @@
-/* ==========================================
-   PALETA DE COLORES INSTITUCIONAL
-   ================================---------- */
+/* ==========================================================
+   PALETA INSTITUCIONAL Y CONFIGURACIÓN BASE (BASADA EN EL CARNET)
+   ========================================================== */
 :root {
-  --primary-blue: #38bdf8;   /* Azul claro institucional */
-  --secondary-pink: #f472b6; /* Rosado claro */
-  --accent-yellow: #facc15;  /* Amarillo destacado */
-  --bg-beige: #f9f6f0;       /* Fondo general beige */
-  --text-dark: #1e293b;      /* Texto principal oscuro */
-  --header-bg: #1e293b;      /* Fondo de la barra superior */
-  --white: #ffffff;
+  --primary-blue: #1e88e5;      /* Azul brillante de los elementos del carnet */
+  --secondary-pink: #e91e63;     /* Rosado/Fucsia vibrante de la sección de carrera */
+  --accent-gold: #d4af37;        /* Dorado oficial de la identidad y el logo */
+  --header-brown: #7d3c24;       /* Tono marrón institucional del fondo del carnet */
+  --bg-beige: #f9f6f0;           /* Fondo general suave para lectura */
+  --card-white: #ffffff;
+  --text-main: #2d3142;
+  --border-light: #e6dfd5;
+  --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 body {
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-beige);
-  color: var(--text-dark);
-  line-height: 1.6;
+  color: var(--text-main);
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ==========================================
-   ENCABEZADO Y NAVEGACIÓN (Menú Hamburguesa)
-   ================================---------- */
+/* ==========================================================
+   ENCABEZADO Y ESTRUCTURA CON MENÚ HAMBURGUESA ANIMADO
+   ========================================================== */
 .main-header {
-  background-color: var(--header-bg);
-  color: var(--white);
-  padding: 1rem 0;
+  background: linear-gradient(135deg, var(--header-brown), #5a2a1a);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  border-bottom: 4px solid var(--accent-gold);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  animation: slideDown 0.6s ease-out;
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.header-container {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
-}
-
-.logo {
-  color: var(--accent-yellow);
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
 }
 
-.logo i {
-  color: var(--primary-blue);
-}
-
-.nav-menu {
+.header-brand {
+  text-decoration: none !important;
   display: flex;
-  gap: 15px;
   align-items: center;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.header-brand:hover {
+  transform: scale(1.02);
+}
+
+.header-logo {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-brand:hover .header-logo {
+  transform: rotate(360deg);
+}
+
+.brand-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem;
+  text-decoration: none !important;
+}
+
+/* Botón Hamburguesa con transición */
+.mobile-menu-btn {
+  display: block !important;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  color: var(--accent-gold);
+  transform: scale(1.1);
+}
+
+/* Menú de navegación desplegable con efectos de aparición profesional */
+nav {
+  position: relative;
+}
+
+ul.nav-menu {
+  display: none; /* Oculto inicialmente */
+  flex-direction: column;
+  width: 280px;
+  background: linear-gradient(135deg, var(--header-brown), #4a2214);
+  position: absolute;
+  top: calc(100% + 18px);
+  right: 0;
+  padding: 1rem 0;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  border: 2px solid var(--accent-gold);
+  gap: 0.3rem;
+  list-style: none;
+  z-index: 9999;
+  transform-origin: top right;
+  animation: menuPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes menuPop {
+  from { opacity: 0; transform: scale(0.8) translateY(-10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+ul.nav-menu.show, ul.nav-menu.open {
+  display: flex !important;
+}
+
+ul.nav-menu li {
+  width: 100%;
+  list-style: none;
 }
 
 .nav-menu a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 6px;
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600;
   transition: all 0.3s ease;
+}
+
+.nav-menu a:hover {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--accent-gold) !important;
+  padding-left: 2rem;
+  border-left: 4px solid var(--secondary-pink);
+}
+
+/* ==========================================================
+   CONTENIDO PRINCIPAL Y TARJETAS CON EFECTO 3D (HOVER GLOW)
+   ========================================================== */
+.content-wrapper {
+  max-width: 1280px;
+  width: 92%;
+  margin: 2.5rem auto;
+  padding-top: 1rem;
+  flex: 1;
+}
+
+h2 {
+  color: var(--header-brown);
+  border-bottom: 3px solid var(--accent-gold);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--secondary-pink);
+  transition: width 0.4s ease;
+}
+
+h2:hover::after {
+  width: 150px;
+}
+
+.info-card, .noticia-card, .service-card, form {
+  background-color: var(--card-white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  margin-bottom: 1.8rem;
+  border-top: 4px solid var(--accent-gold);
+  border-left: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de elevación e iluminación en tarjetas al pasar el cursor */
+.info-card:hover, .noticia-card:hover, .service-card:hover, form:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(125, 60, 36, 0.12);
+  border-top-color: var(--secondary-pink);
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: 0.6s;
+}
+
+.info-card:hover::before {
+  left: 100%;
+}
+
+/* ==========================================================
+   CLASES AUXILIARES DE DISEÑO (GRID Y ALINEACIÓN)
+   ========================================================== */
+.grid-3-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================
+   ANIMACIONES DE APARICIÓN AL HACER SCROLL (FADE-IN AVANZADO)
+   ========================================================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================
+   PIE DE PÁGINA Y WHATSAPP FLOTANTE CON PULSO DINÁMICO
+   ========================================================== */
+.main-footer {
+  background: linear-gradient(135deg, #5a2a1a, var(--header-brown));
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-top: auto;
+  border-top: 4px solid var(--accent-gold);
+  position: relative;
+}
+
+.footer-container p {
+  margin-bottom: 0.6rem;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.social-link {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.social-link:hover {
+  color: #fff;
+  background-color: rgba(212, 175, 55, 0.2);
+  transform: translateY(-2px);
+}
+
+.separator {
+  color: rgba(255,255,255,0.4);
+}
+
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 32px;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+  z-index: 1000;
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.95rem;
-}
-
-.nav-menu a i {
-  color: var(--secondary-pink);
-}
-
-.nav-menu a:hover, .nav-menu a.active {
-  background-color: var(--primary-blue);
-  color: var(--header-bg);
-}
-
-.nav-menu a:hover i, .nav-menu a.active i {
-  color: var(--header-bg);
-}
-
-/* Botón de Hamburguesa oculto en PC */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--accent-yellow);
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* ==========================================
-   CONTENEDORES Y SECCIONES GENERALES
-   ================================---------- */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.main-content {
-  padding: 40px 20px;
-  min-height: 80vh;
-}
-
-/* Tarjetas y contenedores con acentos de color */
-.card, .info-box, .contact-container, .form-container {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border-top: 4px solid var(--primary-blue);
-  margin-bottom: 30px;
-}
-
-/* Botones con colores institucionales */
-.btn-primary {
-  background-color: var(--primary-blue);
-  color: var(--header-bg);
-  padding: 10px 20px;
-  border-radius: 6px;
+  justify-content: center;
   text-decoration: none;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
+  animation: pulseWhatsapp 2s infinite;
+  transition: transform 0.3s ease;
 }
 
-.btn-primary:hover {
-  background-color: var(--accent-yellow);
+@keyframes pulseWhatsapp {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-.btn-secondary {
-  background-color: var(--secondary-pink);
-  color: var(--white);
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-}
-
-/* ==========================================
-   PIE DE PÁGINA
-   ================================---------- */
-.main-footer {
-  background-color: var(--header-bg);
-  color: var(--white);
-  text-align: center;
-  padding: 30px 20px;
-  border-top: 4px solid var(--accent-yellow);
-  margin-top: 40px;
-}
-
-.footer-sub {
-  color: var(--secondary-pink);
-  font-size: 0.9rem;
-  margin-top: 8px;
-}
-
-/* ==========================================
-   DISEÑO RESPONSIVO (Móviles / Menú Hamburguesa)
-   ================================---------- */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--header-bg);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 20px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-    border-top: 2px solid var(--primary-blue);
-  }
-
-  .nav-menu.active {
-    display: flex;
-  }
-
-  .nav-menu a {
-    width: 100%;
-    padding: 12px;
-  }
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(10deg);
 }
