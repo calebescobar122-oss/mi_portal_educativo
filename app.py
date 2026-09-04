@@ -46,7 +46,9 @@ def inicio():
 def mensajes():
     return render_template("mensajes.html", avisos=avisos_institucionales)
 
+# Soportar ambas rutas para evitar errores 404 si el menú apunta diferente
 @app.route("/quienes")
+@app.route("/quienes-somos")
 def quienes():
     return render_template("quienes.html")
 
