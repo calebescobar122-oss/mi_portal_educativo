@@ -49,19 +49,19 @@ def mensajes():
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
-    return render_template("quienes.html")
+    return render_template("nosotros.html", noticias=noticias_recientes)
 
 @app.route("/servicios")
 def servicios():
-    return render_template("servicios.html")
+    return render_template("servicios.html", noticias=noticias_recientes)
 
 @app.route("/acerca")
 def acerca():
-    return render_template("acerca.html")
+    return render_template("acerca.html", noticias=noticias_recientes)
 
 @app.route("/contacto")
 def contacto():
-    return render_template("contacto.html")
+    return render_template("contacto.html", noticias=noticias_recientes)
 
 if __name__ == "__main__":
     app.run(debug=True)
