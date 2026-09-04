@@ -11,9 +11,9 @@ noticias_recientes = [
         "titulo": "¡Inscripciones Abiertas 2026!",
         "fecha": "Periodo Escolar 2026",
         "contenido": (
-            "Matrículas disponibles para Pre-Kínder, Kínder, Primaria y"
-            " Secundaria (Informática, Finanzas y Humanidades). ¡Forma parte de"
-            " nuestra gran familia!"
+            "Matrículas disponibles desde Pre-Kínder hasta Media, BTPS en "
+            "Informática, Contaduría y Finanzas, Humanidades y Administración "
+            "de Empresas. ¡Forma parte de nuestra gran familia!"
         ),
     },
     {
@@ -92,56 +92,56 @@ nombres_meses = [
 
 
 def generar_calendario_anual():
-  calendario_anual = []
-  for i, nombre in enumerate(nombres_meses, start=1):
-    # calendar.monthcalendar devuelve una matriz de semanas y días para el mes y año (2026)
-    matriz_mes = calendar.monthcalendar(2026, i)
-    # Mapear eventos de este mes en un diccionario rápido {dia: "titulo"}
-    mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
-    calendario_anual.append({
-        "nombre": nombre,
-        "matriz": matriz_mes,
-        "eventos": mapa_eventos,
-    })
-  return calendario_anual
+    calendario_anual = []
+    for i, nombre in enumerate(nombres_meses, start=1):
+        # calendar.monthcalendar devuelve una matriz de semanas y días para el mes y año (2026)
+        matriz_mes = calendar.monthcalendar(2026, i)
+        # Mapear eventos de este mes en un diccionario rápido {dia: "titulo"}
+        mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
+        calendario_anual.append({
+            "nombre": nombre,
+            "matriz": matriz_mes,
+            "eventos": mapa_eventos,
+        })
+    return calendario_anual
 
 
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-  return render_template("inicio.html", noticias=noticias_recientes)
+    return render_template("inicio.html", noticias=noticias_recientes)
 
 
 @app.route("/mensajes")
 def mensajes():
-  return render_template(
-      "mensajes.html",
-      avisos=avisos_institucionales,
-      noticias=noticias_recientes,
-      calendario=generar_calendario_anual(),
-  )
+    return render_template(
+        "mensajes.html",
+        avisos=avisos_institucionales,
+        noticias=noticias_recientes,
+        calendario=generar_calendario_anual(),
+    )
 
 
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
-  return render_template("quienes.html", noticias=noticias_recientes)
+    return render_template("quienes.html", noticias=noticias_recientes)
 
 
 @app.route("/servicios")
 def servicios():
-  return render_template("servicios.html", noticias=noticias_recientes)
+    return render_template("servicios.html", noticias=noticias_recientes)
 
 
 @app.route("/acerca")
 def acerca():
-  return render_template("acerca.html", noticias=noticias_recientes)
+    return render_template("acerca.html", noticias=noticias_recientes)
 
 
 @app.route("/contacto")
 def contacto():
-  return render_template("contacto.html", noticias=noticias_recientes)
+    return render_template("contacto.html", noticias=noticias_recientes)
 
 
 if __name__ == "__main__":
-  app.run(debug=True)
+    app.run(debug=True)
