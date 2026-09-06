@@ -1,3 +1,4 @@
+import os
 import calendar
 import sqlite3
 from flask import Flask, redirect, render_template, request, session, url_for
@@ -5,13 +6,17 @@ from flask import Flask, redirect, render_template, request, session, url_for
 app = Flask(__name__)
 app.secret_key = "tu_clave_secreta_muy_segura_cambiala"
 
-# Configurar para que la semana empiece en Domingo (igual que en tu imagen)
+# Configurar para que la semana empiece en Domingo
 calendar.setfirstweekday(calendar.SUNDAY)
+
+# Definir la ruta absoluta de la base de datos para evitar pérdidas de ubicación
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 
 # Función para conectar a la base de datos
 def get_db_connection():
-    conn = sqlite3.connect("database.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -207,17 +212,19 @@ def acerca():
 @app.route("/contacto", methods=["GET", "POST"])
 def contacto():
     if request.method == "POST":
-        nombre = request.form["nombre"]
-        correo = request.form["correo"]
-        mensaje = request.form["mensaje"]
+        nombre = request.form.get("nombre")
+        correo = request.form.get("correo")
+        mensaje = request.form.get("mensaje")
 
-        conn = get_db_connection()
-        conn.execute(
-            "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
-            (nombre, correo, mensaje),
-        )
-        conn.commit()
-        conn.close()
+        if nombre and correo and mensaje:
+            conn = get_db_connection()
+            conn.execute(
+                "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
+                (nombre, correo, mensaje),
+            )
+            conn.commit()
+            conn.close()
+
         return redirect(url_for("contacto"))
 
     return render_template("contacto.html", noticias=noticias_recientes)
