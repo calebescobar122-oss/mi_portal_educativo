@@ -355,3 +355,16 @@ h2:hover::after {
 .whatsapp-float:hover {
   transform: scale(1.15) rotate(10deg);
 }
+
+/* ==========================================================
+   ESTILOS INTERACTIVOS PARA CALENDARIOS (NUEVO)
+   ========================================================== */
+.calendario-card, .mes-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendario-card:hover, .mes-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(41, 182, 246, 0.2);
+}

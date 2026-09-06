@@ -82,8 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // 4. DETECCIÓN AUTOMÁTICA PARA AMPLIAR IMÁGENES Y CALENDARIOS
-    // Esto hace que cualquier imagen con la clase .zoomable o cualquier imagen dentro de calendarios/galerías se abra con el modal.
+    // 4. DETECCIÓN AUTOMÁTICA PARA AMPLIAR IMÁGENES
     const zoomableImages = document.querySelectorAll("img");
     zoomableImages.forEach(img => {
         // Evitamos aplicar el zoom al logo del header o iconos pequeños para que no moleste
@@ -93,6 +92,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 ampliarImagen(this.src, this.alt || "Jardín Escuela e Instituto Jesús Nazareno");
             });
         }
+    });
+
+    // 4.1. DETECCIÓN Y ZOOM PARA LAS TARJETAS DE CALENDARIOS
+    const calendarioCards = document.querySelectorAll(".calendario-card, .mes-card");
+    calendarioCards.forEach(card => {
+        card.addEventListener("click", function(e) {
+            // Evita conflictos si el usuario hace clic en enlaces internos de la tarjeta
+            if (e.target.tagName === 'A') return;
+            
+            // Si la tarjeta contiene una imagen dentro, amplía esa imagen
+            const imgInside = this.querySelector("img");
+            if (imgInside) {
+                ampliarImagen(imgInside.src, imgInside.alt || "Calendario Escolar - Jesús Nazareno");
+            }
+        });
     });
 });
 
