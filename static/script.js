@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // 4. DETECCIÓN AUTOMÁTICA PARA AMPLIAR IMÁGENES
     const zoomableImages = document.querySelectorAll("img");
     zoomableImages.forEach(img => {
-        // Evitamos aplicar el zoom al logo del header o iconos pequeños para que no moleste
         if (!img.classList.contains("header-logo") && !img.closest(".whatsapp-float")) {
             img.style.cursor = "pointer";
             img.addEventListener("click", function() {
@@ -94,23 +93,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 4.1. DETECCIÓN Y ZOOM PARA LAS TARJETAS DE CALENDARIOS
+    // 4.1. DETECCIÓN Y ZOOM PARA LAS TARJETAS DE CALENDARIOS (TABLAS / TEXTO)
     const calendarioCards = document.querySelectorAll(".calendario-card, .mes-card");
     calendarioCards.forEach(card => {
         card.addEventListener("click", function(e) {
-            // Evita conflictos si el usuario hace clic en enlaces internos de la tarjeta
             if (e.target.tagName === 'A') return;
             
-            // Si la tarjeta contiene una imagen dentro, amplía esa imagen
             const imgInside = this.querySelector("img");
             if (imgInside) {
                 ampliarImagen(imgInside.src, imgInside.alt || "Calendario Escolar - Jesús Nazareno");
+            } else {
+                abrirModalCalendario(this.innerHTML);
             }
         });
     });
 });
 
-// 5. MODAL GLOBAL PARA AMPLIAR IMÁGENES Y CALENDARIOS
+// 5. MODAL GLOBAL PARA AMPLIAR IMÁGENES
 function ampliarImagen(imagenSrc, titulo) {
     let modal = document.getElementById("imageModal");
     if (!modal) {
@@ -151,6 +150,49 @@ function ampliarImagen(imagenSrc, titulo) {
 
 function cerrarModalExterno() {
     let modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+// 6. MODAL ESPECIAL PARA CALENDARIOS EN FORMATO TEXTO/TABLA
+function abrirModalCalendario(contenidoHTML) {
+    let modal = document.getElementById("calendarModal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "calendarModal";
+        modal.style.position = "fixed";
+        modal.style.top = "0";
+        modal.style.left = "0";
+        modal.style.width = "100%";
+        modal.style.height = "100%";
+        modal.style.backgroundColor = "rgba(0,0,0,0.85)";
+        modal.style.zIndex = "2000";
+        modal.style.display = "flex";
+        modal.style.alignItems = "center";
+        modal.style.justifyContent = "center";
+        modal.style.cursor = "pointer";
+
+        modal.innerHTML = `
+            <div id="calendarModalContent" style="position: relative; background: #ffffff; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 15px 40px rgba(0,0,0,0.5);" onclick="event.stopPropagation()">
+                <div id="modalBodyHtml"></div>
+                <span onclick="cerrarModalCalendario()" style="position: absolute; top: 10px; right: 15px; color: #333; font-size: 2rem; font-weight: bold; cursor: pointer;">&times;</span>
+            </div>
+        `;
+
+        modal.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        document.body.appendChild(modal);
+    }
+
+    document.getElementById("modalBodyHtml").innerHTML = contenidoHTML;
+    modal.style.display = "flex";
+}
+
+function cerrarModalCalendario() {
+    let modal = document.getElementById("calendarModal");
     if (modal) {
         modal.style.display = "none";
     }
