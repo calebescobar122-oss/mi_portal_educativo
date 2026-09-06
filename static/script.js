@@ -83,16 +83,6 @@ document.addEventListener("DOMContentLoaded", function() {
             faqItem.classList.toggle("active");
         });
     });
-
-    // 4. RESPUESTA AL ENVIAR FORMULARIO
-    const contactForm = document.querySelector(".contact-form");
-    if (contactForm) {
-        contactForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("¡Gracias por comunicarte con el Instituto Jesús Nazareno! Nos pondremos en contacto contigo a la brevedad.");
-            contactForm.reset();
-        });
-    }
 });
 
 // 5. MODAL PARA AMPLIAR IMÁGENES DE GALERÍA
