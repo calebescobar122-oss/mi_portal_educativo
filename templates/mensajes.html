@@ -5,99 +5,125 @@
 {% endblock %}
 
 {% block content %}
-  <section class="page-header text-center" style="margin-bottom: 2rem;">
-    <h2>
-      <i class="fa-solid fa-bullhorn" style="color: var(--accent-gold);"></i>
-      Mensajes y Calendario Anual 2026
-    </h2>
-    <p
-      class="subtitle"
-      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+  <section class="page-header" style="margin-bottom: 2rem;">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;"
     >
-      Consulta los comunicados oficiales, despliega el mes de tu interés o
-      revisa el buzón administrativo.
-    </p>
-    <div style="margin-top: 1rem;">
-      <a
-        href="{{ url_for('logout') }}"
-        style="background-color: #dc3545; color: white; padding: 0.4rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 5px;"
-      >
-        <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión de
-        Administrador
-      </a>
+      <div>
+        <h2>
+          <i
+            class="fa-solid fa-bullhorn"
+            style="color: var(--accent-gold);"
+          ></i>
+          Mensajes y Calendario Anual 2026
+        </h2>
+        <p
+          class="subtitle"
+          style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+        >
+          Consulta los comunicados oficiales, despliega el mes de tu interés o
+          revisa el buzón administrativo.
+        </p>
+      </div>
+
+      <!-- BOTÓN EN LA ESQUINA DERECHA -->
+      <div>
+        {% if session.get('admin_logueado') %}
+          <a
+            href="{{ url_for('logout') }}"
+            style="background-color: #dc3545; color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+          >
+            <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión de
+            Administrador
+          </a>
+        {% else %}
+          <a
+            href="{{ url_for('login_mensajes') }}"
+            style="background-color: var(--header-blue); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+          >
+            <i class="fa-solid fa-lock" style="color: var(--accent-gold);"></i>
+            Acceso a Mensajes Administrativos
+          </a>
+        {% endif %}
+      </div>
     </div>
   </section>
 
-  <!-- BUZÓN DE CONSULTAS RECIBIDAS (SOLO PARA ADMIN) -->
-  <div
-    class="info-card fade-in"
-    style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
-  >
+  <!-- BUZÓN DE CONSULTAS RECIBIDAS (SOLO APARECE SI EL ADMIN HA INICIADO SESIÓN) -->
+  {% if session.get('admin_logueado') %}
     <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem;"
+      class="info-card fade-in"
+      style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
     >
-      <h3 style="color: var(--header-brown); margin: 0; font-size: 1.3rem;">
-        <i class="fa-solid fa-inbox" style="color: var(--secondary-pink);"></i>
-        Acceso a Mensajes Administrativos
-      </h3>
-      <span
-        style="background: #e6f4ea; color: #137333; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;"
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem;"
       >
-        <i class="fa-solid fa-shield-halved"></i> Acceso Seguro
-      </span>
-    </div>
-
-    {% if mensajes_db %}
-      <div style="overflow-x: auto;">
-        <table
-          style="width: 100%; border-collapse: collapse; text-align: left;"
+        <h3 style="color: var(--header-brown); margin: 0; font-size: 1.3rem;">
+          <i
+            class="fa-solid fa-inbox"
+            style="color: var(--secondary-pink);"
+          ></i>
+          Buzón de Consultas Recibidas
+        </h3>
+        <span
+          style="background: #e6f4ea; color: #137333; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;"
         >
-          <thead>
-            <tr
-              style="background-color: #fcf8f5; color: var(--header-brown); border-bottom: 2px solid #e0d5cb;"
-            >
-              <th style="padding: 10px; font-size: 0.9rem;">Fecha</th>
-              <th style="padding: 10px; font-size: 0.9rem;">Nombre</th>
-              <th style="padding: 10px; font-size: 0.9rem;">
-                Correo / Teléfono
-              </th>
-              <th style="padding: 10px; font-size: 0.9rem;">Mensaje</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for m in mensajes_db %}
-              <tr style="border-bottom: 1px solid #eee;">
-                <td
-                  style="padding: 10px; font-size: 0.85rem; color: #666; white-space: nowrap;"
-                >
-                  {{ m.fecha }}
-                </td>
-                <td
-                  style="padding: 10px; font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
-                >
-                  {{ m.nombre }}
-                </td>
-                <td style="padding: 10px; color: #333; font-size: 0.9rem;">
-                  {{ m.correo }}
-                </td>
-                <td
-                  style="padding: 10px; color: var(--text-main); font-size: 0.9rem; max-width: 300px; word-break: break-word;"
-                >
-                  {{ m.mensaje }}
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+          <i class="fa-solid fa-shield-halved"></i> Sesión Activa
+        </span>
       </div>
-    {% else %}
-      <p
-        style="color: var(--text-main); font-style: italic; font-size: 0.95rem; margin: 0;"
-      >
-        Aún no hay consultas registradas en el sistema.
-      </p>
-    {% endif %}
-  </div>
+
+      {% if mensajes_db %}
+        <div style="overflow-x: auto;">
+          <table
+            style="width: 100%; border-collapse: collapse; text-align: left;"
+          >
+            <thead>
+              <tr
+                style="background-color: #fcf8f5; color: var(--header-brown); border-bottom: 2px solid #e0d5cb;"
+              >
+                <th style="padding: 10px; font-size: 0.9rem;">Fecha</th>
+                <th style="padding: 10px; font-size: 0.9rem;">Nombre</th>
+                <th style="padding: 10px; font-size: 0.9rem;">
+                  Correo / Teléfono
+                </th>
+                <th style="padding: 10px; font-size: 0.9rem;">Mensaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in mensajes_db %}
+                <tr style="border-bottom: 1px solid #eee;">
+                  <td
+                    style="padding: 10px; font-size: 0.85rem; color: #666; white-space: nowrap;"
+                  >
+                    {{ m.fecha }}
+                  </td>
+                  <td
+                    style="padding: 10px; font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
+                  >
+                    {{ m.nombre }}
+                  </td>
+                  <td style="padding: 10px; color: #333; font-size: 0.9rem;">
+                    {{ m.correo }}
+                  </td>
+                  <td
+                    style="padding: 10px; color: var(--text-main); font-size: 0.9rem; max-width: 300px; word-break: break-word;"
+                  >
+                    {{ m.mensaje }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p
+          style="color: var(--text-main); font-style: italic; font-size: 0.95rem; margin: 0;"
+        >
+          Aún no hay consultas registradas en el sistema.
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
 
   <!-- AVISOS OFICIALES -->
   <div

@@ -139,17 +139,9 @@ def inicio():
     return render_template("inicio.html", noticias=noticias_recientes)
 
 
-@app.route("/mensajes", methods=["GET", "POST"])
+@app.route("/mensajes")
 def mensajes():
-    if request.method == "POST":
-        password = request.form.get("password")
-        if password == "12345":  # Puedes cambiar la contraseña aquí
-            session['admin_logueado'] = True
-            return redirect(url_for("mensajes"))
-        else:
-            error = "Contraseña incorrecta. Inténtalo de nuevo."
-            return render_template("login_mensajes.html", error=error)
-
+    mensajes_usuarios = []
     if session.get('admin_logueado'):
         conn = get_db_connection()
         mensajes_usuarios = conn.execute(
@@ -157,13 +149,25 @@ def mensajes():
         ).fetchall()
         conn.close()
 
-        return render_template(
-            "mensajes.html",
-            avisos=avisos_institucionales,
-            noticias=noticias_recientes,
-            calendario=generar_calendario_anual(),
-            mensajes_db=mensajes_usuarios,
-        )
+    return render_template(
+        "mensajes.html",
+        avisos=avisos_institucionales,
+        noticias=noticias_recientes,
+        calendario=generar_calendario_anual(),
+        mensajes_db=mensajes_usuarios,
+    )
+
+
+@app.route("/login-mensajes", methods=["GET", "POST"])
+def login_mensajes():
+    if request.method == "POST":
+        password = request.form.get("password")
+        if password == "12345":  # Contraseña de administrador
+            session['admin_logueado'] = True
+            return redirect(url_for("mensajes"))
+        else:
+            error = "Contraseña incorrecta. Inténtalo de nuevo."
+            return render_template("login_mensajes.html", error=error)
 
     return render_template("login_mensajes.html")
 
