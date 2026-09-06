@@ -15,14 +15,22 @@
             class="fa-solid fa-bullhorn"
             style="color: var(--accent-gold);"
           ></i>
-          Mensajes y Calendario Anual 2026
+          {% if session.get('admin_logueado') %}
+            Panel de Administración - Buzón
+          {% else %}
+            Mensajes y Calendario Anual 2026
+          {% endif %}
         </h2>
         <p
           class="subtitle"
           style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
         >
-          Consulta los comunicados oficiales, despliega el mes de tu interés o
-          revisa el buzón administrativo.
+          {% if session.get('admin_logueado') %}
+            Gestión de consultas recibidas por parte de la comunidad educativa.
+          {% else %}
+            Consulta los comunicados oficiales, despliega el mes de tu interés o
+            revisa el buzón administrativo.
+          {% endif %}
         </p>
       </div>
 
@@ -49,7 +57,7 @@
     </div>
   </section>
 
-  <!-- BUZÓN DE CONSULTAS RECIBIDAS (SOLO APARECE SI EL ADMIN HA INICIADO SESIÓN) -->
+  <!-- SI EL ADMIN ESTÁ LOGUEADO: MOSTRAR SOLO EL BUZÓN -->
   {% if session.get('admin_logueado') %}
     <div
       class="info-card fade-in"
@@ -123,126 +131,128 @@
         </p>
       {% endif %}
     </div>
-  {% endif %}
+  {% else %}
+    <!-- SI NO ESTÁ LOGUEADO: MOSTRAR AVISOS Y CALENDARIO -->
 
-  <!-- AVISOS OFICIALES -->
-  <div
-    class="info-card fade-in"
-    style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
-  >
-    <h3
-      style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
-    >
-      <i
-        class="fa-solid fa-triangle-exclamation"
-        style="color: var(--secondary-pink);"
-      ></i>
-      Avisos Oficiales
-    </h3>
-    <div class="grid-2-cols" style="gap: 1.5rem;">
-      {% for aviso in avisos %}
-        <div
-          style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1.2rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
-        >
-          <h4
-            style="color: var(--header-brown); margin-bottom: 0.4rem; font-size: 1.05rem;"
-          >
-            {{ aviso.titulo }}
-          </h4>
-          <p style="color: #666; font-size: 0.85rem; margin-bottom: 0.8rem;">
-            <strong>Fecha:</strong> {{ aviso.fecha }}
-          </p>
-          <p
-            style="color: var(--text-main); font-size: 0.95rem; margin: 0; line-height: 1.5;"
-          >
-            {{ aviso.contenido }}
-          </p>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- CALENDARIO ANUAL 2026 -->
-  <div
-    class="info-card fade-in"
-    style="border-top: 4px solid var(--accent-gold);"
-  >
-    <h3
-      style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
-    >
-      <i
-        class="fa-solid fa-calendar-days"
-        style="color: var(--secondary-pink);"
-      ></i>
-      Calendario Escolar 2026
-    </h3>
-
+    <!-- AVISOS OFICIALES -->
     <div
-      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"
+      class="info-card fade-in"
+      style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
     >
-      {% for mes in calendario %}
-        <div
-          style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
-        >
-          <h4
-            style="text-align: center; color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.3rem;"
+      <h3
+        style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
+      >
+        <i
+          class="fa-solid fa-triangle-exclamation"
+          style="color: var(--secondary-pink);"
+        ></i>
+        Avisos Oficiales
+      </h3>
+      <div class="grid-2-cols" style="gap: 1.5rem;">
+        {% for aviso in avisos %}
+          <div
+            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1.2rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
           >
-            {{ mes.nombre }}
-          </h4>
-
-          <table
-            style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
-          >
-            <thead>
-              <tr style="color: #666; font-weight: 600;">
-                <th style="padding: 4px;">Do</th>
-                <th style="padding: 4px;">Lu</th>
-                <th style="padding: 4px;">Ma</th>
-                <th style="padding: 4px;">Mi</th>
-                <th style="padding: 4px;">Ju</th>
-                <th style="padding: 4px;">Vi</th>
-                <th style="padding: 4px;">Sá</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for semana in mes.matriz %}
-                <tr>
-                  {% for dia in semana %}
-                    <td
-                      style="padding: 5px; {% if dia != 0 %}{% if dia in mes.eventos %}
-                        background-color: #fff3cd; color: #856404; font-weight:
-                        bold; border-radius: 50%;
-                      {% else %}
-                        color: #333;
-                      {% endif %}{% endif %}"
-                    >
-                      {% if dia != 0 %}{{ dia }}{% endif %}
-                    </td>
-                  {% endfor %}
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-
-          {% if mes.eventos %}
-            <div
-              style="margin-top: 0.8rem; border-top: 1px dashed #e0d5cb; padding-top: 0.5rem; font-size: 0.8rem; text-align: left;"
+            <h4
+              style="color: var(--header-brown); margin-bottom: 0.4rem; font-size: 1.05rem;"
             >
-              <strong style="color: var(--header-brown);">Eventos:</strong>
-              <ul
-                style="margin: 0; padding-left: 15px; color: var(--text-main);"
-              >
-                {% for dia, evento in mes.eventos.items() %}
-                  <li>
-                    <span style="font-weight: 600;">Día {{ dia }}:</span>
-                    {{ evento }}
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
+              {{ aviso.titulo }}
+            </h4>
+            <p style="color: #666; font-size: 0.85rem; margin-bottom: 0.8rem;">
+              <strong>Fecha:</strong> {{ aviso.fecha }}
+            </p>
+            <p
+              style="color: var(--text-main); font-size: 0.95rem; margin: 0; line-height: 1.5;"
+            >
+              {{ aviso.contenido }}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
+
+    <!-- CALENDARIO ANUAL 2026 -->
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--accent-gold);"
+    >
+      <h3
+        style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
+      >
+        <i
+          class="fa-solid fa-calendar-days"
+          style="color: var(--secondary-pink);"
+        ></i>
+        Calendario Escolar 2026
+      </h3>
+
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"
+      >
+        {% for mes in calendario %}
+          <div
+            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
+          >
+            <h4
+              style="text-align: center; color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.3rem;"
+            >
+              {{ mes.nombre }}
+            </h4>
+
+            <table
+              style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
+            >
+              <thead>
+                <tr style="color: #666; font-weight: 600;">
+                  <th style="padding: 4px;">Do</th>
+                  <th style="padding: 4px;">Lu</th>
+                  <th style="padding: 4px;">Ma</th>
+                  <th style="padding: 4px;">Mi</th>
+                  <th style="padding: 4px;">Ju</th>
+                  <th style="padding: 4px;">Vi</th>
+                  <th style="padding: 4px;">Sá</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for semana in mes.matriz %}
+                  <tr>
+                    {% for dia in semana %}
+                      <td
+                        style="padding: 5px; {% if dia != 0 %}{% if dia in mes.eventos %}
+                          background-color: #fff3cd; color: #856404;
+                          font-weight: bold; border-radius: 50%;
+                        {% else %}
+                          color: #333;
+                        {% endif %}{% endif %}"
+                      >
+                        {% if dia != 0 %}{{ dia }}{% endif %}
+                      </td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            {% if mes.eventos %}
+              <div
+                style="margin-top: 0.8rem; border-top: 1px dashed #e0d5cb; padding-top: 0.5rem; font-size: 0.8rem; text-align: left;"
+              >
+                <strong style="color: var(--header-brown);">Eventos:</strong>
+                <ul
+                  style="margin: 0; padding-left: 15px; color: var(--text-main);"
+                >
+                  {% for dia, evento in mes.eventos.items() %}
+                    <li>
+                      <span style="font-weight: 600;">Día {{ dia }}:</span>
+                      {{ evento }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}
