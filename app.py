@@ -1,8 +1,9 @@
 import calendar
 import sqlite3
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
+app.secret_key = "tu_clave_secreta_muy_segura_cambiala"
 
 # Configurar para que la semana empiece en Domingo (igual que en tu imagen)
 calendar.setfirstweekday(calendar.SUNDAY)
@@ -138,22 +139,39 @@ def inicio():
     return render_template("inicio.html", noticias=noticias_recientes)
 
 
-@app.route("/mensajes")
+@app.route("/mensajes", methods=["GET", "POST"])
 def mensajes():
-    # Obtenemos los mensajes de la base de datos para mostrarlos en mensajes.html
-    conn = get_db_connection()
-    mensajes_usuarios = conn.execute(
-        "SELECT * FROM mensajes ORDER BY id DESC"
-    ).fetchall()
-    conn.close()
+    if request.method == "POST":
+        password = request.form.get("password")
+        if password == "12345":  # Puedes cambiar la contraseña aquí
+            session['admin_logueado'] = True
+            return redirect(url_for("mensajes"))
+        else:
+            error = "Contraseña incorrecta. Inténtalo de nuevo."
+            return render_template("login_mensajes.html", error=error)
 
-    return render_template(
-        "mensajes.html",
-        avisos=avisos_institucionales,
-        noticias=noticias_recientes,
-        calendario=generar_calendario_anual(),
-        mensajes_db=mensajes_usuarios,
-    )
+    if session.get('admin_logueado'):
+        conn = get_db_connection()
+        mensajes_usuarios = conn.execute(
+            "SELECT * FROM mensajes ORDER BY id DESC"
+        ).fetchall()
+        conn.close()
+
+        return render_template(
+            "mensajes.html",
+            avisos=avisos_institucionales,
+            noticias=noticias_recientes,
+            calendario=generar_calendario_anual(),
+            mensajes_db=mensajes_usuarios,
+        )
+
+    return render_template("login_mensajes.html")
+
+
+@app.route("/logout")
+def logout():
+    session.pop('admin_logueado', None)
+    return redirect(url_for("mensajes"))
 
 
 @app.route("/quienes")

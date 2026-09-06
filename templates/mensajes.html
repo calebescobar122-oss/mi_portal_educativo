@@ -13,15 +13,99 @@
       <i class="fa-solid fa-bullhorn"></i> Mensajes y Calendario Anual 2026
     </h2>
     <p style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;">
-      Consulta los comunicados oficiales y despliega el mes de tu interés para
-      ver su programación.
+      Consulta los comunicados oficiales, despliega el mes de tu interés o
+      revisa el buzón administrativo.
     </p>
+    <div style="margin-top: 1rem;">
+      <a
+        href="{{ url_for('logout') }}"
+        style="background: #ef4444; color: white; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; text-decoration: none; font-weight: bold;"
+      >
+        <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión de
+        Administrador
+      </a>
+    </div>
   </section>
 
   <div
     style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;"
     class="mensajes-layout"
   >
+    <!-- SECCIÓN DE MENSAJES RECIBIDOS DE LA BASE DE DATOS (ADMINISTRACIÓN) -->
+    <div
+      class="info-card fade-in"
+      style="border-top: 4px solid var(--header-blue); background: var(--card-white); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);"
+    >
+      <h3
+        style="color: var(--header-blue); margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.4rem; display: flex; align-items: center; justify-content: space-between;"
+      >
+        <span
+          ><i class="fa-solid fa-inbox"></i> Buzón de Consultas Recibidas</span
+        >
+        <span
+          style="font-size: 0.75rem; background: #dcfce7; color: #166534; padding: 0.2rem 0.6rem; border-radius: 6px;"
+          ><i class="fa-solid fa-shield-halved"></i> Acceso Seguro</span
+        >
+      </h3>
+
+      {% if mensajes_db %}
+        <div style="overflow-x: auto;">
+          <table
+            style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;"
+          >
+            <thead>
+              <tr style="background-color: #f1f5f9; color: var(--header-blue);">
+                <th
+                  style="padding: 10px; border-bottom: 2px solid var(--border-light);"
+                >
+                  Nombre
+                </th>
+                <th
+                  style="padding: 10px; border-bottom: 2px solid var(--border-light);"
+                >
+                  Correo
+                </th>
+                <th
+                  style="padding: 10px; border-bottom: 2px solid var(--border-light);"
+                >
+                  Mensaje
+                </th>
+                <th
+                  style="padding: 10px; border-bottom: 2px solid var(--border-light);"
+                >
+                  Fecha
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for msg in mensajes_db %}
+                <tr style="border-bottom: 1px solid var(--border-light);">
+                  <td
+                    style="padding: 10px; font-weight: 600; color: var(--text-main);"
+                  >
+                    {{ msg.nombre }}
+                  </td>
+                  <td style="padding: 10px; color: #475569;">
+                    {{ msg.correo }}
+                  </td>
+                  <td style="padding: 10px; color: var(--text-main);">
+                    {{ msg.mensaje }}
+                  </td>
+                  <td style="padding: 10px; color: #64748b; font-size: 0.8rem;">
+                    {{ msg.fecha }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p style="color: #64748b; font-style: italic; margin: 0;">
+          Aún no hay consultas registradas en el sistema.
+        </p>
+      {% endif %}
+    </div>
+
     <!-- SECCIÓN DE AVISOS OFICIALES -->
     <div
       class="info-card fade-in"
