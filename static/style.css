@@ -357,7 +357,7 @@ h2:hover::after {
 }
 
 /* ==========================================================
-   ESTILOS INTERACTIVOS PARA CALENDARIOS (NUEVO)
+   ESTILOS INTERACTIVOS PARA CALENDARIOS
    ========================================================== */
 .calendario-card, .mes-card {
   cursor: pointer;
