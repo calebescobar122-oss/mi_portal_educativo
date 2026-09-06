@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
     links.forEach(link => {
         const href = link.getAttribute("href");
         if (href) {
-            // Comprobación exacta o si incluye la ruta (evitando '/' global rompiendo todo)
             const isHomeMatch = (currentUrl === "/" || currentUrl === "/inicio") && (href === "/" || href === "/inicio");
             const isOtherMatch = href !== "/" && href !== "/inicio" && currentUrl.includes(href);
 
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Cerrar menú al hacer clic fuera de él
         document.addEventListener("click", function(e) {
             if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 navMenu.classList.remove("open");
@@ -83,9 +81,22 @@ document.addEventListener("DOMContentLoaded", function() {
             faqItem.classList.toggle("active");
         });
     });
+
+    // 4. DETECCIÓN AUTOMÁTICA PARA AMPLIAR IMÁGENES Y CALENDARIOS
+    // Esto hace que cualquier imagen con la clase .zoomable o cualquier imagen dentro de calendarios/galerías se abra con el modal.
+    const zoomableImages = document.querySelectorAll("img");
+    zoomableImages.forEach(img => {
+        // Evitamos aplicar el zoom al logo del header o iconos pequeños para que no moleste
+        if (!img.classList.contains("header-logo") && !img.closest(".whatsapp-float")) {
+            img.style.cursor = "pointer";
+            img.addEventListener("click", function() {
+                ampliarImagen(this.src, this.alt || "Jardín Escuela e Instituto Jesús Nazareno");
+            });
+        }
+    });
 });
 
-// 5. MODAL PARA AMPLIAR IMÁGENES DE GALERÍA
+// 5. MODAL GLOBAL PARA AMPLIAR IMÁGENES Y CALENDARIOS
 function ampliarImagen(imagenSrc, titulo) {
     let modal = document.getElementById("imageModal");
     if (!modal) {
@@ -105,10 +116,10 @@ function ampliarImagen(imagenSrc, titulo) {
         modal.style.cursor = "pointer";
 
         modal.innerHTML = `
-            <div style="position: relative; max-width: 85%; max-height: 85%; text-align: center;">
-                <img id="modalImg" src="" alt="" style="max-width: 100%; max-height: 75vh; border-radius: 8px; border: 3px solid var(--accent-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div style="position: relative; max-width: 90%; max-height: 90%; text-align: center;" onclick="event.stopPropagation()">
+                <img id="modalImg" src="" alt="" style="max-width: 100%; max-height: 80vh; border-radius: 8px; border: 3px solid var(--accent-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                 <p id="modalCaption" style="color: #fff; font-size: 1.1rem; margin-top: 1rem; font-weight: 600;"></p>
-                <span style="position: absolute; top: -30px; right: -10px; color: #fff; font-size: 2rem; font-weight: bold; cursor: pointer;">&times;</span>
+                <span onclick="cerrarModalExterno()" style="position: absolute; top: -35px; right: -5px; color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer; background: rgba(0,0,0,0.5); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">&times;</span>
             </div>
         `;
 
@@ -120,6 +131,13 @@ function ampliarImagen(imagenSrc, titulo) {
     }
 
     document.getElementById("modalImg").src = imagenSrc;
-    document.getElementById("modalCaption").innerText = titulo || "Galería Jesús Nazareno";
+    document.getElementById("modalCaption").innerText = titulo || "Jesús Nazareno";
     modal.style.display = "flex";
+}
+
+function cerrarModalExterno() {
+    let modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
 }
