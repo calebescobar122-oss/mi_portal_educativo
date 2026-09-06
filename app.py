@@ -10,15 +10,15 @@ calendar.setfirstweekday(calendar.SUNDAY)
 
 # Función para conectar a la base de datos
 def get_db_connection():
-  conn = sqlite3.connect("database.db")
-  conn.row_factory = sqlite3.Row
-  return conn
+    conn = sqlite3.connect("database.db")
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 # Función para inicializar la tabla de mensajes si no existe
 def init_db():
-  conn = get_db_connection()
-  conn.execute("""
+    conn = get_db_connection()
+    conn.execute("""
         CREATE TABLE IF NOT EXISTS mensajes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT NOT NULL,
@@ -27,8 +27,8 @@ def init_db():
             fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
-  conn.commit()
-  conn.close()
+    conn.commit()
+    conn.close()
 
 
 # Ejecutar la inicialización al arrancar la app
@@ -120,68 +120,76 @@ nombres_meses = [
 
 
 def generar_calendario_anual():
-  calendario_anual = []
-  for i, nombre in enumerate(nombres_meses, start=1):
-    matriz_mes = calendar.monthcalendar(2026, i)
-    mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
-    calendario_anual.append({
-        "nombre": nombre,
-        "matriz": matriz_mes,
-        "eventos": mapa_eventos,
-    })
-  return calendario_anual
+    calendario_anual = []
+    for i, nombre in enumerate(nombres_meses, start=1):
+        matriz_mes = calendar.monthcalendar(2026, i)
+        mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
+        calendario_anual.append({
+            "nombre": nombre,
+            "matriz": matriz_mes,
+            "eventos": mapa_eventos,
+        })
+    return calendario_anual
 
 
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-  return render_template("inicio.html", noticias=noticias_recientes)
+    return render_template("inicio.html", noticias=noticias_recientes)
 
 
 @app.route("/mensajes")
 def mensajes():
-  return render_template(
-      "mensajes.html",
-      avisos=avisos_institucionales,
-      noticias=noticias_recientes,
-      calendario=generar_calendario_anual(),
-  )
+    # Obtenemos los mensajes de la base de datos para mostrarlos en mensajes.html
+    conn = get_db_connection()
+    mensajes_usuarios = conn.execute(
+        "SELECT * FROM mensajes ORDER BY id DESC"
+    ).fetchall()
+    conn.close()
+
+    return render_template(
+        "mensajes.html",
+        avisos=avisos_institucionales,
+        noticias=noticias_recientes,
+        calendario=generar_calendario_anual(),
+        mensajes_db=mensajes_usuarios,
+    )
 
 
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
-  return render_template("quienes.html", noticias=noticias_recientes)
+    return render_template("quienes.html", noticias=noticias_recientes)
 
 
 @app.route("/servicios")
 def servicios():
-  return render_template("servicios.html", noticias=noticias_recientes)
+    return render_template("servicios.html", noticias=noticias_recientes)
 
 
 @app.route("/acerca")
 def acerca():
-  return render_template("acerca.html", noticias=noticias_recientes)
+    return render_template("acerca.html", noticias=noticias_recientes)
 
 
 @app.route("/contacto", methods=["GET", "POST"])
 def contacto():
-  if request.method == "POST":
-    nombre = request.form["nombre"]
-    correo = request.form["correo"]
-    mensaje = request.form["mensaje"]
+    if request.method == "POST":
+        nombre = request.form["nombre"]
+        correo = request.form["correo"]
+        mensaje = request.form["mensaje"]
 
-    conn = get_db_connection()
-    conn.execute(
-        "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
-        (nombre, correo, mensaje),
-    )
-    conn.commit()
-    conn.close()
-    return redirect(url_for("contacto"))
+        conn = get_db_connection()
+        conn.execute(
+            "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
+            (nombre, correo, mensaje),
+        )
+        conn.commit()
+        conn.close()
+        return redirect(url_for("contacto"))
 
-  return render_template("contacto.html", noticias=noticias_recientes)
+    return render_template("contacto.html", noticias=noticias_recientes)
 
 
 if __name__ == "__main__":
-  app.run(debug=True)
+    app.run(debug=True)
