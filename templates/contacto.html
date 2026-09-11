@@ -1,37 +1,5 @@
 {% extends "base.html" %}
 
-<<<<<<< HEAD
-{% block content %}
-<h2>Contáctanos</h2>
-
-<div class="grid-2-cols">
-    <div class="info-card">
-        <h3>Información de Contacto</h3>
-        <p><strong>Ubicación:</strong> Barrio El Centro, San Pedro Sula, Honduras</p>
-        <p><strong>Teléfono:</strong> +504 2550-0000</p>
-        <p><strong>Correo Electrónico:</strong> info@portal-educativo.edu.hn</p>
-        <p><strong>Horario de Atención:</strong> Lunes a Viernes (7:00 AM - 4:00 PM)</p>
-    </div>
-
-    <form class="contact-form">
-        <h3>Envíanos un Mensaje</h3>
-        <div class="form-group">
-            <label for="nombre">Nombre Completo</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo Electrónico</label>
-            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
-        </div>
-        <div class="form-group">
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí..." required></textarea>
-        </div>
-        <button type="submit">Enviar Consulta</button>
-    </form>
-</div>
-{% endblock %}
-=======
 {% block title %}Contacto | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
@@ -236,7 +204,7 @@
         PM)
       </p>
 
-      <!-- MAPA INTERACTIVO CON BOTÓN EXTERNO HACIA GOOGLE MAPS CORREGIDO -->
+      <!-- MAPA INTERACTIVO -->
       <div
         style="position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #e0d5cb;"
       >
@@ -260,13 +228,12 @@
           style="border:0;"
           allowfullscreen=""
           loading="lazy"
-        >
-        </iframe>
+        ></iframe>
       </div>
     </div>
   </div>
 
-  <!-- PREGUNTAS FRECUENTES (FAQ) CON ACORDEÓN FLUIDO Y SEGURO -->
+  <!-- PREGUNTAS FRECUENTES (FAQ) -->
   <div
     class="info-card fade-in"
     style="margin-top: 2rem; border-top: 4px solid var(--accent-gold);"
@@ -418,13 +385,12 @@
     </div>
   </div>
 
-  <!-- SCRIPT SEGURO PARA EL ACORDEÓN CON ALTURA AMPLIADA -->
+  <!-- SCRIPT PARA EL ACORDEÓN -->
   <script>
     function toggleFaq(button) {
       const answer = button.nextElementSibling;
       const icon = button.querySelector(".faq-icon");
 
-      // Cierra los demás acordeones
       document.querySelectorAll(".faq-answer").forEach((item) => {
         if (item !== answer) {
           item.style.maxHeight = null;
@@ -435,7 +401,6 @@
         }
       });
 
-      // Abre o cierra el actual con un margen de holgura amplio (scrollHeight + 60px) para que nunca corte texto
       if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
         answer.style.maxHeight = "0px";
         answer.style.padding = "0 1.2rem";
@@ -448,4 +413,3 @@
     }
   </script>
 {% endblock %}
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
