@@ -1,23 +1,4 @@
 {% extends "base.html" %}
-<<<<<<< HEAD
-{% block titulo %}Inicio{% endblock %}
-
-{% block contenido %}
-<h2>Ultimas Noticias</h2>
-{% if noticias %}
-    <ul>
-    {% for noticia in noticias %}
-        <li>
-            <h3>{{ noticia['titulo'] }}</h3>
-            <p>{{ noticia['contenido'] }}</p>
-            <small>{{ noticia['fecha'] }}</small>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Todavía no hay noticias publicadas.</p>
-{% endif %}
-=======
 
 {% block title %}Inicio | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
@@ -193,28 +174,34 @@
     <i class="fa-solid fa-newspaper"></i> Noticias y Destacados
   </h2>
 
-  <div class="grid-3-cols">
-    {% for noticia in noticias %}
-      <div
-        class="noticia-card fade-in"
-        style="border-top: 4px solid var(--accent-gold);"
-      >
-        <h3
-          style="color: var(--header-brown); font-size: 1.2rem; margin-bottom: 0.5rem;"
+  {% if noticias %}
+    <div class="grid-3-cols" style="margin-top: 1.5rem;">
+      {% for noticia in noticias %}
+        <div
+          class="noticia-card fade-in"
+          style="border-top: 4px solid var(--accent-gold);"
         >
-          {{ noticia['titulo'] }}
-        </h3>
-        <p
-          style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;"
-        >
-          <i class="fa-solid fa-calendar-day"></i> {{ noticia['fecha'] }}
-        </p>
-        <p style="font-size: 0.95rem; color: var(--text-main);">
-          {{ noticia['contenido'] }}
-        </p>
-      </div>
-    {% endfor %}
-  </div>
+          <h3
+            style="color: var(--header-brown); font-size: 1.2rem; margin-bottom: 0.5rem;"
+          >
+            {{ noticia['titulo'] }}
+          </h3>
+          <p
+            style="color: var(--secondary-pink); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem;"
+          >
+            <i class="fa-solid fa-calendar-day"></i> {{ noticia['fecha'] }}
+          </p>
+          <p style="font-size: 0.95rem; color: var(--text-main);">
+            {{ noticia['contenido'] }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="margin-top: 1rem; color: #666;">
+      Todavía no hay noticias publicadas.
+    </p>
+  {% endif %}
 
   <!-- LLAMADO A LA ACCIÓN -->
   <div
@@ -282,5 +269,4 @@
       }, 4500);
     }
   </script>
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 {% endblock %}
