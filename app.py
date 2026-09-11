@@ -45,12 +45,7 @@ def inicio():
 
 @app.route('/quienes')
 def quienes():
-    # Carga dinámica de imágenes para la galería de Quiénes Somos
-    ruta_imagenes = os.path.join(app.root_path, 'static', 'Imagenes')
-    if not os.path.exists(ruta_imagenes):
-        os.makedirs(ruta_imagenes)
-    lista_imagenes = [img for img in os.listdir(ruta_imagenes) if allowed_file(img)]
-    return render_template('quienes.html', lista_imagenes=lista_imagenes)
+    return render_template('quienes.html')
 
 @app.route('/servicios')
 def servicios():
