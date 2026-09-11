@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<h2>Ultimas Noticias</h2>
+{% if noticias %}
+    <ul>
+    {% for noticia in noticias %}
+        <li>
+            <h3>{{ noticia['titulo'] }}</h3>
+            <p>{{ noticia['contenido'] }}</p>
+            <small>{{ noticia['fecha'] }}</small>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Todavía no hay noticias publicadas.</p>
+{% endif %}
+{% endblock %}
