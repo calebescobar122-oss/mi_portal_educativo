@@ -1,391 +1,151 @@
-import calendar
 import os
 import sqlite3
-from flask import Flask, redirect, render_template, request, session, url_for
+from datetime import datetime
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = "tu_clave_secreta_muy_segura_cambiala"
+app.secret_key = 'clave_secreta_super_segura'  # Necesaria para usar session
 
-# Configurar para que la semana empiece en Domingo
-calendar.setfirstweekday(calendar.SUNDAY)
+# Configuración de la carpeta para subir imágenes
+UPLOAD_FOLDER = os.path.join('static', 'Imagenes')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
-# Definir la ruta absoluta de la base de datos para evitar pérdidas de ubicación
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DB_PATH = os.path.join(BASE_DIR, "database.db")
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-<<<<<<< HEAD
-# Configuración para subida de imágenes de la galería
-UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "Imagenes")
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+# Asegurarse de que la carpeta de imágenes exista
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
-# Función para conectar a la base de datos
-def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
-=======
-
-# Función para conectar a la base de datos
-def get_db_connection():
-  conn = sqlite3.connect(DB_PATH)
-  conn.row_factory = sqlite3.Row
-  return conn
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
-
-
-# Función para inicializar la tabla de mensajes si no existe
+# Inicializar la Base de Datos para el Buzón de Consultas
 def init_db():
-<<<<<<< HEAD
-    conn = get_db_connection()
-    conn.execute("""
-=======
-  conn = get_db_connection()
-  conn.execute("""
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
+    conexion = sqlite3.connect('database.db')
+    cursor = conexion.cursor()
+    cursor.execute('''
         CREATE TABLE IF NOT EXISTS mensajes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT NOT NULL,
-            correo TEXT NOT NULL,
-            mensaje TEXT NOT NULL,
-            fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            fecha TEXT,
+            nombre TEXT,
+            contacto TEXT,
+            mensaje TEXT
         )
-    """)
-<<<<<<< HEAD
-    conn.commit()
-    conn.close()
-=======
-  conn.commit()
-  conn.close()
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
+    ''')
+    conexion.commit()
+    conexion.close()
 
-
-# Ejecutar la inicialización al arrancar la app
 init_db()
 
-noticias_recientes = [
-    {
-        "titulo": "¡Inscripciones Abiertas 2026!",
-        "fecha": "Periodo Escolar 2026",
-        "contenido": (
-            "Matrículas disponibles desde Pre-Kínder hasta Media, BTPS en"
-            " Informática, Contaduría y Finanzas, Humanidades y Administración"
-            " de Empresas. ¡Forma parte de nuestra gran familia!"
-        ),
-    },
-    {
-        "titulo": "Excelencia Académica Bilingüe y Nacional",
-        "fecha": "Formación Integral",
-        "contenido": (
-            "Clases 100% certificadas en inglés y español con maestros"
-            " altamente calificados y más de 10 años de trayectoria educativa."
-        ),
-    },
-    {
-        "titulo": "Orgullo Cívico y Cultural",
-        "fecha": "Actividades Escolares",
-        "contenido": (
-            "Destacada participación de nuestra Banda de Guerra y Grupo de"
-            " Danza en los desfiles patrios y eventos culturales de la comunidad."
-        ),
-    },
-]
+# --- RUTAS PÚBLICAS ---
 
-avisos_institucionales = [
-    {
-        "titulo": "Aviso Importante: Suspensión de Clases",
-        "fecha": "10 de Septiembre, 2026",
-        "categoria": "Urgente",
-        "contenido": (
-            "Estimada comunidad educativa, se les informa que el día jueves 10 de"
-            " septiembre no habrá clases por motivo de asueto institucional."
-            " Reanudamos actividades normales el viernes 11."
-        ),
-    },
-    {
-        "titulo": "Reunión de Padres de Familia",
-        "fecha": "15 de Septiembre, 2026",
-        "categoria": "General",
-        "contenido": (
-            "Convocatoria a todos los padres de familia para la entrega del"
-            " reporte de avance académico correspondiente al parcial."
-        ),
-    },
-]
-
-eventos_por_mes = {
-    2: [{"dia": 1, "titulo": "Inicio de Matrículas"}],
-    3: [{"dia": 1, "titulo": "Inicio de Clases"}],
-    4: [{"dia": 2, "titulo": "Semana Santa"}],
-    5: [{"dia": 1, "titulo": "Día del Trabajo"}],
-    6: [{"dia": 15, "titulo": "Exámenes"}],
-    7: [{"dia": 20, "titulo": "Vacaciones"}],
-    8: [{"dia": 1, "titulo": "Reanudación"}],
-    9: [
-        {"dia": 2, "titulo": "Examen Parcial"},
-        {"dia": 10, "titulo": "Suspensión"},
-        {"dia": 15, "titulo": "Reunión"},
-    ],
-    10: [{"dia": 3, "titulo": "Feriado"}],
-    11: [{"dia": 25, "titulo": "Clausura"}],
-    12: [{"dia": 25, "titulo": "Navidad"}],
-}
-
-nombres_meses = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-]
-
-
-def generar_calendario_anual():
-<<<<<<< HEAD
-    calendario_anual = []
-    for i, nombre in enumerate(nombres_meses, start=1):
-        matriz_mes = calendar.monthcalendar(2026, i)
-        mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
-        calendario_anual.append({
-            "nombre": nombre,
-            "matriz": matriz_mes,
-            "eventos": mapa_eventos,
-        })
-    return calendario_anual
-=======
-  calendario_anual = []
-  for i, nombre in enumerate(nombres_meses, start=1):
-    matriz_mes = calendar.monthcalendar(2026, i)
-    mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
-    calendario_anual.append({
-        "nombre": nombre,
-        "matriz": matriz_mes,
-        "eventos": mapa_eventos,
-    })
-  return calendario_anual
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
-
-
-@app.route("/")
-@app.route("/inicio")
+@app.route('/')
 def inicio():
-<<<<<<< HEAD
-    return render_template("inicio.html", noticias=noticias_recientes)
-=======
-  return render_template("inicio.html", noticias=noticias_recientes)
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
+    return render_template('inicio.html')
 
-
-@app.route("/mensajes", methods=["GET", "POST"])
-def mensajes():
-<<<<<<< HEAD
-    if request.method == "POST":
-        # Manejo del login si viene desde el formulario de acceso
-        if "password" in request.form:
-            password = request.form.get("password")
-            if password == "12345":
-                session["admin_logueado"] = True
-                return redirect(url_for("mensajes"))
-            else:
-                error = "Contraseña incorrecta. Inténtalo de nuevo."
-                return render_template("login_mensajes.html", error=error)
-
-        # Manejo exclusivo para administradores logueados (Subir o borrar imágenes)
-        if session.get("admin_logueado"):
-            if "imagen_galeria" in request.files:
-                file = request.files["imagen_galeria"]
-                if file and allowed_file(file.filename):
-                    filename = file.filename
-                    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-                    file.save(os.path.join(UPLOAD_FOLDER, filename))
-                    return redirect(url_for("mensajes"))
-
-            elif "eliminar_imagen" in request.form:
-                img_name = request.form.get("eliminar_imagen")
-                img_path = os.path.join(UPLOAD_FOLDER, img_name)
-                if os.path.exists(img_path):
-                    os.remove(img_path)
-                return redirect(url_for("mensajes"))
-
-    mensajes_usuarios = []
-    lista_imagenes = []
-    
-    if os.path.exists(UPLOAD_FOLDER):
-        lista_imagenes = os.listdir(UPLOAD_FOLDER)
-
-    if session.get("admin_logueado"):
-        conn = get_db_connection()
-        mensajes_usuarios = conn.execute(
-            "SELECT * FROM mensajes ORDER BY id DESC"
-        ).fetchall()
-        conn.close()
-
-    return render_template(
-        "mensajes.html",
-        avisos=avisos_institucionales,
-        noticias=noticias_recientes,
-        calendario=generar_calendario_anual(),
-        mensajes_db=mensajes_usuarios,
-        lista_imagenes=lista_imagenes,
-    )
-=======
-  if request.method == "POST":
-    password = request.form.get("password")
-    if password == "12345":
-      session["admin_logueado"] = True
-      return redirect(url_for("mensajes"))
-    else:
-      error = "Contraseña incorrecta. Inténtalo de nuevo."
-      return render_template("login_mensajes.html", error=error)
-
-  mensajes_usuarios = []
-  if session.get("admin_logueado"):
-    conn = get_db_connection()
-    mensajes_usuarios = conn.execute(
-        "SELECT * FROM mensajes ORDER BY id DESC"
-    ).fetchall()
-    conn.close()
-
-  return render_template(
-      "mensajes.html",
-      avisos=avisos_institucionales,
-      noticias=noticias_recientes,
-      calendario=generar_calendario_anual(),
-      mensajes_db=mensajes_usuarios,
-  )
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
-
-
-@app.route("/login-mensajes", methods=["GET", "POST"])
-def login_mensajes():
-<<<<<<< HEAD
-    if request.method == "POST":
-        password = request.form.get("password")
-        if password == "12345":
-            session["admin_logueado"] = True
-            return redirect(url_for("mensajes"))
-        else:
-            error = "Contraseña incorrecta. Inténtalo de nuevo."
-            return render_template("login_mensajes.html", error=error)
-
-    return render_template("login_mensajes.html")
-=======
-  if request.method == "POST":
-    password = request.form.get("password")
-    if password == "12345":
-      session["admin_logueado"] = True
-      return redirect(url_for("mensajes"))
-    else:
-      error = "Contraseña incorrecta. Inténtalo de nuevo."
-      return render_template("login_mensajes.html", error=error)
-
-  return render_template("login_mensajes.html")
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
-
-
-@app.route("/logout")
-def logout():
-<<<<<<< HEAD
-    session.pop("admin_logueado", None)
-    return redirect(url_for("mensajes"))
-=======
-  session.pop("admin_logueado", None)
-  return redirect(url_for("mensajes"))
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
-
-
-@app.route("/quienes")
-@app.route("/quienes-somos")
+@app.route('/quienes')
 def quienes():
-<<<<<<< HEAD
-    lista_imagenes = []
-    if os.path.exists(UPLOAD_FOLDER):
-        lista_imagenes = os.listdir(UPLOAD_FOLDER)
-    return render_template("quienes.html", noticias=noticias_recientes, lista_imagenes=lista_imagenes)
-=======
-  return render_template("quienes.html", noticias=noticias_recientes)
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
+    # Carga dinámica de imágenes para la galería de Quiénes Somos
+    ruta_imagenes = os.path.join(app.root_path, 'static', 'Imagenes')
+    if not os.path.exists(ruta_imagenes):
+        os.makedirs(ruta_imagenes)
+    lista_imagenes = [img for img in os.listdir(ruta_imagenes) if allowed_file(img)]
+    return render_template('quienes.html', lista_imagenes=lista_imagenes)
 
-
-@app.route("/servicios")
+@app.route('/servicios')
 def servicios():
-<<<<<<< HEAD
-    return render_template("servicios.html", noticias=noticias_recientes)
-=======
-  return render_template("servicios.html", noticias=noticias_recientes)
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
+    return render_template('servicios.html')
 
-
-@app.route("/acerca")
-def acerca():
-<<<<<<< HEAD
-    return render_template("acerca.html", noticias=noticias_recientes)
-=======
-  return render_template("acerca.html", noticias=noticias_recientes)
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
-
-
-@app.route("/contacto", methods=["GET", "POST"])
+@app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
-<<<<<<< HEAD
-    if request.method == "POST":
-        nombre = request.form.get("nombre")
-        correo = request.form.get("correo")
-        mensaje = request.form.get("mensaje")
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        contacto_info = request.form['contacto']
+        mensaje = request.form['mensaje']
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        if nombre and correo and mensaje:
-            conn = get_db_connection()
-            conn.execute(
-                "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
-                (nombre, correo, mensaje),
-            )
-            conn.commit()
-            conn.close()
+        conexion = sqlite3.connect('database.db')
+        cursor = conexion.cursor()
+        cursor.execute('INSERT INTO mensajes (fecha, nombre, contacto, mensaje) VALUES (?, ?, ?, ?)',
+                       (fecha, nombre, contacto_info, mensaje))
+        conexion.commit()
+        conexion.close()
+        
+        return redirect(url_for('contacto'))
+    return render_template('contacto.html')
 
-    return render_template("contacto.html", noticias=noticias_recientes)
+@app.route('/acerca')
+def acerca():
+    return render_template('acerca.html')
 
 
-if __name__ == "__main__":
+# --- RUTAS DE ADMINISTRACIÓN Y AUTENTICACIÓN ---
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        password = request.form.get('password')
+        if password == '12345':  # Contraseña de administrador
+            session['admin_logged_in'] = True
+            return redirect(url_for('mensajes'))
+        else:
+            flash('Contraseña incorrecta', 'danger')
+    return render_template('login_mensajes.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('inicio'))
+
+@app.route('/mensajes')
+def mensajes():
+    if 'admin_logged_in' not in session:
+        return redirect(url_for('login'))
+    
+    # Obtener mensajes del buzón
+    conexion = sqlite3.connect('database.db')
+    conexion.row_factory = sqlite3.Row
+    cursor = conexion.cursor()
+    cursor.execute('SELECT * FROM mensajes ORDER BY id DESC')
+    mensajes_db = cursor.fetchall()
+    conexion.close()
+
+    # Obtener la lista de imágenes para el panel de administración
+    ruta_imagenes = os.path.join(app.root_path, 'static', 'Imagenes')
+    if not os.path.exists(ruta_imagenes):
+        os.makedirs(ruta_imagenes)
+    lista_imagenes = [img for img in os.listdir(ruta_imagenes) if allowed_file(img)]
+
+    return render_template('mensajes.html', mensajes=mensajes_db, lista_imagenes=lista_imagenes)
+
+@app.route('/subir_imagen', methods=['POST'])
+def subir_imagen():
+    if 'admin_logged_in' not in session:
+        return redirect(url_for('login'))
+    
+    if 'foto' not in request.files:
+        return redirect(url_for('mensajes'))
+    
+    file = request.files['foto']
+    if file.filename == '':
+        return redirect(url_for('mensajes'))
+    
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        
+    return redirect(url_for('mensajes'))
+
+@app.route('/eliminar_imagen/<path:nombre_imagen>', methods=['POST'])
+def eliminar_imagen(nombre_imagen):
+    if 'admin_logged_in' not in session:
+        return redirect(url_for('login'))
+    
+    ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], nombre_imagen)
+    if os.path.exists(ruta_archivo):
+        os.remove(ruta_archivo)
+        
+    return redirect(url_for('mensajes'))
+
+if __name__ == '__main__':
     app.run(debug=True)
-=======
-  if request.method == "POST":
-    nombre = request.form.get("nombre")
-    correo = request.form.get("correo")
-    mensaje = request.form.get("mensaje")
-
-    if nombre and correo and mensaje:
-      # Guardar en la base de datos SQLite
-      conn = get_db_connection()
-      conn.execute(
-          "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
-          (nombre, correo, mensaje),
-      )
-      conn.commit()
-      conn.close()
-
-      # Imprimir en la terminal de VS Code para tener control visual rápido
-      print("\n" + "=" * 50)
-      print(" 📩 NUEVA CONSULTA RECIBIDA DESDE LA WEB:")
-      print(f" • Nombre: {nombre}")
-      print(f" • Correo / Teléfono: {correo}")
-      print(f" • Mensaje: {mensaje}")
-      print("=" * 50 + "\n")
-
-    return redirect(url_for("contacto"))
-
-  return render_template("contacto.html", noticias=noticias_recientes)
-
-
-if __name__ == "__main__":
-  app.run(debug=True)
->>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
