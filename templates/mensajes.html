@@ -1,109 +1,196 @@
 {% extends "base.html" %}
 
-{% block title %}Panel de Administración | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
+{% block title %}
+  Panel de Administración | Jardín Escuela e Instituto Jesús Nazareno
+{% endblock %}
 
 {% block content %}
-<section class="page-header fade-in" style="text-align: center; margin-bottom: 2rem;">
-  <h2 style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);">
-    <i class="fa-solid fa-gauge-high"></i> Panel de Administración - Buzón y Galería
-  </h2>
-  <p class="subtitle" style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;">
-    Gestión de consultas recibidas y control de imágenes institucionales.
-  </p>
-  <div style="margin-top: 1rem;">
-    <a href="{{ url_for('logout') }}" class="btn-primary" style="background-color: #d9534f; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-size: 0.9rem;">
-      <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión de Administrador
-    </a>
-  </div>
-</section>
+  <section
+    class="page-header fade-in"
+    style="text-align: center; margin-bottom: 2rem;"
+  >
+    <h2
+      style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);"
+    >
+      <i class="fa-solid fa-gauge-high"></i> Panel de Administración - Buzón y
+      Galería
+    </h2>
+    <p
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+    >
+      Gestión de consultas recibidas y control de imágenes institucionales.
+    </p>
+    <div style="margin-top: 1rem;">
+      <a
+        href="{{ url_for('logout') }}"
+        class="btn-primary"
+        style="background-color: #d9534f; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-size: 0.9rem;"
+      >
+        <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión de
+        Administrador
+      </a>
+    </div>
+  </section>
 
-<!-- SECCIÓN 1: BUZÓN DE CONSULTAS -->
-<div class="info-card fade-in" style="border-top: 4px solid var(--accent-yellow); margin-bottom: 2.5rem;">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-    <h3 style="color: var(--header-blue); margin: 0;">
-      <i class="fa-solid fa-inbox"></i> Buzón de Consultas Recibidas
-    </h3>
-    <span style="background-color: #d4edda; color: #155724; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">
-      <i class="fa-solid fa-shield-check"></i> Sesión Activa
-    </span>
-  </div>
+  <!-- SECCIÓN 1: BUZÓN DE CONSULTAS -->
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-yellow); margin-bottom: 2.5rem;"
+  >
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;"
+    >
+      <h3 style="color: var(--header-blue); margin: 0;">
+        <i class="fa-solid fa-inbox"></i> Buzón de Consultas Recibidas
+      </h3>
+      <span
+        style="background-color: #d4edda; color: #155724; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+      >
+        <i class="fa-solid fa-shield-check"></i> Sesión Activa
+      </span>
+    </div>
 
-  {% if mensajes %}
-    <div style="overflow-x: auto;">
-      <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
-        <thead>
-          <tr style="background-color: #f8f9fa; border-bottom: 2px solid var(--border-light); color: var(--header-blue);">
-            <th style="padding: 10px;">Fecha</th>
-            <th style="padding: 10px;">Nombre</th>
-            <th style="padding: 10px;">Correo / Teléfono</th>
-            <th style="padding: 10px;">Mensaje</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for m in mensajes %}
-            <tr style="border-bottom: 1px solid var(--border-light);">
-              <td style="padding: 10px; color: #666; font-size: 0.85rem;">{{ m.fecha }}</td>
-              <td style="padding: 10px; font-weight: 600; color: var(--text-main);">{{ m.nombre }}</td>
-              <td style="padding: 10px; color: var(--text-main);">{{ m.contacto }}</td>
-              <td style="padding: 10px; color: var(--text-main);">{{ m.mensaje }}</td>
+    {% if mensajes %}
+      <div style="overflow-x: auto;">
+        <table
+          style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;"
+        >
+          <thead>
+            <tr
+              style="background-color: #f8f9fa; border-bottom: 2px solid var(--border-light); color: var(--header-blue);"
+            >
+              <th style="padding: 10px;">Fecha</th>
+              <th style="padding: 10px;">Nombre</th>
+              <th style="padding: 10px;">Correo / Teléfono</th>
+              <th style="padding: 10px;">Mensaje</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  {% else %}
-    <p style="text-align: center; color: #666; font-style: italic; padding: 1.5rem 0;">
-      No hay consultas nuevas en este momento.
+          </thead>
+          <tbody>
+            {% for m in mensajes %}
+              <tr style="border-bottom: 1px solid var(--border-light);">
+                <td style="padding: 10px; color: #666; font-size: 0.85rem;">
+                  {{ m.fecha }}
+                </td>
+                <td
+                  style="padding: 10px; font-weight: 600; color: var(--text-main);"
+                >
+                  {{ m.nombre }}
+                </td>
+                <td style="padding: 10px; color: var(--text-main);">
+                  {{ m.contacto }}
+                </td>
+                <td style="padding: 10px; color: var(--text-main);">
+                  {{ m.mensaje }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p
+        style="text-align: center; color: #666; font-style: italic; padding: 1.5rem 0;"
+      >
+        No hay consultas nuevas en este momento.
+      </p>
+    {% endif %}
+  </div>
+
+  <!-- SECCIÓN 2: GESTIÓN DE LA GALERÍA DE IMÁGENES -->
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-yellow);"
+  >
+    <h3 style="color: var(--header-blue); margin-bottom: 1rem;">
+      <i class="fa-solid fa-images"></i> Administrar Galería Institucional
+    </h3>
+    <p
+      style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 1.5rem;"
+    >
+      Sube nuevas fotografías para que aparezcan automáticamente en la sección
+      <strong>Quiénes Somos</strong> o elimina las que ya no necesites.
     </p>
-  {% endif %}
-</div>
 
+    <!-- Formulario para subir imagen -->
+    <form
+      action="{{ url_for('subir_imagen') }}"
+      method="POST"
+      enctype="multipart/form-data"
+      style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 2rem;"
+    >
+      <h4
+        style="color: var(--header-blue); margin-bottom: 0.8rem; font-size: 1rem;"
+      >
+        <i class="fa-solid fa-cloud-arrow-up"></i> Subir Nueva Fotografía
+      </h4>
+      <div
+        style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;"
+      >
+        <input
+          type="file"
+          name="foto"
+          accept="image/*"
+          required
+          style="padding: 0.5rem; background: white; border: 1px solid #ccc; border-radius: 4px; flex: 1; min-width: 240px;"
+        />
+        <button
+          type="submit"
+          class="btn-primary"
+          style="background-color: var(--header-blue); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; cursor: pointer; font-weight: 600;"
+        >
+          <i class="fa-solid fa-upload"></i> Subir Imagen
+        </button>
+      </div>
+    </form>
 
-<!-- SECCIÓN 2: GESTIÓN DE LA GALERÍA DE IMÁGENES -->
-<div class="info-card fade-in" style="border-top: 4px solid var(--accent-yellow);">
-  <h3 style="color: var(--header-blue); margin-bottom: 1rem;">
-    <i class="fa-solid fa-images"></i> Administrar Galería Institucional
-  </h3>
-  <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 1.5rem;">
-    Sube nuevas fotografías para que aparezcan automáticamente en la sección <strong>Quiénes Somos</strong> o elimina las que ya no necesites.
-  </p>
-
-  <!-- Formulario para subir imagen -->
-  <form action="{{ url_for('subir_imagen') }}" method="POST" enctype="multipart/form-data" style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 2rem;">
-    <h4 style="color: var(--header-blue); margin-bottom: 0.8rem; font-size: 1rem;">
-      <i class="fa-solid fa-cloud-arrow-up"></i> Subir Nueva Fotografía
+    <!-- Listado de imágenes actuales con opción de borrar -->
+    <h4
+      style="color: var(--header-blue); margin-bottom: 1rem; font-size: 1rem;"
+    >
+      <i class="fa-solid fa-list-check"></i> Fotografías Actuales en el Sistema
     </h4>
-    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-      <input type="file" name="foto" accept="image/*" required style="padding: 0.5rem; background: white; border: 1px solid #ccc; border-radius: 4px; flex: 1; min-width: 240px;" />
-      <button type="submit" class="btn-primary" style="background-color: var(--header-blue); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; cursor: pointer; font-weight: 600;">
-        <i class="fa-solid fa-upload"></i> Subir Imagen
-      </button>
-    </div>
-  </form>
 
-  <!-- Listado de imágenes actuales con opción de borrar -->
-  <h4 style="color: var(--header-blue); margin-bottom: 1rem; font-size: 1rem;">
-    <i class="fa-solid fa-list-check"></i> Fotografías Actuales en el Sistema
-  </h4>
-
-  {% if lista_imagenes %}
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-      {% for img in lista_imagenes %}
-        <div style="background: white; border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); text-align: center; padding-bottom: 0.8rem;">
-          <img src="{{ url_for('static', filename='Imagenes/' + img) }}" alt="Foto galería" style="width: 100%; height: 130px; object-fit: cover; display: block; margin-bottom: 0.5rem;" />
-          <p style="font-size: 0.8rem; color: #666; padding: 0 0.5rem; margin-bottom: 0.5rem; word-break: break-all;">{{ img }}</p>
-          <form action="{{ url_for('eliminar_imagen', nombre_imagen=img) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta imagen?');" style="display: inline;">
-            <button type="submit" style="background-color: #d9534f; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">
-              <i class="fa-solid fa-trash"></i> Eliminar
-            </button>
-          </form>
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p style="color: #666; font-style: italic; text-align: center; padding: 1rem 0;">
-      No hay imágenes cargadas en este momento.
-    </p>
-  {% endif %}
-</div>
+    {% if lista_imagenes %}
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"
+      >
+        {% for img in lista_imagenes %}
+          <div
+            style="background: white; border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); text-align: center; padding-bottom: 0.8rem;"
+          >
+            <img
+              src="{{ url_for('static', filename='Imagenes/' + img) }}"
+              alt="Foto galería"
+              style="width: 100%; height: 130px; object-fit: cover; display: block; margin-bottom: 0.5rem;"
+            />
+            <p
+              style="font-size: 0.8rem; color: #666; padding: 0 0.5rem; margin-bottom: 0.5rem; word-break: break-all;"
+            >
+              {{ img }}
+            </p>
+            <form
+              action="{{ url_for('eliminar_imagen', nombre_imagen=img) }}"
+              method="POST"
+              onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta imagen?');"
+              style="display: inline;"
+            >
+              <button
+                type="submit"
+                style="background-color: #d9534f; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer;"
+              >
+                <i class="fa-solid fa-trash"></i> Eliminar
+              </button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p
+        style="color: #666; font-style: italic; text-align: center; padding: 1rem 0;"
+      >
+        No hay imágenes cargadas en este momento.
+      </p>
+    {% endif %}
+  </div>
 {% endblock %}
