@@ -13,6 +13,7 @@ calendar.setfirstweekday(calendar.SUNDAY)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
 
+<<<<<<< HEAD
 # Configuración para subida de imágenes de la galería
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "Imagenes")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
@@ -26,12 +27,25 @@ def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+=======
+
+# Función para conectar a la base de datos
+def get_db_connection():
+  conn = sqlite3.connect(DB_PATH)
+  conn.row_factory = sqlite3.Row
+  return conn
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 # Función para inicializar la tabla de mensajes si no existe
 def init_db():
+<<<<<<< HEAD
     conn = get_db_connection()
     conn.execute("""
+=======
+  conn = get_db_connection()
+  conn.execute("""
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
         CREATE TABLE IF NOT EXISTS mensajes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT NOT NULL,
@@ -40,8 +54,13 @@ def init_db():
             fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
+<<<<<<< HEAD
     conn.commit()
     conn.close()
+=======
+  conn.commit()
+  conn.close()
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 # Ejecutar la inicialización al arrancar la app
@@ -132,6 +151,7 @@ nombres_meses = [
 
 
 def generar_calendario_anual():
+<<<<<<< HEAD
     calendario_anual = []
     for i, nombre in enumerate(nombres_meses, start=1):
         matriz_mes = calendar.monthcalendar(2026, i)
@@ -142,16 +162,33 @@ def generar_calendario_anual():
             "eventos": mapa_eventos,
         })
     return calendario_anual
+=======
+  calendario_anual = []
+  for i, nombre in enumerate(nombres_meses, start=1):
+    matriz_mes = calendar.monthcalendar(2026, i)
+    mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
+    calendario_anual.append({
+        "nombre": nombre,
+        "matriz": matriz_mes,
+        "eventos": mapa_eventos,
+    })
+  return calendario_anual
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/")
 @app.route("/inicio")
 def inicio():
+<<<<<<< HEAD
     return render_template("inicio.html", noticias=noticias_recientes)
+=======
+  return render_template("inicio.html", noticias=noticias_recientes)
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/mensajes", methods=["GET", "POST"])
 def mensajes():
+<<<<<<< HEAD
     if request.method == "POST":
         # Manejo del login si viene desde el formulario de acceso
         if "password" in request.form:
@@ -201,10 +238,37 @@ def mensajes():
         mensajes_db=mensajes_usuarios,
         lista_imagenes=lista_imagenes,
     )
+=======
+  if request.method == "POST":
+    password = request.form.get("password")
+    if password == "12345":
+      session["admin_logueado"] = True
+      return redirect(url_for("mensajes"))
+    else:
+      error = "Contraseña incorrecta. Inténtalo de nuevo."
+      return render_template("login_mensajes.html", error=error)
+
+  mensajes_usuarios = []
+  if session.get("admin_logueado"):
+    conn = get_db_connection()
+    mensajes_usuarios = conn.execute(
+        "SELECT * FROM mensajes ORDER BY id DESC"
+    ).fetchall()
+    conn.close()
+
+  return render_template(
+      "mensajes.html",
+      avisos=avisos_institucionales,
+      noticias=noticias_recientes,
+      calendario=generar_calendario_anual(),
+      mensajes_db=mensajes_usuarios,
+  )
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/login-mensajes", methods=["GET", "POST"])
 def login_mensajes():
+<<<<<<< HEAD
     if request.method == "POST":
         password = request.form.get("password")
         if password == "12345":
@@ -215,35 +279,65 @@ def login_mensajes():
             return render_template("login_mensajes.html", error=error)
 
     return render_template("login_mensajes.html")
+=======
+  if request.method == "POST":
+    password = request.form.get("password")
+    if password == "12345":
+      session["admin_logueado"] = True
+      return redirect(url_for("mensajes"))
+    else:
+      error = "Contraseña incorrecta. Inténtalo de nuevo."
+      return render_template("login_mensajes.html", error=error)
+
+  return render_template("login_mensajes.html")
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/logout")
 def logout():
+<<<<<<< HEAD
     session.pop("admin_logueado", None)
     return redirect(url_for("mensajes"))
+=======
+  session.pop("admin_logueado", None)
+  return redirect(url_for("mensajes"))
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
+<<<<<<< HEAD
     lista_imagenes = []
     if os.path.exists(UPLOAD_FOLDER):
         lista_imagenes = os.listdir(UPLOAD_FOLDER)
     return render_template("quienes.html", noticias=noticias_recientes, lista_imagenes=lista_imagenes)
+=======
+  return render_template("quienes.html", noticias=noticias_recientes)
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/servicios")
 def servicios():
+<<<<<<< HEAD
     return render_template("servicios.html", noticias=noticias_recientes)
+=======
+  return render_template("servicios.html", noticias=noticias_recientes)
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/acerca")
 def acerca():
+<<<<<<< HEAD
     return render_template("acerca.html", noticias=noticias_recientes)
+=======
+  return render_template("acerca.html", noticias=noticias_recientes)
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
 
 
 @app.route("/contacto", methods=["GET", "POST"])
 def contacto():
+<<<<<<< HEAD
     if request.method == "POST":
         nombre = request.form.get("nombre")
         correo = request.form.get("correo")
@@ -263,3 +357,35 @@ def contacto():
 
 if __name__ == "__main__":
     app.run(debug=True)
+=======
+  if request.method == "POST":
+    nombre = request.form.get("nombre")
+    correo = request.form.get("correo")
+    mensaje = request.form.get("mensaje")
+
+    if nombre and correo and mensaje:
+      # Guardar en la base de datos SQLite
+      conn = get_db_connection()
+      conn.execute(
+          "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
+          (nombre, correo, mensaje),
+      )
+      conn.commit()
+      conn.close()
+
+      # Imprimir en la terminal de VS Code para tener control visual rápido
+      print("\n" + "=" * 50)
+      print(" 📩 NUEVA CONSULTA RECIBIDA DESDE LA WEB:")
+      print(f" • Nombre: {nombre}")
+      print(f" • Correo / Teléfono: {correo}")
+      print(f" • Mensaje: {mensaje}")
+      print("=" * 50 + "\n")
+
+    return redirect(url_for("contacto"))
+
+  return render_template("contacto.html", noticias=noticias_recientes)
+
+
+if __name__ == "__main__":
+  app.run(debug=True)
+>>>>>>> 2cd376e2046203493b7d7ea6f1d62d4055a7f3ff
