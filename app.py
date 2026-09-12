@@ -13,13 +13,12 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Ruta absoluta garantizada con nueva base de datos para limpiar tablas antiguas
+# Ruta absoluta garantizada para la base de datos
 DB_PATH = os.path.join(app.root_path, 'portal_db.db')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Inicializar la Base de Datos con ruta absoluta y estructura limpia
 def init_db():
     conexion = sqlite3.connect(DB_PATH)
     cursor = conexion.cursor()
@@ -75,6 +74,11 @@ def contacto():
 def acerca():
     return render_template('acerca.html')
 
+# Esta es la ruta pública de avisos y calendario que querías ver primero
+@app.route('/mensajes')
+def mensajes():
+    return render_template('mensajes.html')
+
 # --- RUTAS DE ADMINISTRACIÓN Y AUTENTICACIÓN ---
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -83,7 +87,7 @@ def login():
         password = request.form.get('password')
         if password == '12345':
             session['admin_logged_in'] = True
-            return redirect(url_for('mensajes'))
+            return redirect(url_for('admin_mensajes'))
         else:
             flash('Contraseña incorrecta', 'danger')
     return render_template('login_mensajes.html')
@@ -93,8 +97,9 @@ def logout():
     session.pop('admin_logged_in', None)
     return redirect(url_for('inicio'))
 
-@app.route('/mensajes', methods=['GET', 'POST'])
-def mensajes():
+# Panel privado protegido con contraseña para ver las consultas y gestionar imágenes
+@app.route('/admin_mensajes', methods=['GET', 'POST'])
+def admin_mensajes():
     if 'admin_logged_in' not in session:
         return redirect(url_for('login'))
 
@@ -116,27 +121,23 @@ def mensajes():
         'admin_mensajes.html', mensajes=mensajes_db, lista_imagenes=lista_imagenes
     )
 
-@app.route('/admin_mensajes')
-def admin_mensajes():
-    return redirect(url_for('mensajes'))
-
 @app.route('/subir_imagen', methods=['POST'])
 def subir_imagen():
     if 'admin_logged_in' not in session:
         return redirect(url_for('login'))
 
     if 'foto' not in request.files:
-        return redirect(url_for('mensajes'))
+        return redirect(url_for('admin_mensajes'))
 
     file = request.files['foto']
     if file.filename == '':
-        return redirect(url_for('mensajes'))
+        return redirect(url_for('admin_mensajes'))
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    return redirect(url_for('mensajes'))
+    return redirect(url_for('admin_mensajes'))
 
 @app.route('/eliminar_imagen/<path:nombre_imagen>', methods=['POST'])
 def eliminar_imagen(nombre_imagen):
@@ -147,7 +148,7 @@ def eliminar_imagen(nombre_imagen):
     if os.path.exists(ruta_archivo):
         os.remove(ruta_archivo)
 
-    return redirect(url_for('mensajes'))
+    return redirect(url_for('admin_mensajes'))
 
 if __name__ == '__main__':
     app.run(debug=True)
