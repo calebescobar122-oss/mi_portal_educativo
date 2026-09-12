@@ -13,8 +13,8 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Ruta absoluta garantizada para la base de datos
-DB_PATH = os.path.join(app.root_path, 'database.db')
+# Ruta absoluta garantizada con nueva base de datos para limpiar tablas antiguas
+DB_PATH = os.path.join(app.root_path, 'portal_db.db')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
