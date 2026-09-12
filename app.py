@@ -75,10 +75,6 @@ def contacto():
 def acerca():
     return render_template('acerca.html')
 
-@app.route('/mensajes')
-def mensajes():
-    return render_template('mensajes.html')
-
 # --- RUTAS DE ADMINISTRACIÓN Y AUTENTICACIÓN ---
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -87,7 +83,7 @@ def login():
         password = request.form.get('password')
         if password == '12345':
             session['admin_logged_in'] = True
-            return redirect(url_for('admin_mensajes'))
+            return redirect(url_for('mensajes'))
         else:
             flash('Contraseña incorrecta', 'danger')
     return render_template('login_mensajes.html')
@@ -97,8 +93,8 @@ def logout():
     session.pop('admin_logged_in', None)
     return redirect(url_for('inicio'))
 
-@app.route('/admin_mensajes', methods=['GET', 'POST'])
-def admin_mensajes():
+@app.route('/mensajes', methods=['GET', 'POST'])
+def mensajes():
     if 'admin_logged_in' not in session:
         return redirect(url_for('login'))
 
@@ -120,23 +116,27 @@ def admin_mensajes():
         'admin_mensajes.html', mensajes=mensajes_db, lista_imagenes=lista_imagenes
     )
 
+@app.route('/admin_mensajes')
+def admin_mensajes():
+    return redirect(url_for('mensajes'))
+
 @app.route('/subir_imagen', methods=['POST'])
 def subir_imagen():
     if 'admin_logged_in' not in session:
         return redirect(url_for('login'))
 
     if 'foto' not in request.files:
-        return redirect(url_for('admin_mensajes'))
+        return redirect(url_for('mensajes'))
 
     file = request.files['foto']
     if file.filename == '':
-        return redirect(url_for('admin_mensajes'))
+        return redirect(url_for('mensajes'))
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    return redirect(url_for('admin_mensajes'))
+    return redirect(url_for('mensajes'))
 
 @app.route('/eliminar_imagen/<path:nombre_imagen>', methods=['POST'])
 def eliminar_imagen(nombre_imagen):
@@ -147,7 +147,7 @@ def eliminar_imagen(nombre_imagen):
     if os.path.exists(ruta_archivo):
         os.remove(ruta_archivo)
 
-    return redirect(url_for('admin_mensajes'))
+    return redirect(url_for('mensajes'))
 
 if __name__ == '__main__':
     app.run(debug=True)
