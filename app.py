@@ -13,13 +13,13 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Ruta absoluta garantizada para la base de datos en producción y local
+# Ruta absoluta garantizada para la base de datos
 DB_PATH = os.path.join(app.root_path, 'database.db')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Inicializar la Base de Datos con ruta absoluta
+# Inicializar la Base de Datos con ruta absoluta y estructura limpia
 def init_db():
     conexion = sqlite3.connect(DB_PATH)
     cursor = conexion.cursor()
