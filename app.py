@@ -10,18 +10,18 @@ app.secret_key = 'clave_secreta_super_segura'
 # Configuración de la carpeta para subir imágenes
 UPLOAD_FOLDER = os.path.join('static', 'Imagenes')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Asegurarse de que la carpeta de imágenes exista
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Ruta absoluta garantizada para la base de datos en producción y local
+DB_PATH = os.path.join(app.root_path, 'database.db')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Inicializar la Base de Datos para el Buzón de Consultas
+# Inicializar la Base de Datos con ruta absoluta
 def init_db():
-    conexion = sqlite3.connect('database.db')
+    conexion = sqlite3.connect(DB_PATH)
     cursor = conexion.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS mensajes (
@@ -59,7 +59,7 @@ def contacto():
         mensaje = request.form.get('mensaje', 'Sin mensaje')
         fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        conexion = sqlite3.connect('database.db')
+        conexion = sqlite3.connect(DB_PATH)
         cursor = conexion.cursor()
         cursor.execute(
             'INSERT INTO mensajes (fecha, nombre, contacto, mensaje) VALUES (?, ?, ?, ?)',
@@ -102,7 +102,7 @@ def admin_mensajes():
     if 'admin_logged_in' not in session:
         return redirect(url_for('login'))
 
-    conexion = sqlite3.connect('database.db')
+    conexion = sqlite3.connect(DB_PATH)
     conexion.row_factory = sqlite3.Row
     cursor = conexion.cursor()
     cursor.execute('SELECT * FROM mensajes ORDER BY id DESC')
