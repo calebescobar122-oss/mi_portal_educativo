@@ -86,6 +86,12 @@ def acerca():
   return render_template('acerca.html')
 
 
+# Ruta pública de Mensajes y Calendario (como la tenías al principio)
+@app.route('/mensajes')
+def mensajes():
+  return render_template('mensajes.html')
+
+
 # --- RUTAS DE ADMINISTRACIÓN Y AUTENTICACIÓN ---
 
 
@@ -95,7 +101,7 @@ def login():
     password = request.form.get('password')
     if password == '12345':  # Contraseña de administrador
       session['admin_logged_in'] = True
-      return redirect(url_for('mensajes'))
+      return redirect(url_for('admin_mensajes'))
     else:
       flash('Contraseña incorrecta', 'danger')
   return render_template('login_mensajes.html')
@@ -107,9 +113,9 @@ def logout():
   return redirect(url_for('inicio'))
 
 
-# Se añaden los métodos 'GET' y 'POST' para evitar el Error 405
-@app.route('/mensajes', methods=['GET', 'POST'])
-def mensajes():
+# Panel de administración privado para ver buzón y galería
+@app.route('/admin_mensajes', methods=['GET', 'POST'])
+def admin_mensajes():
   if 'admin_logged_in' not in session:
     return redirect(url_for('login'))
 
@@ -130,7 +136,7 @@ def mensajes():
   ]
 
   return render_template(
-      'mensajes.html', mensajes=mensajes_db, lista_imagenes=lista_imagenes
+      'admin_mensajes.html', mensajes=mensajes_db, lista_imagenes=lista_imagenes
   )
 
 
@@ -140,17 +146,17 @@ def subir_imagen():
     return redirect(url_for('login'))
 
   if 'foto' not in request.files:
-    return redirect(url_for('mensajes'))
+    return redirect(url_for('admin_mensajes'))
 
   file = request.files['foto']
   if file.filename == '':
-    return redirect(url_for('mensajes'))
+    return redirect(url_for('admin_mensajes'))
 
   if file and allowed_file(file.filename):
     filename = secure_filename(file.filename)
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-  return redirect(url_for('mensajes'))
+  return redirect(url_for('admin_mensajes'))
 
 
 @app.route('/eliminar_imagen/<path:nombre_imagen>', methods=['POST'])
@@ -162,7 +168,7 @@ def eliminar_imagen(nombre_imagen):
   if os.path.exists(ruta_archivo):
     os.remove(ruta_archivo)
 
-  return redirect(url_for('mensajes'))
+  return redirect(url_for('admin_mensajes'))
 
 
 if __name__ == '__main__':
