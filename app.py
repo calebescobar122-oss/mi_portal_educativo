@@ -56,7 +56,7 @@ def contacto():
         nombre = request.form.get('nombre', 'Anónimo')
         contacto_info = request.form.get('contacto', 'No proporcionado')
         mensaje = request.form.get('mensaje', 'Sin mensaje')
-        fecha = datetime.now().strftime('%Y-%m-d %H:%M:%S')
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         conexion = sqlite3.connect(DB_PATH)
         cursor = conexion.cursor()
@@ -74,7 +74,7 @@ def contacto():
 def acerca():
     return render_template('acerca.html')
 
-# 1. ESTA ES LA VISTA PÚBLICA (Avisos y Calendario)
+# Vista pública de Avisos y Calendario
 @app.route('/mensajes')
 def mensajes():
     return render_template('mensajes.html')
@@ -97,7 +97,7 @@ def logout():
     session.pop('admin_logged_in', None)
     return redirect(url_for('inicio'))
 
-# 2. ESTE ES EL PANEL PRIVADO PROTEGIDO CON CONTRASEÑA
+# Panel de administración protegido con contraseña
 @app.route('/admin_mensajes', methods=['GET', 'POST'])
 def admin_mensajes():
     if 'admin_logged_in' not in session:
