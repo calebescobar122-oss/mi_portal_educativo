@@ -87,7 +87,7 @@
   </div>
 
   <div class="grid-2-cols" style="gap: 2rem; margin-bottom: 2.5rem;">
-    <!-- FORMULARIO DE CONSULTAS MEJORADO CONECTADO A FLASK -->
+    <!-- FORMULARIO DE CONSULTAS CORREGIDO CON name="contacto" -->
     <div
       class="info-card fade-in"
       style="border-top: 4px solid var(--accent-gold); background: #ffffff;"
@@ -131,15 +131,16 @@
           class="form-group"
           style="display: flex; flex-direction: column; gap: 0.4rem;"
         >
+          <!-- CAMBIADO name="correo" a name="contacto" PARA QUE COINCIDA CON EL app.py -->
           <label
-            for="correo"
+            for="contacto"
             style="font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
             >Correo Electrónico o Teléfono</label
           >
           <input
             type="text"
-            id="correo"
-            name="correo"
+            id="contacto"
+            name="contacto"
             placeholder="ejemplo@correo.com / Teléfono"
             required
             style="padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;"

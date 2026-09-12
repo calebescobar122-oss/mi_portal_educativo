@@ -62,9 +62,9 @@ def servicios():
 @app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
   if request.method == 'POST':
-    nombre = request.form['nombre']
-    contacto_info = request.form['contacto']
-    mensaje = request.form['mensaje']
+    nombre = request.form.get('nombre', 'Anónimo')
+    contacto_info = request.form.get('contacto', 'No proporcionado')
+    mensaje = request.form.get('mensaje', 'Sin mensaje')
     fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     conexion = sqlite3.connect('database.db')
@@ -86,7 +86,7 @@ def acerca():
   return render_template('acerca.html')
 
 
-# Ruta pública de Mensajes y Calendario (como la tenías al principio)
+# Ruta pública de Mensajes y Calendario
 @app.route('/mensajes')
 def mensajes():
   return render_template('mensajes.html')
