@@ -1,386 +1,483 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Mensajes y Calendario Anual 2026 | Jardín Escuela e Instituto Jesús Nazareno
-{% endblock %}
+{% block title %}Nosotros | Jardín Escuela e Instituto Jesús Nazareno{% endblock %}
 
 {% block content %}
    
-  <section class="page-header" style="margin-bottom: 2rem;">
+  <section
+    class="page-header fade-in"
+    style="text-align: center; margin-bottom: 2rem;"
+  >
        
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;"
+    <h2
+      style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);"
     >
-           
-      <div>
-               
-        <h2>
-                   
-          <i
-            class="fa-solid fa-bullhorn"
-            style="color: var(--accent-gold);"
-          ></i>
-                   
-          {% if session.get('admin_logueado') %}
-                        Panel de Administración - Buzón          
-          {% else %}
-                        Mensajes y Calendario Anual 2026          
-          {% endif %}
-                 
-        </h2>
-               
-        <p
-          class="subtitle"
-          style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
-        >
-                   
-          {% if session.get('admin_logueado') %}
-                        Gestión de consultas recibidas por parte de la comunidad
-            educativa.          
-          {% else %}
-                        Consulta los comunicados oficiales, despliega el mes de
-            tu interés o             revisa el buzón administrativo.          
-          {% endif %}
-                 
-        </p>
-             
-      </div>
-
-           
-      <!-- BOTÓN EN LA ESQUINA DERECHA -->
-           
-      <div>
-               
-        {% if session.get('admin_logueado') %}
-                   
-          <a
-            href="{{ url_for('logout') }}"
-            style="background-color: #dc3545; color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
-          >
-                        <i class="fa-solid fa-right-from-bracket"></i> Cerrar
-            Sesión de             Administrador          
-          </a>
-                 
-        {% else %}
-                   
-          <a
-            href="{{ url_for('login_mensajes') }}"
-            style="background-color: var(--header-blue); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
-          >
-                       
-            <i class="fa-solid fa-lock" style="color: var(--accent-gold);"></i>
-                        Acceso a Mensajes Administrativos          
-          </a>
-                 
-        {% endif %}
-             
-      </div>
-         
-    </div>
+            <i class="fa-solid fa-school"></i> Sobre Nuestra Institución    
+    </h2>
+       
+    <p
+      class="subtitle"
+      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
+    >
+            Conoce nuestra trayectoria, valores y la pasión educativa que nos  
+          distingue.    
+    </p>
      
   </section>
 
    
-  <!-- SI EL ADMIN ESTÁ LOGUEADO: MOSTRAR SOLO EL BUZÓN -->
+  <div
+    class="info-card fade-in"
+    style="border-top: 4px solid var(--accent-yellow);"
+  >
+       
+    <p class="lead-text" style="font-size: 1.05rem; line-height: 1.7;">
+            En el
+      <strong>Jardín Escuela e Instituto Jesús Nazareno</strong> contamos      
+      con más de <strong>10 años de experiencia educando alumnos</strong> bajo  
+          estrictos estándares de calidad. Nuestra institución se enorgullece de
+            contar con un plantel de
+      <strong>maestros 100% certificados</strong> tanto       en el área de
+      inglés como en español.    
+    </p>
+       
+    <p style="margin-top: 1rem; font-size: 1rem;">
+            A lo largo del periodo escolar fomentamos el liderazgo, el civismo y
+      el       talento artístico mediante una amplia gama de actividades
+      académicas,       deportivas y culturales.    
+    </p>
+     
+  </div>
+
    
-  {% if session.get('admin_logueado') %}
+  <!-- MISIÓN Y VISIÓN -->
+   
+  <div
+    class="grid-2-cols"
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;"
+  >
        
     <div
-      class="info-card fade-in"
-      style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
+      class="info-card highlight-card fade-in"
+      style="border-top: 4px solid var(--accent-yellow);"
+    >
+           
+      <h3 style="color: var(--header-blue); margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-bullseye"></i> Misión      
+      </h3>
+           
+      <p style="font-size: 0.95rem;">
+                Proveer una educación integral bilingüe y nacional de
+        excelencia,         fomentando valores morales, principios éticos y
+        sólidas destrezas         tecnológicas para formar ciudadanos altamente
+        competentes para la         sociedad.      
+      </p>
+         
+    </div>
+       
+    <div
+      class="info-card highlight-card fade-in"
+      style="border-top: 4px solid var(--accent-yellow);"
+    >
+           
+      <h3 style="color: var(--header-blue); margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-eye"></i> Visión      
+      </h3>
+           
+      <p style="font-size: 0.95rem;">
+                Ser la institución educativa líder reconocida por su alto nivel
+                académico, compromiso cristiano y moral, formando generaciones  
+              preparadas para triunfar en el ámbito universitario y profesional.
+             
+      </p>
+         
+    </div>
+     
+  </div>
+
+   
+  <!-- VALORES INSTITUCIONALES -->
+   
+  <div
+    class="info-card fade-in"
+    style="margin-top: 2rem; border-top: 4px solid var(--accent-yellow);"
+  >
+       
+    <h3 style="color: var(--header-blue); margin-bottom: 0.8rem;">
+            <i class="fa-solid fa-heart"></i> Valores Institucionales    
+    </h3>
+       
+    <ul
+      class="styled-list values-list"
+      style="padding-left: 1.5rem; margin-top: 0.5rem;"
+    >
+           
+      <li style="margin-bottom: 0.6rem; font-size: 0.95rem;">
+               
+        <strong style="color: var(--secondary-pink);">
+                    <i class="fa-solid fa-check-circle"></i> Respeto:        
+        </strong>
+                Pilar fundamental en la convivencia armónica de toda la
+        comunidad         educativa.      
+      </li>
+           
+      <li style="margin-bottom: 0.6rem; font-size: 0.95rem;">
+               
+        <strong style="color: var(--secondary-pink);">
+                    <i class="fa-solid fa-check-circle"></i> Responsabilidad:  
+               
+        </strong>
+                Compromiso diario con las obligaciones escolares y personales.  
+           
+      </li>
+           
+      <li style="margin-bottom: 0.6rem; font-size: 0.95rem;">
+               
+        <strong style="color: var(--secondary-pink);">
+                    <i class="fa-solid fa-check-circle"></i> Honestidad:        
+        </strong>
+                Transparencia, honradez y rectitud en cada acto de nuestra vida.
+             
+      </li>
+           
+      <li style="margin-bottom: 0.6rem; font-size: 0.95rem;">
+               
+        <strong style="color: var(--secondary-pink);">
+                    <i class="fa-solid fa-check-circle"></i> Excelencia:        
+        </strong>
+                Superación continua en el área académica, espiritual y humana.  
+           
+      </li>
+         
+    </ul>
+     
+  </div>
+
+   
+  <!-- ACTIVIDADES Y AGRUPACIONES -->
+   
+  <div
+    class="info-card fade-in"
+    style="margin-top: 2rem; border-top: 4px solid var(--accent-yellow);"
+  >
+       
+    <h3 style="color: var(--header-blue); margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-calendar-days"></i> Actividades del Periodo
+      Escolar    
+    </h3>
+       
+    <p style="font-size: 0.95rem;">
+            Durante el año lectivo, nuestros estudiantes participan activamente
+      en las       siguientes festividades y eventos oficiales:    
+    </p>
+
+       
+    <div
+      class="grid-2-cols"
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.2rem;"
+    >
+           
+      <ol class="styled-list" style="padding-left: 1.5rem; font-size: 0.95rem;">
+               
+        <li style="margin-bottom: 0.5rem;">Día de la Madre</li>
+               
+        <li style="margin-bottom: 0.5rem;">Día del Padre</li>
+               
+        <li style="margin-bottom: 0.5rem;">
+                    Elección del Gobierno Estudiantil        
+        </li>
+               
+        <li style="margin-bottom: 0.5rem;">Día del Estudiante</li>
+               
+        <li style="margin-bottom: 0.5rem;">
+                    Elección de la Madrina de los Estudiantes        
+        </li>
+               
+        <li style="margin-bottom: 0.5rem;">Día del Indio</li>
+             
+      </ol>
+           
+      <ol
+        start="7"
+        class="styled-list"
+        style="padding-left: 1.5rem; font-size: 0.95rem;"
+      >
+               
+        <li style="margin-bottom: 0.5rem;">Inauguración de Fiestas Patrias</li>
+               
+        <li style="margin-bottom: 0.5rem;">Día del Niño</li>
+               
+        <li style="margin-bottom: 0.5rem;">Práctica Profesional</li>
+               
+        <li style="margin-bottom: 0.5rem;">Clausura y Graduación</li>
+             
+      </ol>
+         
+    </div>
+
+       
+    <div
+      class="banner-special"
+      style="margin-top: 1.5rem; background-color: #fcf8f5; padding: 1.2rem; border-radius: 10px; border-left: 5px solid var(--header-blue);"
+    >
+           
+      <p style="color: var(--text-main); font-size: 0.95rem;">
+               
+        <i class="fa-solid fa-drum" style="color: var(--header-blue);"></i>    
+            <strong>Agrupaciones Especiales:</strong> Contamos con nuestra
+        propia y         prestigiosa <strong>Banda de Guerra</strong> y grupo de
+                <strong>Danza</strong> institucional.      
+      </p>
+         
+    </div>
+     
+  </div>
+
+   
+  <!-- GALERÍA DE MOMENTOS INSTITUCIONALES -->
+   
+  <div style="margin-top: 3.5rem;">
+       
+    <h2 class="fade-in" style="text-align: center; color: var(--header-blue);">
+            <i class="fa-solid fa-images"></i> Galería de Momentos
+      Institucionales    
+    </h2>
+       
+    <p
+      class="fade-in"
+      style="text-align: center; color: var(--text-main); margin-bottom: 2rem; font-size: 0.95rem;"
+    >
+            Un recorrido visual por las actividades cívicas, culturales,
+      artísticas y       académicas que enorgullecen a nuestro instituto.    
+    </p>
+
+       
+    <div
+      class="gallery-grid"
+      style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;"
     >
            
       <div
-        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem;"
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
       >
                
-        <h3 style="color: var(--header-brown); margin: 0; font-size: 1.3rem;">
-                   
-          <i
-            class="fa-solid fa-inbox"
-            style="color: var(--secondary-pink);"
-          ></i>
-                    Buzón de Consultas Recibidas        
-        </h3>
-               
-        <span
-          style="background: #e6f4ea; color: #137333; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;"
-        >
-                    <i class="fa-solid fa-shield-halved"></i> Sesión Activa    
-             
-        </span>
-             
-      </div>
-
-           
-      {% if mensajes_db %}
-               
-        <div style="overflow-x: auto;">
-                   
-          <table
-            style="width: 100%; border-collapse: collapse; text-align: left;"
-          >
-                       
-            <thead>
-                           
-              <tr
-                style="background-color: #fcf8f5; color: var(--header-brown); border-bottom: 2px solid #e0d5cb;"
-              >
-                               
-                <th style="padding: 10px; font-size: 0.9rem;">Fecha</th>
-                               
-                <th style="padding: 10px; font-size: 0.9rem;">Nombre</th>
-                               
-                <th style="padding: 10px; font-size: 0.9rem;">
-                                    Correo / Teléfono                
-                </th>
-                               
-                <th style="padding: 10px; font-size: 0.9rem;">Mensaje</th>
-                             
-              </tr>
-                         
-            </thead>
-                       
-            <tbody>
-                           
-              {% for m in mensajes_db %}
-                               
-                <tr style="border-bottom: 1px solid #eee;">
-                                   
-                  <td
-                    style="padding: 10px; font-size: 0.85rem; color: #666; white-space: nowrap;"
-                  >
-                                        {{ m.fecha }}                  
-                  </td>
-                                   
-                  <td
-                    style="padding: 10px; font-weight: 600; color: var(--header-brown); font-size: 0.95rem;"
-                  >
-                                        {{ m.nombre }}                  
-                  </td>
-                                   
-                  <td style="padding: 10px; color: #333; font-size: 0.9rem;">
-                                        {{ m.correo }}                  
-                  </td>
-                                   
-                  <td
-                    style="padding: 10px; color: var(--text-main); font-size: 0.9rem; max-width: 300px; word-break: break-word;"
-                  >
-                                        {{ m.mensaje }}                  
-                  </td>
-                                 
-                </tr>
-                             
-              {% endfor %}
-                         
-            </tbody>
-                     
-          </table>
-                 
-        </div>
-             
-      {% else %}
+        <img
+          src="{{ url_for('static', filename='img/aa.jpeg') }}"
+          alt="Banda de Guerra en desfile"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
                
         <p
-          style="color: var(--text-main); font-style: italic; font-size: 0.95rem; margin: 0;"
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
         >
-                    Aún no hay consultas registradas en el sistema.        
+                    Banda de Guerra en desfile        
         </p>
              
-      {% endif %}
-         
-    </div>
-     
-  {% else %}
-       
-    <!-- SI NO ESTÁ LOGUEADO: MOSTRAR AVISOS Y CALENDARIO -->
-
-       
-    <!-- AVISOS OFICIALES -->
-       
-    <div
-      class="info-card fade-in"
-      style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-gold);"
-    >
-           
-      <h3
-        style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
-      >
-               
-        <i
-          class="fa-solid fa-triangle-exclamation"
-          style="color: var(--secondary-pink);"
-        ></i>
-                Avisos Oficiales      
-      </h3>
-           
-      <div class="grid-2-cols" style="gap: 1.5rem;">
-               
-        {% for aviso in avisos %}
-                   
-          <div
-            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1.2rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
-          >
-                       
-            <h4
-              style="color: var(--header-brown); margin-bottom: 0.4rem; font-size: 1.05rem;"
-            >
-                            {{ aviso.titulo }}            
-            </h4>
-                       
-            <p style="color: #666; font-size: 0.85rem; margin-bottom: 0.8rem;">
-                            <strong>Fecha:</strong> {{ aviso.fecha }}          
-               
-            </p>
-                       
-            <p
-              style="color: var(--text-main); font-size: 0.95rem; margin: 0; line-height: 1.5;"
-            >
-                            {{ aviso.contenido }}            
-            </p>
-                     
-          </div>
-                 
-        {% endfor %}
-             
       </div>
-         
-    </div>
-
-       
-    <!-- CALENDARIO ANUAL 2026 -->
-       
-    <div
-      class="info-card fade-in"
-      style="border-top: 4px solid var(--accent-gold);"
-    >
-           
-      <h3
-        style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
-      >
-               
-        <i
-          class="fa-solid fa-calendar-days"
-          style="color: var(--secondary-pink);"
-        ></i>
-                Calendario Escolar 2026 (Haz clic en cualquier mes para
-        ampliarlo)      
-      </h3>
 
            
       <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
       >
                
-        {% for mes in calendario %}
-                   
-          <div
-            class="calendario-card"
-            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;"
-          >
-                       
-            <h4
-              style="text-align: center; color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.3rem;"
-            >
-                            {{ mes.nombre }}            
-            </h4>
+        <img
+          src="{{ url_for('static', filename='img/c.jpeg') }}"
+          alt="Exhibición cultural internacional"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Exhibición cultural internacional        
+        </p>
+             
+      </div>
 
-                       
-            <table
-              style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem;"
-            >
-                           
-              <thead>
-                               
-                <tr style="color: #666; font-weight: 600;">
-                                   
-                  <th style="padding: 4px;">Do</th>
-                                   
-                  <th style="padding: 4px;">Lu</th>
-                                   
-                  <th style="padding: 4px;">Ma</th>
-                                   
-                  <th style="padding: 4px;">Mi</th>
-                                   
-                  <th style="padding: 4px;">Ju</th>
-                                   
-                  <th style="padding: 4px;">Vi</th>
-                                   
-                  <th style="padding: 4px;">Sá</th>
-                                 
-                </tr>
-                             
-              </thead>
-                           
-              <tbody>
-                               
-                {% for semana in mes.matriz %}
-                                   
-                  <tr>
-                                       
-                    {% for dia in semana %}
-                                           
-                      <td
-                        style="padding: 5px; {% if dia != 0 %}{% if dia in mes.eventos %}
-                                                    background-color: #fff3cd;
-                          color: #856404;                           font-weight:
-                          bold; border-radius: 50%;                        
-                        {% else %}
-                                                    color: #333;                
-                                 
-                        {% endif %}{% endif %}"
-                      >
-                                               
-                        {% if dia != 0 %}{{ dia }}{% endif %}                  
-                           
-                      </td>
-                                         
-                    {% endfor %}
-                                     
-                  </tr>
-                                 
-                {% endfor %}
-                             
-              </tbody>
-                         
-            </table>
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/ccc.jpeg') }}"
+          alt="Representación cultural de Honduras"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Representación cultural de Honduras        
+        </p>
+             
+      </div>
 
-                       
-            {% if mes.eventos %}
-                           
-              <div
-                style="margin-top: 0.8rem; border-top: 1px dashed #e0d5cb; padding-top: 0.5rem; font-size: 0.8rem; text-align: left;"
-              >
-                               
-                <strong style="color: var(--header-brown);">Eventos:</strong>  
-                             
-                <ul
-                  style="margin: 0; padding-left: 15px; color: var(--text-main);"
-                >
-                                   
-                  {% for dia, evento in mes.eventos.items() %}
-                                       
-                    <li>
-                                           
-                      <span style="font-weight: 600;">Día {{ dia }}:</span>    
-                                        {{ evento }}                    
-                    </li>
-                                     
-                  {% endfor %}
-                                 
-                </ul>
-                             
-              </div>
-                         
-            {% endif %}
-                     
-          </div>
-                 
-        {% endfor %}
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/bd63d609-f5ca-452c-b3fb-86025dbf6bb9.png') }}"
+          alt="Actividades del día del indio"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Actividades del día del indio        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/e.jpeg') }}"
+          alt="Representación Etnia Garífuna"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Representación Etnia Garífuna        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/ee.jpeg') }}"
+          alt="Sección de panderetas"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Sección de panderetas        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/eee.jpeg') }}"
+          alt="Banda de guerra en formación"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Banda de guerra en formación        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/5cec9563-655e-4551-87d3-8eddce5d98e7.png') }}"
+          alt="Actividades del día del indio"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Actividades del día del indio        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/i.jpeg') }}"
+          alt="Presentación escolar y cultural"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Presentación escolar y cultural        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/js.jpeg') }}"
+          alt="Reconocimiento a la excelencia"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Reconocimiento a la excelencia        
+        </p>
+             
+      </div>
+
+           
+      <div
+        class="gallery-card fade-in"
+        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
+      >
+               
+        <img
+          src="{{ url_for('static', filename='img/l.jpeg') }}"
+          alt="Feria cultural y gastronómica"
+          style="width: 100%; height: 180px; object-fit: cover; display: block;"
+        />
+               
+        <p
+          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+        >
+                    Feria cultural y gastronómica        
+        </p>
              
       </div>
          
     </div>
      
-  {% endif %}
+  </div>
 {% endblock %}
+mira este es de nosotroa
