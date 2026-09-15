@@ -149,20 +149,20 @@ def inicio():
     return render_template("inicio.html", noticias=noticias_recientes)
 
 
-@app.route("/mensajes", methods=["GET", "POST"])
+@app.route("/mensajes", methods=["GET"])
 def mensajes():
-    # Si no ha iniciado sesión, redirigir al login de mensajes
+    # Si el administrador NO ha iniciado sesión, bloquear y enviar al login
     if not session.get("admin_logueado"):
         return redirect(url_for("login_mensajes"))
 
-    # Obtener mensajes de la base de datos
+    # Si SÍ está logueado, cargar el panel administrativo con los mensajes
     conn = get_db_connection()
     mensajes_usuarios = conn.execute(
         "SELECT * FROM mensajes ORDER BY id DESC"
     ).fetchall()
     conn.close()
 
-    # Obtener lista de imágenes actuales en static/Imagenes
+    # Obtener lista de imágenes actuales en static/Imagenes para la galería
     lista_imagenes = []
     if os.path.exists(CARPETA_IMAGENES):
         lista_imagenes = os.listdir(CARPETA_IMAGENES)
@@ -194,7 +194,7 @@ def logout():
     return redirect(url_for("login_mensajes"))
 
 
-# Rutas nuevas para el manejo de la galería desde el panel de administración
+# Rutas para el manejo de la galería desde el panel de administración
 @app.route("/subir-imagen", methods=["POST"])
 def subir_imagen():
     if not session.get("admin_logueado"):
