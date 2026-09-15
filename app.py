@@ -151,26 +151,29 @@ def inicio():
 
 @app.route("/mensajes", methods=["GET"])
 def mensajes():
-    # Si el administrador NO ha iniciado sesión, bloquear y enviar al login
-    if not session.get("admin_logueado"):
-        return redirect(url_for("login_mensajes"))
-
-    # Si SÍ está logueado, cargar el panel administrativo con los mensajes
-    conn = get_db_connection()
-    mensajes_usuarios = conn.execute(
-        "SELECT * FROM mensajes ORDER BY id DESC"
-    ).fetchall()
-    conn.close()
+    # Cargar los datos del buzón por si el administrador ha iniciado sesión
+    mensajes_usuarios = []
+    if session.get("admin_logueado"):
+        conn = get_db_connection()
+        mensajes_usuarios = conn.execute(
+            "SELECT * FROM mensajes ORDER BY id DESC"
+        ).fetchall()
+        conn.close()
 
     # Obtener lista de imágenes actuales en static/Imagenes para la galería
     lista_imagenes = []
     if os.path.exists(CARPETA_IMAGENES):
         lista_imagenes = os.listdir(CARPETA_IMAGENES)
 
+    # Generar el calendario anual y pasar los avisos institucionales
+    calendario_anual = generar_calendario_anual()
+
     return render_template(
         "mensajes.html",
         mensajes_db=mensajes_usuarios,
         lista_imagenes=lista_imagenes,
+        calendario=calendario_anual,
+        avisos=avisos_institucionales,
     )
 
 
@@ -191,7 +194,7 @@ def login_mensajes():
 @app.route("/logout")
 def logout():
     session.pop("admin_logueado", None)
-    return redirect(url_for("login_mensajes"))
+    return redirect(url_for("mensajes"))
 
 
 # Rutas para el manejo de la galería desde el panel de administración
