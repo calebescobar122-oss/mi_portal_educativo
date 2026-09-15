@@ -13,6 +13,10 @@ calendar.setfirstweekday(calendar.SUNDAY)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
 
+# Carpeta para almacenar las imágenes de la galería
+CARPETA_IMAGENES = os.path.join(BASE_DIR, "static", "Imagenes")
+os.makedirs(CARPETA_IMAGENES, exist_ok=True)
+
 
 # Función para conectar a la base de datos
 def get_db_connection():
@@ -147,29 +151,26 @@ def inicio():
 
 @app.route("/mensajes", methods=["GET", "POST"])
 def mensajes():
-    if request.method == "POST":
-        password = request.form.get("password")
-        if password == "12345":
-            session["admin_logueado"] = True
-            return redirect(url_for("mensajes"))
-        else:
-            error = "Contraseña incorrecta. Inténtalo de nuevo."
-            return render_template("login_mensajes.html", error=error)
+    # Si no ha iniciado sesión, redirigir al login de mensajes
+    if not session.get("admin_logueado"):
+        return redirect(url_for("login_mensajes"))
 
-    mensajes_usuarios = []
-    if session.get("admin_logueado"):
-        conn = get_db_connection()
-        mensajes_usuarios = conn.execute(
-            "SELECT * FROM mensajes ORDER BY id DESC"
-        ).fetchall()
-        conn.close()
+    # Obtener mensajes de la base de datos
+    conn = get_db_connection()
+    mensajes_usuarios = conn.execute(
+        "SELECT * FROM mensajes ORDER BY id DESC"
+    ).fetchall()
+    conn.close()
+
+    # Obtener lista de imágenes actuales en static/Imagenes
+    lista_imagenes = []
+    if os.path.exists(CARPETA_IMAGENES):
+        lista_imagenes = os.listdir(CARPETA_IMAGENES)
 
     return render_template(
         "mensajes.html",
-        avisos=avisos_institucionales,
-        noticias=noticias_recientes,
-        calendario=generar_calendario_anual(),
         mensajes_db=mensajes_usuarios,
+        lista_imagenes=lista_imagenes,
     )
 
 
@@ -190,6 +191,33 @@ def login_mensajes():
 @app.route("/logout")
 def logout():
     session.pop("admin_logueado", None)
+    return redirect(url_for("login_mensajes"))
+
+
+# Rutas nuevas para el manejo de la galería desde el panel de administración
+@app.route("/subir-imagen", methods=["POST"])
+def subir_imagen():
+    if not session.get("admin_logueado"):
+        return redirect(url_for("login_mensajes"))
+
+    if "foto" in request.files:
+        archivo = request.files["foto"]
+        if archivo.filename != "":
+            ruta_archivo = os.path.join(CARPETA_IMAGENES, archivo.filename)
+            archivo.save(ruta_archivo)
+
+    return redirect(url_for("mensajes"))
+
+
+@app.route("/eliminar-imagen/<path:nombre_imagen>", methods=["POST"])
+def eliminar_imagen(nombre_imagen):
+    if not session.get("admin_logueado"):
+        return redirect(url_for("login_mensajes"))
+
+    ruta_archivo = os.path.join(CARPETA_IMAGENES, nombre_imagen)
+    if os.path.exists(ruta_archivo):
+        os.remove(ruta_archivo)
+
     return redirect(url_for("mensajes"))
 
 
@@ -217,7 +245,6 @@ def contacto():
         mensaje = request.form.get("mensaje")
 
         if nombre and correo and mensaje:
-            # Guardar en la base de datos SQLite
             conn = get_db_connection()
             conn.execute(
                 "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
@@ -226,7 +253,6 @@ def contacto():
             conn.commit()
             conn.close()
 
-            # Imprimir en la terminal de VS Code para tener control visual rápido
             print("\n" + "=" * 50)
             print(" 📩 NUEVA CONSULTA RECIBIDA DESDE LA WEB:")
             print(f" • Nombre: {nombre}")
@@ -240,4 +266,4 @@ def contacto():
 
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=True)
