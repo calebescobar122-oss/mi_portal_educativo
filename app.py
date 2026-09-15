@@ -16,226 +16,228 @@ DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 # Función para conectar a la base de datos
 def get_db_connection():
-  conn = sqlite3.connect(DB_PATH)
-  conn.row_factory = sqlite3.Row
-  return conn
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 # Función para inicializar la tabla de mensajes si no existe
 def init_db():
-  conn = get_db_connection()
-  conn.execute("""
-        CREATE TABLE IF NOT EXISTS mensajes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT NOT NULL,
-            correo TEXT NOT NULL,
-            mensaje TEXT NOT NULL,
-            fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-  conn.commit()
-  conn.close()
+    conn = get_db_connection()
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS mensajes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            correo TEXT NOT NULL,
+            mensaje TEXT NOT NULL,
+            fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """
+    )
+    conn.commit()
+    conn.close()
 
 
 # Ejecutar la inicialización al arrancar la app
 init_db()
 
 noticias_recientes = [
-    {
-        "titulo": "¡Inscripciones Abiertas 2026!",
-        "fecha": "Periodo Escolar 2026",
-        "contenido": (
-            "Matrículas disponibles desde Pre-Kínder hasta Media, BTPS en"
-            " Informática, Contaduría y Finanzas, Humanidades y Administración"
-            " de Empresas. ¡Forma parte de nuestra gran familia!"
-        ),
-    },
-    {
-        "titulo": "Excelencia Académica Bilingüe y Nacional",
-        "fecha": "Formación Integral",
-        "contenido": (
-            "Clases 100% certificadas en inglés y español con maestros"
-            " altamente calificados y más de 10 años de trayectoria educativa."
-        ),
-    },
-    {
-        "titulo": "Orgullo Cívico y Cultural",
-        "fecha": "Actividades Escolares",
-        "contenido": (
-            "Destacada participación de nuestra Banda de Guerra y Grupo de"
-            " Danza en los desfiles patrios y eventos culturales de la comunidad."
-        ),
-    },
+    {
+        "titulo": "¡Inscripciones Abiertas 2026!",
+        "fecha": "Periodo Escolar 2026",
+        "contenido": (
+            "Matrículas disponibles desde Pre-Kínder hasta Media, BTPS en"
+            " Informática, Contaduría y Finanzas, Humanidades y Administración"
+            " de Empresas. ¡Forma parte de nuestra gran familia!"
+        ),
+    },
+    {
+        "titulo": "Excelencia Académica Bilingüe y Nacional",
+        "fecha": "Formación Integral",
+        "contenido": (
+            "Clases 100% certificadas en inglés y español con maestros"
+            " altamente calificados y más de 10 años de trayectoria educativa."
+        ),
+    },
+    {
+        "titulo": "Orgullo Cívico y Cultural",
+        "fecha": "Actividades Escolares",
+        "contenido": (
+            "Destacada participación de nuestra Banda de Guerra y Grupo de"
+            " Danza en los desfiles patrios y eventos culturales de la comunidad."
+        ),
+    },
 ]
 
 avisos_institucionales = [
-    {
-        "titulo": "Aviso Importante: Suspensión de Clases",
-        "fecha": "10 de Septiembre, 2026",
-        "categoria": "Urgente",
-        "contenido": (
-            "Estimada comunidad educativa, se les informa que el día jueves 10 de"
-            " septiembre no habrá clases por motivo de asueto institucional."
-            " Reanudamos actividades normales el viernes 11."
-        ),
-    },
-    {
-        "titulo": "Reunión de Padres de Familia",
-        "fecha": "15 de Septiembre, 2026",
-        "categoria": "General",
-        "contenido": (
-            "Convocatoria a todos los padres de familia para la entrega del"
-            " reporte de avance académico correspondiente al parcial."
-        ),
-    },
+    {
+        "titulo": "Aviso Importante: Suspensión de Clases",
+        "fecha": "10 de Septiembre, 2026",
+        "categoria": "Urgente",
+        "contenido": (
+            "Estimada comunidad educativa, se les informa que el día jueves 10 de"
+            " septiembre no habrá clases por motivo de asueto institucional."
+            " Reanudamos actividades normales el viernes 11."
+        ),
+    },
+    {
+        "titulo": "Reunión de Padres de Familia",
+        "fecha": "15 de Septiembre, 2026",
+        "categoria": "General",
+        "contenido": (
+            "Convocatoria a todos los padres de familia para la entrega del"
+            " reporte de avance académico correspondiente al parcial."
+        ),
+    },
 ]
 
 eventos_por_mes = {
-    2: [{"dia": 1, "titulo": "Inicio de Matrículas"}],
-    3: [{"dia": 1, "titulo": "Inicio de Clases"}],
-    4: [{"dia": 2, "titulo": "Semana Santa"}],
-    5: [{"dia": 1, "titulo": "Día del Trabajo"}],
-    6: [{"dia": 15, "titulo": "Exámenes"}],
-    7: [{"dia": 20, "titulo": "Vacaciones"}],
-    8: [{"dia": 1, "titulo": "Reanudación"}],
-    9: [
-        {"dia": 2, "titulo": "Examen Parcial"},
-        {"dia": 10, "titulo": "Suspensión"},
-        {"dia": 15, "titulo": "Reunión"},
-    ],
-    10: [{"dia": 3, "titulo": "Feriado"}],
-    11: [{"dia": 25, "titulo": "Clausura"}],
-    12: [{"dia": 25, "titulo": "Navidad"}],
+    2: [{"dia": 1, "titulo": "Inicio de Matrículas"}],
+    3: [{"dia": 1, "titulo": "Inicio de Clases"}],
+    4: [{"dia": 2, "titulo": "Semana Santa"}],
+    5: [{"dia": 1, "titulo": "Día del Trabajo"}],
+    6: [{"dia": 15, "titulo": "Exámenes"}],
+    7: [{"dia": 20, "titulo": "Vacaciones"}],
+    8: [{"dia": 1, "titulo": "Reanudación"}],
+    9: [
+        {"dia": 2, "titulo": "Examen Parcial"},
+        {"dia": 10, "titulo": "Suspensión"},
+        {"dia": 15, "titulo": "Reunión"},
+    ],
+    10: [{"dia": 3, "titulo": "Feriado"}],
+    11: [{"dia": 25, "titulo": "Clausura"}],
+    12: [{"dia": 25, "titulo": "Navidad"}],
 }
 
 nombres_meses = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
 ]
 
 
 def generar_calendario_anual():
-  calendario_anual = []
-  for i, nombre in enumerate(nombres_meses, start=1):
-    matriz_mes = calendar.monthcalendar(2026, i)
-    mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
-    calendario_anual.append({
-        "nombre": nombre,
-        "matriz": matriz_mes,
-        "eventos": mapa_eventos,
-    })
-  return calendario_anual
+    calendario_anual = []
+    for i, nombre in enumerate(nombres_meses, start=1):
+        matriz_mes = calendar.monthcalendar(2026, i)
+        mapa_eventos = {e["dia"]: e["titulo"] for e in eventos_por_mes.get(i, [])}
+        calendario_anual.append({
+            "nombre": nombre,
+            "matriz": matriz_mes,
+            "eventos": mapa_eventos,
+        })
+    return calendario_anual
 
 
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-  return render_template("inicio.html", noticias=noticias_recientes)
+    return render_template("inicio.html", noticias=noticias_recientes)
 
 
 @app.route("/mensajes", methods=["GET", "POST"])
 def mensajes():
-  if request.method == "POST":
-    password = request.form.get("password")
-    if password == "12345":
-      session["admin_logueado"] = True
-      return redirect(url_for("mensajes"))
-    else:
-      error = "Contraseña incorrecta. Inténtalo de nuevo."
-      return render_template("login_mensajes.html", error=error)
+    if request.method == "POST":
+        password = request.form.get("password")
+        if password == "12345":
+            session["admin_logueado"] = True
+            return redirect(url_for("mensajes"))
+        else:
+            error = "Contraseña incorrecta. Inténtalo de nuevo."
+            return render_template("login_mensajes.html", error=error)
 
-  mensajes_usuarios = []
-  if session.get("admin_logueado"):
-    conn = get_db_connection()
-    mensajes_usuarios = conn.execute(
-        "SELECT * FROM mensajes ORDER BY id DESC"
-    ).fetchall()
-    conn.close()
+    mensajes_usuarios = []
+    if session.get("admin_logueado"):
+        conn = get_db_connection()
+        mensajes_usuarios = conn.execute(
+            "SELECT * FROM mensajes ORDER BY id DESC"
+        ).fetchall()
+        conn.close()
 
-  return render_template(
-      "mensajes.html",
-      avisos=avisos_institucionales,
-      noticias=noticias_recientes,
-      calendario=generar_calendario_anual(),
-      mensajes_db=mensajes_usuarios,
-  )
+    return render_template(
+        "mensajes.html",
+        avisos=avisos_institucionales,
+        noticias=noticias_recientes,
+        calendario=generar_calendario_anual(),
+        mensajes_db=mensajes_usuarios,
+    )
 
 
 @app.route("/login-mensajes", methods=["GET", "POST"])
 def login_mensajes():
-  if request.method == "POST":
-    password = request.form.get("password")
-    if password == "12345":
-      session["admin_logueado"] = True
-      return redirect(url_for("mensajes"))
-    else:
-      error = "Contraseña incorrecta. Inténtalo de nuevo."
-      return render_template("login_mensajes.html", error=error)
+    if request.method == "POST":
+        password = request.form.get("password")
+        if password == "12345":
+            session["admin_logueado"] = True
+            return redirect(url_for("mensajes"))
+        else:
+            error = "Contraseña incorrecta. Inténtalo de nuevo."
+            return render_template("login_mensajes.html", error=error)
 
-  return render_template("login_mensajes.html")
+    return render_template("login_mensajes.html")
 
 
 @app.route("/logout")
 def logout():
-  session.pop("admin_logueado", None)
-  return redirect(url_for("mensajes"))
+    session.pop("admin_logueado", None)
+    return redirect(url_for("mensajes"))
 
 
 @app.route("/quienes")
 @app.route("/quienes-somos")
 def quienes():
-  return render_template("quienes.html", noticias=noticias_recientes)
+    return render_template("quienes.html", noticias=noticias_recientes)
 
 
 @app.route("/servicios")
 def servicios():
-  return render_template("servicios.html", noticias=noticias_recientes)
+    return render_template("servicios.html", noticias=noticias_recientes)
 
 
 @app.route("/acerca")
 def acerca():
-  return render_template("acerca.html", noticias=noticias_recientes)
+    return render_template("acerca.html", noticias=noticias_recientes)
 
 
 @app.route("/contacto", methods=["GET", "POST"])
 def contacto():
-  if request.method == "POST":
-    nombre = request.form.get("nombre")
-    correo = request.form.get("correo")
-    mensaje = request.form.get("mensaje")
+    if request.method == "POST":
+        nombre = request.form.get("nombre")
+        correo = request.form.get("correo")
+        mensaje = request.form.get("mensaje")
 
-    if nombre and correo and mensaje:
-      # Guardar en la base de datos SQLite
-      conn = get_db_connection()
-      conn.execute(
-          "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
-          (nombre, correo, mensaje),
-      )
-      conn.commit()
-      conn.close()
+        if nombre and correo and mensaje:
+            # Guardar en la base de datos SQLite
+            conn = get_db_connection()
+            conn.execute(
+                "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
+                (nombre, correo, mensaje),
+            )
+            conn.commit()
+            conn.close()
 
-      # Imprimir en la terminal de VS Code para tener control visual rápido
-      print("\n" + "=" * 50)
-      print(" 📩 NUEVA CONSULTA RECIBIDA DESDE LA WEB:")
-      print(f" • Nombre: {nombre}")
-      print(f" • Correo / Teléfono: {correo}")
-      print(f" • Mensaje: {mensaje}")
-      print("=" * 50 + "\n")
+            # Imprimir en la terminal de VS Code para tener control visual rápido
+            print("\n" + "=" * 50)
+            print(" 📩 NUEVA CONSULTA RECIBIDA DESDE LA WEB:")
+            print(f" • Nombre: {nombre}")
+            print(f" • Correo / Teléfono: {correo}")
+            print(f" • Mensaje: {mensaje}")
+            print("=" * 50 + "\n")
 
-    return redirect(url_for("contacto"))
+        return redirect(url_for("contacto"))
 
-  return render_template("contacto.html", noticias=noticias_recientes)
+    return render_template("contacto.html", noticias=noticias_recientes)
 
 
 if __name__ == "__main__":
-  app.run(debug=True)      este es mi app.py?
+    app.run(debug=True)
