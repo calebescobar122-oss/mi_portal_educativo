@@ -183,7 +183,7 @@
           class="fa-solid fa-calendar-days"
           style="color: var(--secondary-pink);"
         ></i>
-        Calendario Escolar 2026
+        Calendario Escolar 2026 (Haz clic en cualquier mes para ampliarlo)
       </h3>
 
       <div
@@ -191,7 +191,8 @@
       >
         {% for mes in calendario %}
           <div
-            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
+            class="calendario-card"
+            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;"
           >
             <h4
               style="text-align: center; color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.3rem;"
