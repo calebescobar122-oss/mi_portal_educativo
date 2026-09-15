@@ -12,6 +12,8 @@ def obtener_conexion():
 def init_db():
     conn = obtener_conexion()
     cursor = conn.cursor()
+    
+    # Tabla de noticias
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS noticias (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,6 +23,18 @@ def init_db():
         )
     ''')
     
+    # Tabla de mensajes (Buzón de consultas de la página de contacto)
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS mensajes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            contacto TEXT NOT NULL,
+            mensaje TEXT NOT NULL,
+            fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Poblar noticias iniciales si la tabla está vacía
     cursor.execute("SELECT COUNT(*) FROM noticias")
     if cursor.fetchone()[0] == 0:
         cursor.execute("INSERT INTO noticias (titulo, contenido) VALUES (?, ?)", 
@@ -35,4 +49,4 @@ def init_db():
 
 if __name__ == "__main__":
     init_db()
-    print("Base de datos SQLite inicializada correctamente.")
+    print("Base de datos SQLite inicializada correctamente con la tabla de mensajes.")
