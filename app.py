@@ -44,7 +44,7 @@ def quienes():
 # Ruta de compatibilidad por si base.html u otra plantilla usa 'acerca'
 @app.route('/acerca')
 def acerca():
-    return redirect(url_for('quienes'))
+    return render_template('acerca.html')
 
 @app.route('/servicios')
 def servicios():
