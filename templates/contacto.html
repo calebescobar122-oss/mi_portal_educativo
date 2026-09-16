@@ -234,7 +234,7 @@
     </div>
   </div>
 
-  <!-- PREGUNTAS FRECUENTES (FAQ) CON ACORDEÓN FLUIDO Y SEGURO -->
+  <!-- PREGUNTAS FRECUENTES (FAQ) -->
   <div
     class="info-card fade-in"
     style="margin-top: 2rem; border-top: 4px solid var(--accent-gold);"
@@ -261,7 +261,6 @@
         <button
           type="button"
           class="faq-question"
-          onclick="toggleFaq(this)"
           style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
         >
           <span>📋 ¿Cuáles son los requisitos de matrícula?</span>
@@ -294,7 +293,6 @@
         <button
           type="button"
           class="faq-question"
-          onclick="toggleFaq(this)"
           style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
         >
           <span>🎓 ¿Qué niveles académicos y modalidades ofrecen?</span>
@@ -328,7 +326,6 @@
         <button
           type="button"
           class="faq-question"
-          onclick="toggleFaq(this)"
           style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
         >
           <span>🎺 ¿Qué disciplinas y actividades extracurriculares hay?</span>
@@ -360,7 +357,6 @@
         <button
           type="button"
           class="faq-question"
-          onclick="toggleFaq(this)"
           style="width: 100%; text-align: left; background: #fcf8f5; border: none; padding: 1rem 1.2rem; font-size: 1rem; font-weight: 600; color: var(--header-brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center;"
         >
           <span>⏰ ¿Cuáles son los horarios de clases?</span>
@@ -385,34 +381,4 @@
       </div>
     </div>
   </div>
-
-  <!-- SCRIPT SEGURO PARA EL ACORDEÓN CON ALTURA AMPLIADA -->
-  <script>
-    function toggleFaq(button) {
-      const answer = button.nextElementSibling;
-      const icon = button.querySelector(".faq-icon");
-
-      // Cierra los demás acordeones
-      document.querySelectorAll(".faq-answer").forEach((item) => {
-        if (item !== answer) {
-          item.style.maxHeight = null;
-          item.style.padding = "0 1.2rem";
-          const otherIcon =
-            item.previousElementSibling.querySelector(".faq-icon");
-          if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
-        }
-      });
-
-      // Abre o cierra el actual con un margen de holgura amplio (scrollHeight + 60px) para que nunca corte texto
-      if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
-        answer.style.maxHeight = "0px";
-        answer.style.padding = "0 1.2rem";
-        icon.style.transform = "rotate(0deg)";
-      } else {
-        answer.style.maxHeight = answer.scrollHeight + 60 + "px";
-        answer.style.padding = "1rem 1.2rem";
-        icon.style.transform = "rotate(45deg)";
-      }
-    }
-  </script>
 {% endblock %}

@@ -65,20 +65,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const animatedElements = document.querySelectorAll(".fade-in");
     animatedElements.forEach(el => observer.observe(el));
 
-    // 3. ACORDEÓN PARA PREGUNTAS FRECUENTES (FAQ)
+    // 3. ACORDEÓN INDEPENDIENTE PARA PREGUNTAS FRECUENTES (FAQ)
     const faqQuestions = document.querySelectorAll(".faq-question");
 
     faqQuestions.forEach(question => {
         question.addEventListener("click", function() {
             const faqItem = this.parentElement;
-            
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector(".faq-icon");
+            const isOpen = faqItem.classList.contains("active");
+
+            // Cierra todos los demás elementos FAQ
             document.querySelectorAll(".faq-item").forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove("active");
+                item.classList.remove("active");
+                const ans = item.querySelector(".faq-answer");
+                const icn = item.querySelector(".faq-icon");
+                if (ans) {
+                    ans.style.maxHeight = "0px";
+                    ans.style.padding = "0 1.2rem";
+                }
+                if (icn) {
+                    icn.style.transform = "rotate(0deg)";
+                    icn.textContent = "+";
                 }
             });
 
-            faqItem.classList.toggle("active");
+            // Si el elemento actual no estaba abierto, lo abre
+            if (!isOpen) {
+                faqItem.classList.add("active");
+                if (answer) {
+                    answer.style.maxHeight = answer.scrollHeight + 50 + "px";
+                    answer.style.padding = "1rem 1.2rem";
+                }
+                if (icon) {
+                    icon.style.transform = "rotate(45deg)";
+                    icon.textContent = "×";
+                }
+            }
         });
     });
 
