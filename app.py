@@ -25,6 +25,11 @@ def quienes():
         lista_imagenes = os.listdir(app.config['UPLOAD_FOLDER'])
     return render_template('quienes.html', lista_imagenes=lista_imagenes)
 
+# Ruta de compatibilidad por si base.html u otra plantilla usa 'acerca'
+@app.route('/acerca')
+def acerca():
+    return redirect(url_for('quienes'))
+
 @app.route('/servicios')
 def servicios():
     return render_template('servicios.html')
@@ -62,7 +67,6 @@ def mensajes():
     # Si el usuario envió el formulario de contraseña desde la misma página
     if request.method == 'POST':
         password_ingresada = request.form.get('password')
-        # Puedes cambiar '12345' por la contraseña que prefieras para el administrador
         if password_ingresada == '12345':
             session['admin_logueado'] = True
             return redirect(url_for('mensajes') + '#seccion-admin')
@@ -85,7 +89,7 @@ def mensajes():
         }
     ]
 
-    # 2. Datos del Calendario Escolar 2026 (Ejemplo simplificado de meses)
+    # 2. Datos del Calendario Escolar 2026
     calendario = [
         {
             "nombre": "Septiembre 2026",
@@ -98,8 +102,7 @@ def mensajes():
             ],
             "eventos": {
                 10: "Suspensión de Clases",
-                15: "Reunión de Padres de Familia",
-                15: "Día de la Independencia"
+                15: "Reunión de Padres de Familia"
             }
         },
         {
