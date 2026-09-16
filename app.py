@@ -9,7 +9,7 @@ app.secret_key = "tu_clave_secreta_muy_segura_cambiala"
 # Configurar para que la semana empiece en Domingo
 calendar.setfirstweekday(calendar.SUNDAY)
 
-# Definir la ruta absoluta de la base de datos para evitar pérdidas de ubicación
+# Definir la ruta absoluta de la base de datos
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
 
@@ -18,14 +18,12 @@ CARPETA_IMAGENES = os.path.join(BASE_DIR, "static", "Imagenes")
 os.makedirs(CARPETA_IMAGENES, exist_ok=True)
 
 
-# Función para conectar a la base de datos
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
 
-# Función para inicializar la tabla de mensajes si no existe
 def init_db():
     conn = get_db_connection()
     conn.execute(
@@ -43,7 +41,6 @@ def init_db():
     conn.close()
 
 
-# Ejecutar la inicialización al arrancar la app
 init_db()
 
 noticias_recientes = [
@@ -149,50 +146,42 @@ def inicio():
     return render_template("inicio.html", noticias=noticias_recientes)
 
 
-@app.route("/mensajes", methods=["GET"])
+@app.route("/mensajes", methods=["GET", "POST"])
 def mensajes():
     calendario_anual = generar_calendario_anual()
+
+    # Manejar inicio de sesión de administrador dentro de la misma página
+    error_login = None
+    if request.method == "POST" and "password" in request.form:
+        password = request.form.get("password")
+        if password == "12345":  # Contraseña de administrador
+            session["admin_logueado"] = True
+            return redirect(url_for("mensajes"))
+        else:
+            error_login = "Contraseña incorrecta. Inténtalo de nuevo."
+
+    # Obtener datos si la sesión está activa
+    mensajes_usuarios = []
+    lista_imagenes = []
+
+    if session.get("admin_logueado"):
+        conn = get_db_connection()
+        mensajes_usuarios = conn.execute(
+            "SELECT * FROM mensajes ORDER BY id DESC"
+        ).fetchall()
+        conn.close()
+
+        if os.path.exists(CARPETA_IMAGENES):
+            lista_imagenes = os.listdir(CARPETA_IMAGENES)
+
     return render_template(
         "mensajes.html",
         calendario=calendario_anual,
         avisos=avisos_institucionales,
-    )
-
-
-@app.route("/admin-buzon", methods=["GET"])
-def admin_buzon():
-    if not session.get("admin_logueado"):
-        return redirect(url_for("login_mensajes"))
-
-    conn = get_db_connection()
-    mensajes_usuarios = conn.execute(
-        "SELECT * FROM mensajes ORDER BY id DESC"
-    ).fetchall()
-    conn.close()
-
-    lista_imagenes = []
-    if os.path.exists(CARPETA_IMAGENES):
-        lista_imagenes = os.listdir(CARPETA_IMAGENES)
-
-    return render_template(
-        "admin_buzon.html",
         mensajes_db=mensajes_usuarios,
         lista_imagenes=lista_imagenes,
+        error_login=error_login,
     )
-
-
-@app.route("/login-mensajes", methods=["GET", "POST"])
-def login_mensajes():
-    if request.method == "POST":
-        password = request.form.get("password")
-        if password == "12345":
-            session["admin_logueado"] = True
-            return redirect(url_for("admin_buzon"))
-        else:
-            error = "Contraseña incorrecta. Inténtalo de nuevo."
-            return render_template("login_mensajes.html", error=error)
-
-    return render_template("login_mensajes.html")
 
 
 @app.route("/logout")
@@ -204,7 +193,7 @@ def logout():
 @app.route("/subir-imagen", methods=["POST"])
 def subir_imagen():
     if not session.get("admin_logueado"):
-        return redirect(url_for("login_mensajes"))
+        return redirect(url_for("mensajes"))
 
     if "foto" in request.files:
         archivo = request.files["foto"]
@@ -212,19 +201,19 @@ def subir_imagen():
             ruta_archivo = os.path.join(CARPETA_IMAGENES, archivo.filename)
             archivo.save(ruta_archivo)
 
-    return redirect(url_for("admin_buzon"))
+    return redirect(url_for("mensajes"))
 
 
 @app.route("/eliminar-imagen/<path:nombre_imagen>", methods=["POST"])
 def eliminar_imagen(nombre_imagen):
     if not session.get("admin_logueado"):
-        return redirect(url_for("login_mensajes"))
+        return redirect(url_for("mensajes"))
 
     ruta_archivo = os.path.join(CARPETA_IMAGENES, nombre_imagen)
     if os.path.exists(ruta_archivo):
         os.remove(ruta_archivo)
 
-    return redirect(url_for("admin_buzon"))
+    return redirect(url_for("mensajes"))
 
 
 @app.route("/quienes")
