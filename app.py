@@ -57,7 +57,7 @@ def contacto():
     return render_template('contacto.html')
 
 # ---------------------------------------------------------
-# RUTA DE MENSAJES Y CALENDARIO ANUAL
+# RUTA DE MENSAJES Y CALENDARIO ANUAL (12 MESES 2026)
 # ---------------------------------------------------------
 
 @app.route('/mensajes')
