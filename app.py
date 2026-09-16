@@ -18,7 +18,26 @@ init_db()
 
 @app.route('/')
 def inicio():
-    return render_template('inicio.html')
+    # Obtener las noticias y destacados desde la base de datos
+    noticias = []
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute("SELECT id, titulo, contenido, fecha FROM noticias ORDER BY id DESC")
+        filas = cursor.fetchall()
+        conexion.close()
+        
+        for fila in filas:
+            noticias.append({
+                "id": fila[0],
+                "titulo": fila[1],
+                "contenido": fila[2],
+                "fecha": fila[3] if len(fila) > 3 else "Reciente"
+            })
+    except Exception as e:
+        print("Error al cargar noticias:", e)
+
+    return render_template('inicio.html', noticias=noticias)
 
 @app.route('/quienes')
 def quienes():
