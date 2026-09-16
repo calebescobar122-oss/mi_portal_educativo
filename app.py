@@ -57,22 +57,11 @@ def contacto():
     return render_template('contacto.html')
 
 # ---------------------------------------------------------
-# RUTA DE MENSAJES, CALENDARIO Y ADMINISTRACIÓN (UNIFICADA)
+# RUTA DE MENSAJES Y CALENDARIO
 # ---------------------------------------------------------
 
-@app.route('/mensajes', methods=['GET', 'POST'])
+@app.route('/mensajes')
 def mensajes():
-    error_login = None
-
-    # Si el usuario envió el formulario de contraseña desde la misma página
-    if request.method == 'POST':
-        password_ingresada = request.form.get('password')
-        if password_ingresada == '12345':
-            session['admin_logueado'] = True
-            return redirect(url_for('mensajes') + '#seccion-admin')
-        else:
-            error_login = 'Contraseña incorrecta. Inténtalo de nuevo.'
-
     # 1. Datos de Avisos Institucionales
     avisos = [
         {
@@ -151,18 +140,62 @@ def mensajes():
         avisos=avisos,
         calendario=calendario,
         mensajes_db=mensajes_db,
-        lista_imagenes=lista_imagenes,
-        error_login=error_login
+        lista_imagenes=lista_imagenes
     )
 
 # ---------------------------------------------------------
-# RUTAS DE ADMINISTRACIÓN (CIERRE DE SESIÓN, IMÁGENES)
+# RUTAS DE ADMINISTRACIÓN (LOGIN, LOGOUT, IMÁGENES)
 # ---------------------------------------------------------
+
+@app.route('/login_mensajes', methods=['GET', 'POST'])
+def login_mensajes():
+    if request.method == 'POST':
+        password_ingresada = request.form.get('password')
+        if password_ingresada == '12345':
+            session['admin_logueado'] = True
+            flash('¡Bienvenido al panel de administración!', 'success')
+            return redirect(url_for('mensajes'))
+        else:
+            flash('Contraseña incorrecta. Inténtalo de nuevo.', 'danger')
+            return redirect(url_for('login_mensajes'))
+    
+    # Vista simple de inicio de sesión para el administrador
+    return '''
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Acceso Administrador | Jesús Nazareno</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+        <style>
+            body { font-family: 'Poppins', sans-serif; background: #fcf8f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+            .login-box { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 100%; max-width: 380px; text-align: center; border-top: 4px solid #d4af37; }
+            h2 { color: #5c3a21; margin-bottom: 1rem; font-size: 1.4rem; }
+            input { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+            button { background: #1b3b6f; color: white; border: none; padding: 0.8rem; width: 100%; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 1rem; }
+            button:hover { background: #13294b; }
+            a { display: block; margin-top: 1.2rem; color: #666; text-decoration: none; font-size: 0.9rem; }
+            a:hover { color: #5c3a21; }
+        </style>
+    </head>
+    <body>
+        <div class="login-box">
+            <h2>Acceso Administrativo</h2>
+            <form method="POST">
+                <input type="password" name="password" placeholder="Contraseña de acceso" required autofocus>
+                <button type="submit">Ingresar</button>
+            </form>
+            <a href="''' + url_for('mensajes') + '''">← Regresar a Mensajes</a>
+        </div>
+    </body>
+    </html>
+    '''
 
 @app.route('/logout')
 def logout():
     session.pop('admin_logueado', None)
-    return redirect(url_for('mensajes') + '#seccion-admin')
+    return redirect(url_for('mensajes'))
 
 @app.route('/subir_imagen', methods=['POST'])
 def subir_imagen():
@@ -178,7 +211,7 @@ def subir_imagen():
             foto.save(ruta_destino)
             flash('Imagen subida correctamente.', 'success')
 
-    return redirect(url_for('mensajes') + '#seccion-admin')
+    return redirect(url_for('mensajes'))
 
 @app.route('/eliminar_imagen/<nombre_imagen>', methods=['POST'])
 def eliminar_imagen(nombre_imagen):
@@ -190,7 +223,7 @@ def eliminar_imagen(nombre_imagen):
         os.remove(ruta_imagen)
         flash('Imagen eliminada correctamente.', 'success')
 
-    return redirect(url_for('mensajes') + '#seccion-admin')
+    return redirect(url_for('mensajes'))
 
 
 if __name__ == '__main__':
