@@ -183,7 +183,7 @@
     </div>
   </div>
 
-  <!-- GALERÍA DE MOMENTOS INSTITUCIONALES -->
+  <!-- GALERÍA DINÁMICA DE MOMENTOS INSTITUCIONALES -->
   <div style="margin-top: 3.5rem;">
     <h2 class="fade-in" style="text-align: center; color: var(--header-blue);">
       <i class="fa-solid fa-images"></i> Galería de Momentos Institucionales
@@ -201,192 +201,24 @@
       class="gallery-grid"
       style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;"
     >
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/aa.jpeg') }}"
-          alt="Banda de Guerra en desfile"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+      {% for imagen in lista_imagenes %}
+        <div
+          class="gallery-card fade-in"
+          style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
         >
-          Banda de Guerra en desfile
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/c.jpeg') }}"
-          alt="Exhibición cultural internacional"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Exhibición cultural internacional
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/ccc.jpeg') }}"
-          alt="Representación cultural de Honduras"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Representación cultural de Honduras
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/bd63d609-f5ca-452c-b3fb-86025dbf6bb9.png') }}"
-          alt="Actividades del día del indio"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Actividades del día del indio
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/e.jpeg') }}"
-          alt="Representación Etnia Garífuna"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Representación Etnia Garífuna
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/ee.jpeg') }}"
-          alt="Sección de panderetas"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Sección de panderetas
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/eee.jpeg') }}"
-          alt="Banda de guerra en formación"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Banda de guerra en formación
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/5cec9563-655e-4551-87d3-8eddce5d98e7.png') }}"
-          alt="Actividades del día del indio"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Actividades del día del indio
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/i.jpeg') }}"
-          alt="Presentación escolar y cultural"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Presentación escolar y cultural
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/js.jpeg') }}"
-          alt="Reconocimiento a la excelencia"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Reconocimiento a la excelencia
-        </p>
-      </div>
-
-      <div
-        class="gallery-card fade-in"
-        style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
-      >
-        <img
-          src="{{ url_for('static', filename='img/l.jpeg') }}"
-          alt="Feria cultural y gastronómica"
-          style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
-          onclick="openModal(this)"
-        />
-        <p
-          style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
-        >
-          Feria cultural y gastronómica
-        </p>
-      </div>
+          <img
+            src="{{ url_for('static', filename='Imagenes/' + imagen) }}"
+            alt="{{ imagen }}"
+            style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
+            onclick="openModal(this)"
+          />
+          <p
+            style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
+          >
+            {{ imagen }}
+          </p>
+        </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}
