@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from db import obtener_conexion
+from db import obtener_conexion, init_db  # <--- Importamos init_db aquí
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_super_segura'  # Necesario para usar sesiones
@@ -9,22 +9,8 @@ app.secret_key = 'clave_secreta_super_segura'  # Necesario para usar sesiones
 UPLOAD_FOLDER = 'static/Imagenes'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Función auxiliar para asegurar que la tabla de la galería exista en la base de datos
-def inicializar_db_galeria():
-    conexion = obtener_conexion()
-    cursor = conexion.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS galeria (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            archivo TEXT NOT NULL,
-            titulo TEXT NOT NULL
-        )
-    ''')
-    conexion.commit()
-    conexion.close()
-
-# Ejecutamos la creación de la tabla al iniciar la app
-inicializar_db_galeria()
+# Inicializamos la base de datos y sus tablas (incluyendo galeria) al arrancar
+init_db()
 
 # ---------------------------------------------------------
 # RUTAS PÚBLICAS Y GENERALES
@@ -322,7 +308,6 @@ def login_mensajes():
             flash('Contraseña incorrecta. Inténtalo de nuevo.', 'danger')
             return redirect(url_for('login_mensajes'))
     
-    # Vista simple de inicio de sesión para el administrador
     return '''
     <!DOCTYPE html>
     <html lang="es">
@@ -367,7 +352,7 @@ def subir_imagen():
 
     if 'foto' in request.files:
         foto = request.files['foto']
-        titulo = request.form.get('titulo', '').strip() # Capturamos el texto descriptivo
+        titulo = request.form.get('titulo', '').strip()
         
         if foto.filename != '':
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -376,11 +361,9 @@ def subir_imagen():
             ruta_destino = os.path.join(app.config['UPLOAD_FOLDER'], foto.filename)
             foto.save(ruta_destino)
 
-            # Si no pusieron título, usamos el nombre del archivo como respaldo
             if not titulo:
                 titulo = foto.filename
 
-            # Guardamos la referencia y el título en la base de datos
             try:
                 conexion = obtener_conexion()
                 cursor = conexion.cursor()
@@ -406,7 +389,6 @@ def eliminar_imagen(id_imagen):
         conexion = obtener_conexion()
         cursor = conexion.cursor()
         
-        # Buscamos el nombre del archivo para borrarlo de la carpeta física
         cursor.execute("SELECT archivo FROM galeria WHERE id = ?", (id_imagen,))
         resultado = cursor.fetchone()
         
@@ -416,7 +398,6 @@ def eliminar_imagen(id_imagen):
             if os.path.exists(ruta_imagen):
                 os.remove(ruta_imagen)
             
-            # Borramos el registro de la base de datos
             cursor.execute("DELETE FROM galeria WHERE id = ?", (id_imagen,))
             conexion.commit()
             flash('Imagen eliminada correctamente.', 'success')

@@ -194,28 +194,28 @@
       style="text-align: center; color: var(--text-main); margin-bottom: 2rem; font-size: 0.95rem;"
     >
       Un recorrido visual por las actividades cívicas, culturales, artísticas y
-      académicas de nuestros alumnos que enorgullecen a nuestro instituto.
+      académicas de nuestros alumnos que enorgullecen al instituto.
     </p>
 
     <div
       class="gallery-grid"
       style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;"
     >
-      {% for imagen in lista_imagenes %}
+      {% for img in lista_imagenes %}
         <div
           class="gallery-card fade-in"
           style="background-color: var(--card-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-light); text-align: center;"
         >
           <img
-            src="{{ url_for('static', filename='Imagenes/' + imagen) }}"
-            alt="{{ imagen }}"
+            src="{{ url_for('static', filename='Imagenes/' + img.archivo) }}"
+            alt="{{ img.titulo }}"
             style="width: 100%; height: 180px; object-fit: cover; display: block; cursor: pointer;"
             onclick="openModal(this)"
           />
           <p
             style="padding: 0.8rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin: 0;"
           >
-            {{ imagen }}
+            {{ img.titulo }}
           </p>
         </div>
       {% endfor %}
