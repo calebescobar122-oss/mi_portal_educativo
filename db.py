@@ -43,6 +43,8 @@ def init_db():
         )
     ''')
     
+    conn.commit()
+
     # Poblar noticias iniciales si la tabla está vacía
     cursor.execute("SELECT COUNT(*) FROM noticias")
     if cursor.fetchone()[0] == 0:
