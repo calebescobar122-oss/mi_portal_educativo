@@ -150,8 +150,8 @@ def inicio():
 def mensajes():
     calendario_anual = generar_calendario_anual()
 
-    # Manejar inicio de sesión de administrador dentro de la misma página
     error_login = None
+    # Si intentan iniciar sesión mediante POST
     if request.method == "POST" and "password" in request.form:
         password = request.form.get("password")
         if password == "12345":  # Contraseña de administrador
@@ -160,7 +160,6 @@ def mensajes():
         else:
             error_login = "Contraseña incorrecta. Inténtalo de nuevo."
 
-    # Obtener datos si la sesión está activa
     mensajes_usuarios = []
     lista_imagenes = []
 
