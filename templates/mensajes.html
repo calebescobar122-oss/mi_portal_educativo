@@ -6,61 +6,66 @@
 {% endblock %}
 
 {% block content %}
-  <section
-    class="page-header fade-in"
-    style="text-align: center; margin-bottom: 2rem;"
+  <div
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;"
+    class="fade-in"
   >
-    <h2
-      style="display: inline-block; border-bottom: 3px solid var(--accent-yellow); padding-bottom: 0.5rem; color: var(--header-blue);"
+    <div>
+      <h2 style="color: var(--header-blue); margin-bottom: 0.3rem;">
+        <i class="fa-solid fa-bullhorn" style="color: var(--accent-gold);"></i>
+        Mensajes y Calendario Anual 2026
+      </h2>
+      <p style="color: var(--text-main); font-size: 0.95rem; margin: 0;">
+        Consulta los comunicados oficiales, haz clic en cualquier mes para
+        ampliar el calendario o accede al buzón administrativo.
+      </p>
+    </div>
+    <!-- BOTÓN DE ACCESO RÁPIDO QUE BAJA A LA SECCIÓN DE CONTRASEÑA -->
+    <a
+      href="#seccion-admin"
+      class="btn-primary"
+      style="background-color: #0083ca; color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
     >
-      Calendario Anual y Avisos Institucionales 2026
-    </h2>
-    <p
-      class="subtitle"
-      style="color: var(--text-main); font-size: 1.05rem; margin-top: 0.5rem;"
-    >
-      Mantente informado sobre todas nuestras actividades escolares y eventos
-      importantes del año.
-    </p>
-  </section>
+      <i class="fa-solid fa-lock"></i> Acceso a Mensajes Administrativos
+    </a>
+  </div>
 
   <!-- ================= SECCIÓN DE AVISOS INSTITUCIONALES ================= -->
   <div
     class="info-card fade-in"
-    style="margin-bottom: 3rem; border-top: 4px solid var(--accent-yellow);"
+    style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-yellow);"
   >
-    <h3 style="color: var(--header-blue); margin-bottom: 1.5rem;">
-      <i class="fa-solid fa-bullhorn" style="color: var(--accent-gold);"></i>
-      Avisos y Comunicados Recientes
+    <h3
+      style="color: var(--header-blue); margin-bottom: 1.2rem; font-size: 1.2rem;"
+    >
+      Avisos Oficiales
     </h3>
 
     {% if avisos %}
-      <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"
-      >
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
         {% for aviso in avisos %}
           <div
-            style="background-color: #f8f9fa; border: 1px solid var(--border-light); border-left: 4px solid {% if aviso.categoria == 'Urgente' %}#d9534f{% else %}var(--header-blue){% endif %}; padding: 1.2rem; border-radius: 6px;"
+            style="background-color: #f8f9fa; border: 1px solid var(--border-light); border-left: 4px solid {% if aviso.categoria == 'Urgente' %}#d9534f{% else %}var(--header-blue){% endif %}; padding: 1rem; border-radius: 6px;"
           >
             <div
-              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;"
+              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;"
             >
               <span
-                style="font-size: 0.8rem; font-weight: bold; color: {% if aviso.categoria == 'Urgente' %}#d9534f{% else %}var(--header-blue){% endif %}; text-transform: uppercase;"
+                style="font-size: 0.75rem; font-weight: bold; color: {% if aviso.categoria == 'Urgente' %}#d9534f{% else %}var(--header-blue){% endif %}; text-transform: uppercase;"
               >
                 {{ aviso.categoria }}
               </span>
-              <span style="font-size: 0.8rem; color: #666;"
-                >{{ aviso.fecha }}</span
+              <span style="font-size: 0.75rem; color: #666;"
+                >Fecha: {{ aviso.fecha }}</span
               >
             </div>
             <h4
-              style="color: var(--header-blue); margin-bottom: 0.5rem; font-size: 1.1rem;"
+              style="color: var(--header-blue); margin-bottom: 0.3rem; font-size: 1rem;"
             >
               {{ aviso.titulo }}
             </h4>
             <p
-              style="color: var(--text-main); font-size: 0.95rem; line-height: 1.4;"
+              style="color: var(--text-main); font-size: 0.9rem; line-height: 1.4; margin: 0;"
             >
               {{ aviso.contenido }}
             </p>
@@ -117,9 +122,7 @@
               {% for semana in mes.matriz %}
                 <tr>
                   {% for dia in semana %}
-                    <td
-                      style="padding: 5px; {% if dia != 0 %}cursor: default;{% endif %}"
-                    >
+                    <td style="padding: 5px;">
                       {% if dia != 0 %}
                         {% if dia in mes.eventos %}
                           <span
@@ -158,8 +161,9 @@
     </div>
   </div>
 
-  <!-- ================= SECCIÓN DE ADMINISTRACIÓN / BUZÓN (INTEGRADA AL FINAL) ================= -->
+  <!-- ================= ANCLA / APARTADO ADMINISTRATIVO (INFERIOR) ================= -->
   <div
+    id="seccion-admin"
     style="margin-top: 4rem; border-top: 4px solid var(--header-blue); padding-top: 2rem;"
     class="fade-in"
   >
@@ -321,7 +325,7 @@
         {% endif %}
       </div>
     {% else %}
-      <!-- FORMULARIO DE ACCESO (SOLO APARECE SI NO HAY SESIÓN) -->
+      <!-- FORMULARIO DE ACCESO (APARECE AQUÍ MISMO AL PRESIONAR EL BOTÓN) -->
       <div
         style="max-width: 450px; margin: 0 auto; text-align: center;"
         class="info-card"
@@ -347,7 +351,7 @@
 
         <form
           method="POST"
-          action="{{ url_for('mensajes') }}"
+          action="{{ url_for('mensajes') }}#seccion-admin"
           style="display: flex; flex-direction: column; gap: 1rem;"
         >
           <input
