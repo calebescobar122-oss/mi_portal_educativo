@@ -23,14 +23,23 @@ def init_db():
         )
     ''')
     
-    # Tabla de mensajes (Buzón de consultas de la página de contacto)
+    # Tabla de mensajes (Buzón de consultas)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS mensajes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT NOT NULL,
-            contacto TEXT NOT NULL,
+            correo TEXT NOT NULL,
             mensaje TEXT NOT NULL,
             fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    # Tabla de galería para la sección Quiénes Somos / Panel
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS galeria (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            archivo TEXT NOT NULL,
+            titulo TEXT NOT NULL
         )
     ''')
     
@@ -49,4 +58,4 @@ def init_db():
 
 if __name__ == "__main__":
     init_db()
-    print("Base de datos SQLite inicializada correctamente con la tabla de mensajes.")
+    print("Base de datos SQLite inicializada correctamente.")
