@@ -28,8 +28,8 @@
           {% if session.get('admin_logueado') %}
             Gestión de consultas recibidas por parte de la comunidad educativa.
           {% else %}
-            Consulta los comunicados oficiales, despliega el mes de tu interés o
-            revisa el buzón administrativo.
+            Consulta los comunicados oficiales, haz clic en cualquier mes para
+            ampliar el calendario o revisa el buzón administrativo.
           {% endif %}
         </p>
       </div>
@@ -177,7 +177,7 @@
       style="border-top: 4px solid var(--accent-gold);"
     >
       <h3
-        style="color: var(--header-brown); margin-bottom: 1.5rem; font-size: 1.3rem;"
+        style="color: var(--header-brown); margin-bottom: 0.5rem; font-size: 1.3rem;"
       >
         <i
           class="fa-solid fa-calendar-days"
@@ -185,13 +185,21 @@
         ></i>
         Calendario Escolar 2026
       </h3>
+      <p
+        style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; font-style: italic;"
+      >
+        Haz clic en cualquier tarjeta de mes para ampliarlo en pantalla
+        completa.
+      </p>
 
       <div
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"
       >
         {% for mes in calendario %}
           <div
-            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);"
+            class="card-mes-zoomable"
+            style="border: 1px solid #e0d5cb; border-radius: 8px; padding: 1rem; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;"
+            onclick="abrirModalMes(this)"
           >
             <h4
               style="text-align: center; color: var(--header-brown); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.3rem;"
@@ -254,5 +262,75 @@
         {% endfor %}
       </div>
     </div>
+
+    <!-- VENTANA MODAL PARA AMPLIAR EL MES -->
+    <div
+      id="modalMes"
+      style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; padding: 20px;"
+    >
+      <div
+        style="background: white; border-radius: 12px; padding: 2rem; max-width: 500px; width: 100%; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3);"
+      >
+        <button
+          onclick="cerrarModalMes()"
+          style="position: absolute; top: 15px; right: 15px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="contenidoModalMes" style="margin-top: 10px;">
+          <!-- Aquí se clona el contenido del mes seleccionado -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Efecto hover sutil para indicar que son clickeables
+      document.querySelectorAll(".card-mes-zoomable").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "translateY(-3px)";
+          card.style.boxShadow = "0 6px 15px rgba(0,0,0,0.1)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "translateY(0)";
+          card.style.boxShadow = "0 2px 5px rgba(0,0,0,0.05)";
+        });
+      });
+
+      function abrirModalMes(elemento) {
+        const modal = document.getElementById("modalMes");
+        const contenidoModal = document.getElementById("contenidoModalMes");
+
+        // Copiamos el HTML de la tarjeta seleccionada dentro del modal
+        contenidoModal.innerHTML = elemento.innerHTML;
+
+        // Ajustamos estilos para que se vea más grande y cómodo en el modal
+        const tabla = contenidoModal.querySelector("table");
+        if (tabla) {
+          tabla.style.fontSize = "1.1rem";
+          const celdas = tabla.querySelectorAll("td, th");
+          celdas.forEach((c) => (c.style.padding = "10px"));
+        }
+
+        const titulo = contenidoModal.querySelector("h4");
+        if (titulo) {
+          titulo.style.fontSize = "1.5rem";
+        }
+
+        modal.style.display = "flex";
+      }
+
+      function cerrarModalMes() {
+        document.getElementById("modalMes").style.display = "none";
+      }
+
+      // Cerrar modal haciendo clic fuera de la caja blanca
+      document
+        .getElementById("modalMes")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            cerrarModalMes();
+          }
+        });
+    </script>
   {% endif %}
 {% endblock %}
