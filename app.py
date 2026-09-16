@@ -151,29 +151,35 @@ def inicio():
 
 @app.route("/mensajes", methods=["GET"])
 def mensajes():
-    # Cargar los datos del buzón por si el administrador ha iniciado sesión
-    mensajes_usuarios = []
-    if session.get("admin_logueado"):
-        conn = get_db_connection()
-        mensajes_usuarios = conn.execute(
-            "SELECT * FROM mensajes ORDER BY id DESC"
-        ).fetchall()
-        conn.close()
+    # Esta ruta ahora es 100% PÚBLICA (Muestra avisos y calendario)
+    calendario_anual = generar_calendario_anual()
+    return render_template(
+        "mensajes.html",
+        calendario=calendario_anual,
+        avisos=avisos_institucionales,
+    )
 
-    # Obtener lista de imágenes actuales en static/Imagenes para la galería
+
+@app.route("/admin-buzon", methods=["GET"])
+def admin_buzon():
+    # Ruta PRIVADA protegida con contraseña
+    if not session.get("admin_logueado"):
+        return redirect(url_for("login_mensajes"))
+
+    conn = get_db_connection()
+    mensajes_usuarios = conn.execute(
+        "SELECT * FROM mensajes ORDER BY id DESC"
+    ).fetchall()
+    conn.close()
+
     lista_imagenes = []
     if os.path.exists(CARPETA_IMAGENES):
         lista_imagenes = os.listdir(CARPETA_IMAGENES)
 
-    # Generar el calendario anual y pasar los avisos institucionales
-    calendario_anual = generar_calendario_anual()
-
     return render_template(
-        "mensajes.html",
+        "admin_buzon.html",
         mensajes_db=mensajes_usuarios,
         lista_imagenes=lista_imagenes,
-        calendario=calendario_anual,
-        avisos=avisos_institucionales,
     )
 
 
@@ -183,7 +189,7 @@ def login_mensajes():
         password = request.form.get("password")
         if password == "12345":
             session["admin_logueado"] = True
-            return redirect(url_for("mensajes"))
+            return redirect(url_for("admin_buzon"))
         else:
             error = "Contraseña incorrecta. Inténtalo de nuevo."
             return render_template("login_mensajes.html", error=error)
@@ -209,7 +215,7 @@ def subir_imagen():
             ruta_archivo = os.path.join(CARPETA_IMAGENES, archivo.filename)
             archivo.save(ruta_archivo)
 
-    return redirect(url_for("mensajes"))
+    return redirect(url_for("admin_buzon"))
 
 
 @app.route("/eliminar-imagen/<path:nombre_imagen>", methods=["POST"])
@@ -221,7 +227,7 @@ def eliminar_imagen(nombre_imagen):
     if os.path.exists(ruta_archivo):
         os.remove(ruta_archivo)
 
-    return redirect(url_for("mensajes"))
+    return redirect(url_for("admin_buzon"))
 
 
 @app.route("/quienes")
