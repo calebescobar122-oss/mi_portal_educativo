@@ -151,7 +151,6 @@ def inicio():
 
 @app.route("/mensajes", methods=["GET"])
 def mensajes():
-    # Esta ruta ahora es 100% PÚBLICA (Muestra avisos y calendario)
     calendario_anual = generar_calendario_anual()
     return render_template(
         "mensajes.html",
@@ -162,7 +161,6 @@ def mensajes():
 
 @app.route("/admin-buzon", methods=["GET"])
 def admin_buzon():
-    # Ruta PRIVADA protegida con contraseña
     if not session.get("admin_logueado"):
         return redirect(url_for("login_mensajes"))
 
@@ -203,7 +201,6 @@ def logout():
     return redirect(url_for("mensajes"))
 
 
-# Rutas para el manejo de la galería desde el panel de administración
 @app.route("/subir-imagen", methods=["POST"])
 def subir_imagen():
     if not session.get("admin_logueado"):
@@ -261,13 +258,6 @@ def contacto():
             )
             conn.commit()
             conn.close()
-
-            print("\n" + "=" * 50)
-            print(" 📩 NUEVA CONSULTA RECIBIDA DESDE LA WEB:")
-            print(f" • Nombre: {nombre}")
-            print(f" • Correo / Teléfono: {correo}")
-            print(f" • Mensaje: {mensaje}")
-            print("=" * 50 + "\n")
 
         return redirect(url_for("contacto"))
 
