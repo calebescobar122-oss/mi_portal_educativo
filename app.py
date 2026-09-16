@@ -9,6 +9,23 @@ app.secret_key = 'clave_secreta_super_segura'  # Necesario para usar sesiones
 UPLOAD_FOLDER = 'static/Imagenes'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Función auxiliar para asegurar que la tabla de la galería exista en la base de datos
+def inicializar_db_galeria():
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS galeria (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            archivo TEXT NOT NULL,
+            titulo TEXT NOT NULL
+        )
+    ''')
+    conexion.commit()
+    conexion.close()
+
+# Ejecutamos la creación de la tabla al iniciar la app
+inicializar_db_galeria()
+
 # ---------------------------------------------------------
 # RUTAS PÚBLICAS Y GENERALES
 # ---------------------------------------------------------
@@ -19,10 +36,23 @@ def inicio():
 
 @app.route('/quienes')
 def quienes():
-    # Obtener las imágenes de la galería para la sección Quiénes Somos
+    # Obtener las imágenes y sus títulos personalizados desde la base de datos
     lista_imagenes = []
-    if os.path.exists(app.config['UPLOAD_FOLDER']):
-        lista_imagenes = os.listdir(app.config['UPLOAD_FOLDER'])
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute("SELECT archivo, titulo FROM galeria ORDER BY id DESC")
+        filas = cursor.fetchall()
+        conexion.close()
+        
+        for fila in filas:
+            lista_imagenes.append({
+                "archivo": fila[0],
+                "titulo": fila[1]
+            })
+    except Exception as e:
+        print("Error al cargar la galería desde la BD:", e)
+
     return render_template('quienes.html', lista_imagenes=lista_imagenes)
 
 # Ruta de compatibilidad por si base.html u otra plantilla usa 'acerca'
@@ -249,10 +279,24 @@ def mensajes():
         except Exception as e:
             print("Error al cargar mensajes de la BD:", e)
 
-    # 4. Obtener lista de imágenes para administrar la galería
+    # 4. Obtener lista de imágenes con sus títulos para administrar la galería
     lista_imagenes = []
-    if os.path.exists(app.config['UPLOAD_FOLDER']):
-        lista_imagenes = os.listdir(app.config['UPLOAD_FOLDER'])
+    if session.get('admin_logueado'):
+        try:
+            conexion = obtener_conexion()
+            cursor = conexion.cursor()
+            cursor.execute("SELECT id, archivo, titulo FROM galeria ORDER BY id DESC")
+            filas = cursor.fetchall()
+            conexion.close()
+
+            for fila in filas:
+                lista_imagenes.append({
+                    "id": fila[0],
+                    "archivo": fila[1],
+                    "titulo": fila[2]
+                })
+        except Exception as e:
+            print("Error al cargar galería en admin:", e)
 
     return render_template(
         'mensajes.html',
@@ -323,24 +367,64 @@ def subir_imagen():
 
     if 'foto' in request.files:
         foto = request.files['foto']
+        titulo = request.form.get('titulo', '').strip() # Capturamos el texto descriptivo
+        
         if foto.filename != '':
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
                 os.makedirs(app.config['UPLOAD_FOLDER'])
+            
             ruta_destino = os.path.join(app.config['UPLOAD_FOLDER'], foto.filename)
             foto.save(ruta_destino)
-            flash('Imagen subida correctamente.', 'success')
+
+            # Si no pusieron título, usamos el nombre del archivo como respaldo
+            if not titulo:
+                titulo = foto.filename
+
+            # Guardamos la referencia y el título en la base de datos
+            try:
+                conexion = obtener_conexion()
+                cursor = conexion.cursor()
+                cursor.execute(
+                    "INSERT INTO galeria (archivo, titulo) VALUES (?, ?)",
+                    (foto.filename, titulo)
+                )
+                conexion.commit()
+                conexion.close()
+                flash('Imagen subida correctamente con su descripción.', 'success')
+            except Exception as e:
+                flash('Error al guardar en la base de datos.', 'danger')
+                print(e)
 
     return redirect(url_for('mensajes'))
 
-@app.route('/eliminar_imagen/<nombre_imagen>', methods=['POST'])
-def eliminar_imagen(nombre_imagen):
+@app.route('/eliminar_imagen/<int:id_imagen>', methods=['POST'])
+def eliminar_imagen(id_imagen):
     if not session.get('admin_logueado'):
         return redirect(url_for('mensajes'))
 
-    ruta_imagen = os.path.join(app.config['UPLOAD_FOLDER'], nombre_imagen)
-    if os.path.exists(ruta_imagen):
-        os.remove(ruta_imagen)
-        flash('Imagen eliminada correctamente.', 'success')
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        
+        # Buscamos el nombre del archivo para borrarlo de la carpeta física
+        cursor.execute("SELECT archivo FROM galeria WHERE id = ?", (id_imagen,))
+        resultado = cursor.fetchone()
+        
+        if resultado:
+            archivo = resultado[0]
+            ruta_imagen = os.path.join(app.config['UPLOAD_FOLDER'], archivo)
+            if os.path.exists(ruta_imagen):
+                os.remove(ruta_imagen)
+            
+            # Borramos el registro de la base de datos
+            cursor.execute("DELETE FROM galeria WHERE id = ?", (id_imagen,))
+            conexion.commit()
+            flash('Imagen eliminada correctamente.', 'success')
+            
+        conexion.close()
+    except Exception as e:
+        flash('Error al eliminar la imagen.', 'danger')
+        print(e)
 
     return redirect(url_for('mensajes'))
 
